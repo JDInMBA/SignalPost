@@ -1,0 +1,108 @@
+{
+ "gold_rows": 220,
+ "envelopes": 220,
+ "one_envelope_per_input": true,
+ "missing_envelopes": [],
+ "labelled_slice": {
+  "companies": 110,
+  "published": 61,
+  "correct_exact_domain": 60,
+  "registry_disagreements_with_org_number_proof": 0,
+  "wrong_company_publications": 1,
+  "abstained": 49,
+  "exact_domain_precision": 0.9836065573770492,
+  "exact_entity_precision": 0.9836065573770492,
+  "recall": 0.5454545454545454,
+  "abstention_rate": 0.44545454545454544
+ },
+ "unlabelled_slice": {
+  "companies": 110,
+  "published_new_websites": 11,
+  "discovery_rate": 0.1,
+  "candidates_vetoed_for_conflicting_org_number": 7
+ },
+ "publication_tiers": {
+  "A_org_number_on_page": 19,
+  "C_registry_email_domain_plus_corroboration": 47,
+  "D_site_identity_name_plus_locator": 6
+ },
+ "discovery_channels": {
+  "subunit_website": 7,
+  "registry_email_domain": 57,
+  "name_guess": 8
+ },
+ "wrong_company_detail": [
+  {
+   "organisation_number": "997001877",
+   "name": "FUSETOOLS AS",
+   "published": "fusetools.com",
+   "registry_truth": "fuse.no",
+   "tier": "C_registry_email_domain_plus_corroboration",
+   "channel": "registry_email_domain"
+  }
+ ],
+ "registry_disagreement_detail": [],
+ "evidence_validity": {
+  "available_claims": 2115,
+  "with_resolving_evidence": 2115,
+  "rate": 1.0
+ },
+ "family_availability": {
+  "contact": {
+   "available": 216,
+   "not_available": 76
+  },
+  "dated_activity": {
+   "not_available": 68,
+   "available": 4
+  },
+  "description": {
+   "available": 87,
+   "not_available": 57
+  },
+  "financials": {
+   "available": 439,
+   "failed": 1
+  },
+  "group": {
+   "not_available": 199,
+   "available": 21
+  },
+  "hiring": {
+   "not_available": 65,
+   "available": 7
+  },
+  "identity": {
+   "available": 729,
+   "not_available": 151
+  },
+  "leadership": {
+   "available": 219,
+   "not_available": 1
+  },
+  "locations": {
+   "available": 176,
+   "not_available": 44
+  },
+  "social_profiles": {
+   "available": 47,
+   "not_available": 25
+  },
+  "website": {
+   "available": 72,
+   "ambiguous": 62,
+   "not_available": 70,
+   "blocked": 16
+  },
+  "workforce": {
+   "available": 98,
+   "not_available": 122
+  }
+ },
+ "cost": {
+  "requests": 23015,
+  "requests_per_company": 104.6,
+  "latency_p50_ms": 18513,
+  "latency_p95_ms": 44923
+ }
+}

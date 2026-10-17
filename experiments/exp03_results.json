@@ -1,0 +1,18 @@
+{
+ "eligible": 411160,
+ "with_registry_site": 44855,
+ "email_domain_candidates": 39315,
+ "stats": {
+  "has_epostadresse": 97526,
+  "has_telefon": 78154,
+  "has_vedtektsfestetFormaal": 397825,
+  "has_historiskeNavn": 97749,
+  "has_kapital": 381985,
+  "has_stiftelsesdato": 406373,
+  "email_any": 97485,
+  "email_corporate": 73865,
+  "has_mobil": 81539,
+  "email_freemail": 23620,
+  "has_hjemmeside": 44850
+ }
+}

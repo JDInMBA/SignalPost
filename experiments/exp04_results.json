@@ -1,0 +1,1093 @@
+{
+ "sample": 150,
+ "counts": {
+  "live_unproven": 85,
+  "dns_dead": 18,
+  "other_company": 21,
+  "no_http": 23,
+  "verified_deep": 1,
+  "verified_home": 2
+ },
+ "results": [
+  {
+   "org": "921484763",
+   "name": "TINNELVA EIENDOM AS",
+   "domain": "fram.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.fram.no/"
+  },
+  {
+   "org": "984825226",
+   "name": "MO KOMMUNEFUNKSJONÆRERS BORETTSLAG III",
+   "domain": "helgelandbbl.no",
+   "status": "live_unproven",
+   "proof_url": "https://helgelandbbl.no"
+  },
+  {
+   "org": "935479088",
+   "name": "HANDELSBYGG HOMMELVIK INVEST AS",
+   "domain": "norionkapital.no",
+   "status": "live_unproven",
+   "proof_url": "https://norioneiendomskapital.no/"
+  },
+  {
+   "org": "998690323",
+   "name": "PRO INTEGRATED MANAGEMENT AS",
+   "domain": "skjulsvik.no",
+   "status": "live_unproven",
+   "proof_url": "http://skjulsvik.no"
+  },
+  {
+   "org": "994006096",
+   "name": "CENTRUM VAREHUS AS",
+   "domain": "off.as",
+   "status": "dns_dead"
+  },
+  {
+   "org": "914320453",
+   "name": "HANESETH KIRKENES AS",
+   "domain": "haneseth.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.haneseth.no/"
+  },
+  {
+   "org": "990933715",
+   "name": "BRURHELLA UTBYGGING AS",
+   "domain": "omfjeld.no",
+   "status": "other_company",
+   "other_orgs": [
+    "830220852",
+    "884587832",
+    "911669668"
+   ],
+   "proof_url": "https://www.omfjeld.no/"
+  },
+  {
+   "org": "885962742",
+   "name": "TANNLEGENE GJERMUNDS AS",
+   "domain": "gjermunds.no",
+   "status": "live_unproven",
+   "proof_url": "https://gjermunds.no"
+  },
+  {
+   "org": "912561666",
+   "name": "UNODRILL AS",
+   "domain": "ntnu.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.ntnu.no/"
+  },
+  {
+   "org": "998067979",
+   "name": "RASK INVEST AS",
+   "domain": "okonomiplus.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "991213600",
+   "name": "JG RØNNINGEN INVEST AS",
+   "domain": "roros.net",
+   "status": "live_unproven",
+   "proof_url": "https://parkert.renrorosdigital.no/"
+  },
+  {
+   "org": "940408288",
+   "name": "BERG PROSJEKT AS",
+   "domain": "oie.no",
+   "status": "live_unproven",
+   "proof_url": "https://oie.no"
+  },
+  {
+   "org": "997120612",
+   "name": "ILEFLOR INVEST AS",
+   "domain": "ebnett.no",
+   "status": "no_http"
+  },
+  {
+   "org": "911860597",
+   "name": "FRYDENBØ EIENDOM AS",
+   "domain": "frydenbo.no",
+   "status": "other_company",
+   "other_orgs": [
+    "921629710",
+    "934618939"
+   ],
+   "proof_url": "https://www.frydenbo.no/"
+  },
+  {
+   "org": "913867661",
+   "name": "DIN KOMPANJONG AS",
+   "domain": "sparebankendin.no",
+   "status": "other_company",
+   "other_orgs": [
+    "937891601"
+   ],
+   "proof_url": "https://www.sparebankendin.no/"
+  },
+  {
+   "org": "823188552",
+   "name": "MOSSIA ANS",
+   "domain": "mossia.net",
+   "status": "live_unproven",
+   "proof_url": "https://www.mossia.net/"
+  },
+  {
+   "org": "912091066",
+   "name": "JABI HOLDING AS",
+   "domain": "tobemanning.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "977235219",
+   "name": "KONSUL EIENDOM AS",
+   "domain": "eiendomsnokkelen.no",
+   "status": "live_unproven",
+   "proof_url": "https://eiendomsnokkelen.no"
+  },
+  {
+   "org": "913190882",
+   "name": "BEGE AS",
+   "domain": "grathen.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "914286417",
+   "name": "LIVMA INVEST AS",
+   "domain": "barn-nett.com",
+   "status": "live_unproven",
+   "proof_url": "http://barn-nett.com"
+  },
+  {
+   "org": "992993308",
+   "name": "STREMCO AS",
+   "domain": "stremco.no",
+   "status": "live_unproven",
+   "proof_url": "http://stremco.no"
+  },
+  {
+   "org": "999255671",
+   "name": "LK EIGEDOM AS",
+   "domain": "turlid.no",
+   "status": "no_http"
+  },
+  {
+   "org": "993537861",
+   "name": "MORENE PRODUKTER AS",
+   "domain": "morene.no",
+   "status": "live_unproven",
+   "proof_url": "https://morene.no"
+  },
+  {
+   "org": "914811899",
+   "name": "AUDUN NYGAARD AS",
+   "domain": "nygaard.as",
+   "status": "live_unproven",
+   "proof_url": "https://nygaard.as"
+  },
+  {
+   "org": "980202283",
+   "name": "RØTNEBAKKEN AS",
+   "domain": "consultant.online.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "983394523",
+   "name": "KONGEGÅRDEN EIENDOM AS",
+   "domain": "ostbyeiendom.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.ostbyeiendom.no/"
+  },
+  {
+   "org": "997897587",
+   "name": "BETTUM AS",
+   "domain": "bettum.net",
+   "status": "live_unproven",
+   "proof_url": "http://domene-kunde.online4u.no/index.htm"
+  },
+  {
+   "org": "915755623",
+   "name": "SCHMIDT & FARDAL AS",
+   "domain": "rjukan.com",
+   "status": "live_unproven",
+   "proof_url": "https://www.rjukan.com/"
+  },
+  {
+   "org": "946549215",
+   "name": "SML LIGHTING AS",
+   "domain": "smllighting.no",
+   "status": "live_unproven",
+   "proof_url": "https://smllighting.no"
+  },
+  {
+   "org": "928410714",
+   "name": "MAHOL INVEST AS",
+   "domain": "teltproffen.no",
+   "status": "no_http"
+  },
+  {
+   "org": "985226075",
+   "name": "ØVREGATEN 126 AS",
+   "domain": "knutsenoas.com",
+   "status": "live_unproven",
+   "proof_url": "https://knutsenoas.com"
+  },
+  {
+   "org": "919703024",
+   "name": "SOLAVSKJERMING1 A/S AS",
+   "domain": "solavskjerming1.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "921483473",
+   "name": "MAGNUS KONOW AS",
+   "domain": "briskely.no",
+   "status": "no_http"
+  },
+  {
+   "org": "946279455",
+   "name": "KLIMA OG KULDETEKNIKK A/S",
+   "domain": "klima.as",
+   "status": "dns_dead"
+  },
+  {
+   "org": "927157020",
+   "name": "EIFFEL INVEST AS",
+   "domain": "synexogroup.com",
+   "status": "live_unproven",
+   "proof_url": "http://synexogroup.com"
+  },
+  {
+   "org": "948391368",
+   "name": "STORGATA 89 - 95 BORETTSLAG",
+   "domain": "kbbl.no",
+   "status": "other_company",
+   "other_orgs": [
+    "948394928"
+   ],
+   "proof_url": "https://www.kbbl.no/"
+  },
+  {
+   "org": "919338199",
+   "name": "FITNESSPOINT STJØRDAL AS",
+   "domain": "vrm.no",
+   "status": "no_http"
+  },
+  {
+   "org": "922798435",
+   "name": "SAMEIET HELLANDSKOLLEN",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-7b0895fb-c1d8-4fb1-bf9b-4e1c74e771b9"
+  },
+  {
+   "org": "917324735",
+   "name": "MULTITASK AS",
+   "domain": "eidem.eu",
+   "status": "live_unproven",
+   "proof_url": "https://eidem.eu"
+  },
+  {
+   "org": "915531946",
+   "name": "NORNE BUSINESS MANAGEMENT AS",
+   "domain": "norne.no",
+   "status": "other_company",
+   "other_orgs": [
+    "992881828"
+   ],
+   "proof_url": "https://norne.no"
+  },
+  {
+   "org": "931200720",
+   "name": "HÅNDSREKNING AS",
+   "domain": "fortidsminneforeningen.no",
+   "status": "no_http"
+  },
+  {
+   "org": "936335888",
+   "name": "KEBENO AS",
+   "domain": "bjellandautomatic.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.bjellandautomatic.no/"
+  },
+  {
+   "org": "993936758",
+   "name": "VINTER VISJON AS",
+   "domain": "berdal.as",
+   "status": "dns_dead"
+  },
+  {
+   "org": "914947154",
+   "name": "GISLE LUNDØ AS",
+   "domain": "lundo.no",
+   "status": "no_http"
+  },
+  {
+   "org": "950489820",
+   "name": "BORETTSLAGET NORDLI",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-008aa2c1-e468-4bdb-9839-ac0afe1cba0a"
+  },
+  {
+   "org": "926295144",
+   "name": "STAR REEFERS POOL INC. NUF",
+   "domain": "siemindustries.com",
+   "status": "live_unproven",
+   "proof_url": "https://www.siemindustries.com/"
+  },
+  {
+   "org": "945719761",
+   "name": "HJALMAR JOHANSENS GATE 12 AS",
+   "domain": "eiendomsspar.no",
+   "status": "live_unproven",
+   "proof_url": "https://eiendomsspar.no"
+  },
+  {
+   "org": "989614738",
+   "name": "TELLEHUS AS",
+   "domain": "telle-tre.no",
+   "status": "live_unproven",
+   "proof_url": "https://tellehus.plyo.cloud/"
+  },
+  {
+   "org": "915054005",
+   "name": "LANGAAS GEOTECH SOFTWARE CONSULTING AS",
+   "domain": "langaas.net",
+   "status": "live_unproven",
+   "proof_url": "https://langaas.net"
+  },
+  {
+   "org": "997929837",
+   "name": "NORD-VESTBOX.NO AS",
+   "domain": "nordvestbox.dk",
+   "status": "live_unproven",
+   "proof_url": "https://www.nordvestbox.dk/DK.aspx"
+  },
+  {
+   "org": "990579563",
+   "name": "ROPERN AS",
+   "domain": "andenaes.no",
+   "status": "live_unproven",
+   "proof_url": "https://andenaes.no"
+  },
+  {
+   "org": "992238968",
+   "name": "STIFTELSEN TRONDSLETTEN",
+   "domain": "cowi.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.cowi.com/"
+  },
+  {
+   "org": "914760070",
+   "name": "GODEJORD GRUPPEN AS",
+   "domain": "godejord.no",
+   "status": "live_unproven",
+   "proof_url": "https://godejord.no"
+  },
+  {
+   "org": "990312648",
+   "name": "FUHR PARK AS",
+   "domain": "kruse-smith.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "821903882",
+   "name": "FLASNES CONSULTING SERVICES AS",
+   "domain": "flasnesconsulting.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.flasnesconsulting.no/"
+  },
+  {
+   "org": "974422387",
+   "name": "RØSSELGATA BORETTSLAG",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-bb84992a-87a5-4b17-92b4-5b8d00341b4c"
+  },
+  {
+   "org": "935311403",
+   "name": "NEWCO CU 2026 AS",
+   "domain": "cabelco.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "980335534",
+   "name": "SAMEIET CHR MICHELSENSGATE 17 B",
+   "domain": "enforvaltning.no",
+   "status": "other_company",
+   "other_orgs": [
+    "608648658",
+    "977023017"
+   ],
+   "proof_url": "https://www.phmforvaltning.no/"
+  },
+  {
+   "org": "999189342",
+   "name": "STOCC AS",
+   "domain": "tampnet.com",
+   "status": "live_unproven",
+   "proof_url": "https://www.tampnet.com/"
+  },
+  {
+   "org": "921797427",
+   "name": "AS Handelsbygningen",
+   "domain": "fram.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.fram.no/"
+  },
+  {
+   "org": "935055296",
+   "name": "BOPROSJEKT AS",
+   "domain": "espelid.no",
+   "status": "live_unproven",
+   "proof_url": "http://espelid.no"
+  },
+  {
+   "org": "913787285",
+   "name": "RAM ENTREPRENØR AS",
+   "domain": "rament.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.rament.no/"
+  },
+  {
+   "org": "985134871",
+   "name": "COLIBRI HELICOPTER AS",
+   "domain": "colibri.as",
+   "status": "dns_dead"
+  },
+  {
+   "org": "971353457",
+   "name": "SAMEIET LANDÅSTUNET",
+   "domain": "bob.no",
+   "status": "live_unproven",
+   "proof_url": "https://bob.no"
+  },
+  {
+   "org": "968482114",
+   "name": "NEDRE ROMERIKE MINIBUSS AS",
+   "domain": "taxus.no",
+   "status": "no_http"
+  },
+  {
+   "org": "913809874",
+   "name": "TJØNNVOLL EIENDOM AS",
+   "domain": "grodumsauto.no",
+   "status": "other_company",
+   "other_orgs": [
+    "957936105"
+   ],
+   "proof_url": "https://sjekkpunkt.no/bilverksted/grodumsauto"
+  },
+  {
+   "org": "812978942",
+   "name": "INNHERREDSFERJA AS",
+   "domain": "fosen.no",
+   "status": "no_http"
+  },
+  {
+   "org": "930974358",
+   "name": "AS VIKTOR BAUMANNSV 30-36",
+   "domain": "tobb.no",
+   "status": "other_company",
+   "other_orgs": [
+    "946629243"
+   ],
+   "proof_url": "https://tobb.no"
+  },
+  {
+   "org": "918603611",
+   "name": "IH CONSULTING AS",
+   "domain": "trollnet.no",
+   "status": "live_unproven",
+   "proof_url": "https://trollnet.no"
+  },
+  {
+   "org": "916108362",
+   "name": "TR. INVEST AS",
+   "domain": "cbpartner.no",
+   "status": "live_unproven",
+   "proof_url": "http://cbpartner.no"
+  },
+  {
+   "org": "926447122",
+   "name": "NOREFJELLSTUA FJELLANDSBY AS",
+   "domain": "norefjell.com",
+   "status": "live_unproven",
+   "proof_url": "https://www.norefjell.com/"
+  },
+  {
+   "org": "965688269",
+   "name": "GILJES EIENDOM AS",
+   "domain": "giljes.no",
+   "status": "live_unproven",
+   "proof_url": "https://giljes.no"
+  },
+  {
+   "org": "996120120",
+   "name": "SAMEIET FRØYAS GATE 6",
+   "domain": "skeiendom.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.skeiendom.no/"
+  },
+  {
+   "org": "999082122",
+   "name": "SKJOLD REGNSKAP AS",
+   "domain": "skjoldregnskap.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "988014656",
+   "name": "BITTELITEN SATURN FAMILIEBARNEHAGE AS",
+   "domain": "prografia.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "934638026",
+   "name": "LOVEBIRDS AS",
+   "domain": "byggtek-norge.no",
+   "status": "live_unproven",
+   "proof_url": "http://byggtek-norge.no"
+  },
+  {
+   "org": "979300956",
+   "name": "STRANDA STÅLINDUSTRI AS",
+   "domain": "strandastaal.no",
+   "status": "other_company",
+   "other_orgs": [
+    "400046875",
+    "401296875"
+   ],
+   "proof_url": "https://www.strandastaal.no/"
+  },
+  {
+   "org": "994016822",
+   "name": "EIKER BLIKK AS",
+   "domain": "eikerblikk.no",
+   "status": "no_http"
+  },
+  {
+   "org": "958124961",
+   "name": "HYDROSCAND EIENDOM AS",
+   "domain": "hydroscand.no",
+   "status": "live_unproven",
+   "proof_url": "https://hydroscand.no/nb-no/"
+  },
+  {
+   "org": "937602162",
+   "name": "LYCHES AS",
+   "domain": "oline.no",
+   "status": "live_unproven",
+   "proof_url": "http://oline.no"
+  },
+  {
+   "org": "943331340",
+   "name": "KIF IDRETTSSENTER AS",
+   "domain": "pk-eiendom.no",
+   "status": "live_unproven",
+   "proof_url": "https://pk-eiendom.no"
+  },
+  {
+   "org": "997623460",
+   "name": "HEDIA AS",
+   "domain": "fabelaktiv.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.fabelaktiv.no/"
+  },
+  {
+   "org": "948605376",
+   "name": "KARIVEIEN BORETTSLAG",
+   "domain": "kbbl.no",
+   "status": "other_company",
+   "other_orgs": [
+    "948394928"
+   ],
+   "proof_url": "https://www.kbbl.no/"
+  },
+  {
+   "org": "914398460",
+   "name": "BORGHEIM EIENDOM AS",
+   "domain": "muras.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "914458366",
+   "name": "SKJERVIK HOLDING AS",
+   "domain": "sandnes-tak.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.sandnes-tak.no/"
+  },
+  {
+   "org": "964284946",
+   "name": "NORDAL REVISJONSBUREAU AS",
+   "domain": "revisornordal.no",
+   "status": "no_http"
+  },
+  {
+   "org": "918312730",
+   "name": "ENIDA AS",
+   "domain": "enida.no",
+   "status": "live_unproven",
+   "proof_url": "https://enida.no"
+  },
+  {
+   "org": "979512732",
+   "name": "BERG HANSEN REISEBUREAU AGDER AS",
+   "domain": "berg-hansen.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.berg-hansen.no/"
+  },
+  {
+   "org": "888064842",
+   "name": "BILTREND HARSTAD AS",
+   "domain": "biltrend.no",
+   "status": "other_company",
+   "other_orgs": [
+    "980689921"
+   ],
+   "proof_url": "https://www.biltrend.no/"
+  },
+  {
+   "org": "886995482",
+   "name": "VIGHEDLÅ AS",
+   "domain": "jormeland.no",
+   "status": "live_unproven",
+   "proof_url": "http://jormeland.no"
+  },
+  {
+   "org": "981747712",
+   "name": "ADVOKAT HELGE HJETLAND",
+   "domain": "advokathjetland.no",
+   "status": "live_unproven",
+   "proof_url": "https://advokathjetland.no"
+  },
+  {
+   "org": "913258614",
+   "name": "ØYVIND STEINHAUG AS",
+   "domain": "steinhaugs.no",
+   "status": "live_unproven",
+   "proof_url": "http://steinhaugs.no"
+  },
+  {
+   "org": "971201118",
+   "name": "AASEN TRANSPORT AS",
+   "domain": "aasenshipping.com",
+   "status": "live_unproven",
+   "proof_url": "https://aasenshipping.com"
+  },
+  {
+   "org": "989220330",
+   "name": "POB AS",
+   "domain": "lauvasenpukk.no",
+   "status": "live_unproven",
+   "proof_url": "https://lauvasenpukk.no"
+  },
+  {
+   "org": "986624120",
+   "name": "EIBO AS",
+   "domain": "bofo.no",
+   "status": "no_http"
+  },
+  {
+   "org": "957822215",
+   "name": "TROMSØ ARBEIDERFORENING",
+   "domain": "taf1853.no",
+   "status": "verified_deep",
+   "proof_url": "https://taf1853.no/kontakt/"
+  },
+  {
+   "org": "917445257",
+   "name": "EFNIR AS",
+   "domain": "tihas.no",
+   "status": "no_http"
+  },
+  {
+   "org": "942942737",
+   "name": "Østfold Trykkeri AS",
+   "domain": "ostfold-trykkeri.no",
+   "status": "no_http"
+  },
+  {
+   "org": "997953096",
+   "name": "AVERØY SJØTJENESTER AS",
+   "domain": "averoysjotjenester.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "914796601",
+   "name": "SCANDIC DRIVE AS",
+   "domain": "berganmedia.no",
+   "status": "live_unproven",
+   "proof_url": "http://berganmedia.no"
+  },
+  {
+   "org": "988125377",
+   "name": "SINTEL AS",
+   "domain": "klevan.no",
+   "status": "live_unproven",
+   "proof_url": "https://klevan.no"
+  },
+  {
+   "org": "994885073",
+   "name": "D-S BYGG PROSJEKT AS",
+   "domain": "mosbakka.no",
+   "status": "no_http"
+  },
+  {
+   "org": "990039399",
+   "name": "WANGEN EIENDOMSSELSKAP AS",
+   "domain": "wangenauto.no",
+   "status": "other_company",
+   "other_orgs": [
+    "171704154",
+    "692142675"
+   ],
+   "proof_url": "https://wangenauto.no"
+  },
+  {
+   "org": "983149294",
+   "name": "SAMEIET FRODE RINNANSVEI 10-12",
+   "domain": "styrepost.no",
+   "status": "other_company",
+   "other_orgs": [
+    "946629243"
+   ],
+   "proof_url": "https://tobb.no/"
+  },
+  {
+   "org": "918673326",
+   "name": "SVARTEGROVA INVEST AS",
+   "domain": "sagroup.no",
+   "status": "live_unproven",
+   "proof_url": "https://sagroup.no"
+  },
+  {
+   "org": "918746153",
+   "name": "FIBER NORWAY AS",
+   "domain": "experto.no",
+   "status": "other_company",
+   "other_orgs": [
+    "571417804"
+   ],
+   "proof_url": "https://www.sparebank1.no/nb/smn/bedrift/regnskap.html"
+  },
+  {
+   "org": "995272881",
+   "name": "SERCO AS",
+   "domain": "serco.no",
+   "status": "live_unproven",
+   "proof_url": "https://serco.no/no/"
+  },
+  {
+   "org": "933210138",
+   "name": "LUMIERE AS",
+   "domain": "cliniclumiere.no",
+   "status": "other_company",
+   "other_orgs": [
+    "642101633"
+   ],
+   "proof_url": "https://www.cliniclumiere.no/"
+  },
+  {
+   "org": "947162381",
+   "name": "LERDALSGRENDA BORETTSLAG",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-cc8b3985-9e36-48d7-98d1-c7ec008922bc"
+  },
+  {
+   "org": "934610679",
+   "name": "AS KINGO TERRASSE",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-0afdd3e5-962a-4d41-80ca-b7f2cd0b62ab"
+  },
+  {
+   "org": "982759277",
+   "name": "TROMSØ BAKERI AS",
+   "domain": "tromsobakeri.no",
+   "status": "verified_home",
+   "proof_url": "https://www.tromsobakeri.no/"
+  },
+  {
+   "org": "943170789",
+   "name": "FOTOGRAF THONRUD AS",
+   "domain": "thonrud.com",
+   "status": "live_unproven",
+   "proof_url": "https://thonrud.com"
+  },
+  {
+   "org": "987769947",
+   "name": "BERGEN KRISTNE GRUNNSKOLE",
+   "domain": "bkgs.no",
+   "status": "live_unproven",
+   "proof_url": "https://bkgs.no"
+  },
+  {
+   "org": "931300938",
+   "name": "EV PRIVATE EQUITY V PLUS (GP) LIMITED NUF",
+   "domain": "evpe.com",
+   "status": "no_http"
+  },
+  {
+   "org": "923993444",
+   "name": "HØIT-INVEST AS",
+   "domain": "hotmil.com",
+   "status": "live_unproven",
+   "proof_url": "http://hotmil.com"
+  },
+  {
+   "org": "936944051",
+   "name": "KVAMSDAL FORM AS",
+   "domain": "kvamsdalform.no",
+   "status": "no_http"
+  },
+  {
+   "org": "944982418",
+   "name": "BUSKOGEN BORETTSLAG",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-7bc7ac0f-fb53-408e-b3a4-39a10b94a1cb"
+  },
+  {
+   "org": "924440198",
+   "name": "SAMEIET LA65",
+   "domain": "tobb.no",
+   "status": "other_company",
+   "other_orgs": [
+    "946629243"
+   ],
+   "proof_url": "https://tobb.no"
+  },
+  {
+   "org": "927651351",
+   "name": "BØRUDGUSTAVSEN AS",
+   "domain": "borudgustavsen.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "983831001",
+   "name": "VITACLEAN AS",
+   "domain": "effektivenergi.no",
+   "status": "live_unproven",
+   "proof_url": "https://effektivenergi.no"
+  },
+  {
+   "org": "926204300",
+   "name": "SVEBERG STORBILVASK AS",
+   "domain": "dybvad.no",
+   "status": "live_unproven",
+   "proof_url": "https://dybvad.no"
+  },
+  {
+   "org": "813668122",
+   "name": "J & R EIENDOM AS",
+   "domain": "varebilinnredning.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.varebilinnredning.no/"
+  },
+  {
+   "org": "922652082",
+   "name": "POWER4YOU AS",
+   "domain": "power4you.no",
+   "status": "live_unproven",
+   "proof_url": "https://power4you.no"
+  },
+  {
+   "org": "989483242",
+   "name": "BØKEKRONA BORETTSLAG",
+   "domain": "labo.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.labo.no/"
+  },
+  {
+   "org": "993796158",
+   "name": "MÅKEVEIEN BORETTSLAG",
+   "domain": "styrerommet.no",
+   "status": "live_unproven",
+   "proof_url": "https://styrerommet.no/?error=true&message=login_required&status=500&referenceId=srv-8fdf10a2-f6e7-47d0-8555-4fa1a4dbda0e"
+  },
+  {
+   "org": "914794501",
+   "name": "BØ EIENDOM. AS",
+   "domain": "josefsen.com",
+   "status": "no_http"
+  },
+  {
+   "org": "942263767",
+   "name": "GULHUSET AS",
+   "domain": "fargerikebjugn.no",
+   "status": "no_http"
+  },
+  {
+   "org": "989903373",
+   "name": "TJUVHOLMEN ENERGI AS",
+   "domain": "tjuvholmen.com",
+   "status": "live_unproven",
+   "proof_url": "https://tjuvholmen.com"
+  },
+  {
+   "org": "980634655",
+   "name": "ADVOKAT HÅKON MALM",
+   "domain": "advokatmalm.no",
+   "status": "live_unproven",
+   "proof_url": "https://advokatmalm.no"
+  },
+  {
+   "org": "998321026",
+   "name": "JAJO TEK AS",
+   "domain": "jajotek.no",
+   "status": "other_company",
+   "other_orgs": [
+    "981532848"
+   ],
+   "proof_url": "https://www.webhuset.no/parkering"
+  },
+  {
+   "org": "941809219",
+   "name": "MOELVEN BYGGMODUL AS",
+   "domain": "moelven.no",
+   "status": "no_http"
+  },
+  {
+   "org": "985864322",
+   "name": "HOSANGER MONTESSORISKULE STI",
+   "domain": "hosanger.no",
+   "status": "live_unproven",
+   "proof_url": "https://hosanger.no"
+  },
+  {
+   "org": "997791371",
+   "name": "MAGNAT CORPUS INVEST AS",
+   "domain": "magnatcorpus.com",
+   "status": "dns_dead"
+  },
+  {
+   "org": "996785882",
+   "name": "TILRETTELAGT EIENDOMSUTVIKLING AS",
+   "domain": "tiholding.no",
+   "status": "no_http"
+  },
+  {
+   "org": "996877809",
+   "name": "KOPESTEINEN HOLDING AS",
+   "domain": "maskinsenter.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.maskinsenter.no/"
+  },
+  {
+   "org": "993864749",
+   "name": "ESCENDO AS",
+   "domain": "ere.no",
+   "status": "no_http"
+  },
+  {
+   "org": "981711602",
+   "name": "SAMEIET REPSLAGERGATEN 19",
+   "domain": "habo.no",
+   "status": "other_company",
+   "other_orgs": [
+    "935892910"
+   ],
+   "proof_url": "https://habo.no"
+  },
+  {
+   "org": "983600514",
+   "name": "ÅGJØLET KRAFTVERK AS",
+   "domain": "jolsterlia.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.jolsterlia.no/"
+  },
+  {
+   "org": "918088865",
+   "name": "SAMEIET SYDVESTEN",
+   "domain": "labo.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.labo.no/"
+  },
+  {
+   "org": "990518475",
+   "name": "RIKSVOLD AS",
+   "domain": "vkvt.no",
+   "status": "dns_dead"
+  },
+  {
+   "org": "992149825",
+   "name": "SIOC - STUDY IN ANOTHER COUNTRY AS",
+   "domain": "sioc.no",
+   "status": "verified_home",
+   "proof_url": "https://www.language-studies.com/no/index.html"
+  },
+  {
+   "org": "925481033",
+   "name": "DANES MEKANISKA AB NUF",
+   "domain": "danes.se",
+   "status": "live_unproven",
+   "proof_url": "https://danes.se"
+  },
+  {
+   "org": "918420312",
+   "name": "BOLIGSAMEIET SKALLUMHAGEN",
+   "domain": "enqvist.no",
+   "status": "other_company",
+   "other_orgs": [
+    "918191992",
+    "923751076",
+    "991398805"
+   ],
+   "proof_url": "https://enqvist.no"
+  },
+  {
+   "org": "938813361",
+   "name": "ØKONOMISENTERET AS",
+   "domain": "johansen.no",
+   "status": "no_http"
+  },
+  {
+   "org": "948984075",
+   "name": "TALGØENGA BORETTSLAG",
+   "domain": "kbbl.no",
+   "status": "other_company",
+   "other_orgs": [
+    "948394928"
+   ],
+   "proof_url": "https://www.kbbl.no/"
+  },
+  {
+   "org": "930508241",
+   "name": "BRYGGA 18 AS",
+   "domain": "voldeiendommer.no",
+   "status": "other_company",
+   "other_orgs": [
+    "913751884"
+   ],
+   "proof_url": "https://www.voldeiendommer.no:443/"
+  },
+  {
+   "org": "931456539",
+   "name": "ASKØY VED AS",
+   "domain": "tuwinor.no",
+   "status": "live_unproven",
+   "proof_url": "https://tuwinor.no"
+  },
+  {
+   "org": "922687528",
+   "name": "LINEDATTER HOLDING AS",
+   "domain": "dorautomatikk.com",
+   "status": "live_unproven",
+   "proof_url": "https://dorautomatikk.com"
+  },
+  {
+   "org": "983437192",
+   "name": "TØMRER GØRAN ROMSDAL AS",
+   "domain": "tgromsdal.no",
+   "status": "live_unproven",
+   "proof_url": "https://tgromsdal.no"
+  },
+  {
+   "org": "812435132",
+   "name": "GROSSISTBYGG AS",
+   "domain": "alltecservices.no",
+   "status": "live_unproven",
+   "proof_url": "https://www.alltec.no/"
+  }
+ ]
+}

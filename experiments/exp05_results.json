@@ -1,0 +1,2265 @@
+[
+ {
+  "org": "918989749",
+  "name": "ROBE-INVEST AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "929841123",
+  "name": "FINCON AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "vertical group"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "986274685",
+  "name": "VERTICAL GROUP AS",
+  "domain": "vertical-group.com",
+  "channel": "name_guess",
+  "url": "https://www.vertical-group.com/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "135358347",
+   "157548301",
+   "158239299"
+  ],
+  "score": 0,
+  "org": "986528598",
+  "name": "ENHANCE ACCESSORIES AS",
+  "domain": "enhance.com",
+  "channel": "name_guess",
+  "url": "https://enhance.com",
+  "pages": 8
+ },
+ {
+  "org": "911826194",
+  "name": "STØRENSENTERET EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "931160559",
+  "name": "BRUSEGARD CONSULTING AS",
+  "domain": "brusegard.no",
+  "channel": "name_guess",
+  "url": "https://brusegard.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "legal_name": "metco"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "933290182",
+  "name": "METCO AS",
+  "domain": "metco.no",
+  "channel": "name_guess",
+  "url": "https://metco.no",
+  "pages": 7
+ },
+ {
+  "org": "933958884",
+  "name": "JSH.HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "922961492",
+  "name": "VARMELAGRING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "924406550",
+  "name": "LEGE SOLVEIG VOLD AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "991210873",
+  "name": "BULLBERNTSEN AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "982696070",
+  "name": "FLODMO OG HERDLEVÆR SOTRA AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "985621330",
+  "name": "ROGALAND BILVERKSTED AS",
+  "domain": "rogaland.com",
+  "channel": "name_guess",
+  "url": "http://www.rogaland.com",
+  "pages": 7
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "826868392",
+  "name": "ATLAS LIVING AS",
+  "domain": "atlasliving.com",
+  "channel": "name_guess",
+  "url": "https://www.levocapital.com/",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "930309257",
+  "name": "TELLEN INVEST AS",
+  "domain": "tellen.com",
+  "channel": "name_guess",
+  "url": "https://tellen.ch/",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "927644819",
+  "name": "AMF INVEST AS",
+  "domain": "amfinvest.com",
+  "channel": "name_guess",
+  "url": "https://www.hugedomains.com/domain_profile.cfm?d=amfinvest.com",
+  "pages": 7
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "818708882",
+  "name": "SEIM AS",
+  "domain": "seim.no",
+  "channel": "name_guess",
+  "url": "https://www.seim.no/",
+  "pages": 6
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "928324869",
+  "name": "SQL HOLDING AS",
+  "domain": "sqlholding.com",
+  "channel": "name_guess",
+  "url": "https://sqlholding.com",
+  "pages": 8
+ },
+ {
+  "org": "932079127",
+  "name": "KJHIME INVEST AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "931379631",
+  "name": "MARMA INVEST AS",
+  "domain": "marma.com",
+  "channel": "name_guess",
+  "url": "https://marma.com",
+  "pages": 7
+ },
+ {
+  "org": "935864666",
+  "name": "VAMSÆTER HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "862434854"
+  ],
+  "score": 0,
+  "org": "868972882",
+  "name": "MALERFIRMA WAGNER & CO AS",
+  "domain": "malerfirma.no",
+  "channel": "name_guess",
+  "url": "https://www.mesterfirmaet.no/",
+  "pages": 3
+ },
+ {
+  "org": "830946772",
+  "name": "NBT AUTO EXPORT AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "146607772",
+   "207804991",
+   "386590109"
+  ],
+  "score": 0,
+  "org": "991292012",
+  "name": "POSTGÅRDEN ORKANGER AS",
+  "domain": "postgarden.com",
+  "channel": "name_guess",
+  "url": "https://postgarden.com",
+  "pages": 2
+ },
+ {
+  "signals": {
+   "registry_email_domain": "litnor.as"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "819731942",
+  "name": "LITNOR ACCOUNTING AS",
+  "domain": "litnor.as",
+  "channel": "registry_email_domain",
+  "url": "https://litnor.no/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "974987368",
+  "name": "EM INVEST AS",
+  "domain": "eminvest.no",
+  "channel": "name_guess",
+  "url": "https://eminvest.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "063651273",
+   "817795692"
+  ],
+  "score": 0,
+  "org": "915604331",
+  "name": "MIKALSEN SERVICE AS",
+  "domain": "mikalsen.no",
+  "channel": "name_guess",
+  "url": "https://mikalsen.no",
+  "pages": 2
+ },
+ {
+  "org": "936135250",
+  "name": "SKJETTENKOLLEN HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "921629907",
+  "name": "SVEIN OHREN AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "742023184"
+  ],
+  "score": 0,
+  "org": "955031636",
+  "name": "Lund AS",
+  "domain": "lund.com",
+  "channel": "name_guess",
+  "url": "https://lund.com",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "registry_email_domain": "pregbarnehager.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "930452416",
+  "name": "PREG BARNEHAGER ÅSSIDEN AS",
+  "domain": "pregbarnehager.no",
+  "channel": "registry_email_domain",
+  "url": "https://preg-barnehager.barnehage.no/",
+  "pages": 2
+ },
+ {
+  "signals": {
+   "legal_name": "tante grønn"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "980544265",
+  "name": "TANTE GRØNN AS",
+  "domain": "tantegronn.no",
+  "channel": "name_guess",
+  "url": "https://tantegronnshage.no/",
+  "pages": 2
+ },
+ {
+  "org": "989116789",
+  "name": "SJS HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "org_number": "920358411",
+   "legal_name": "larszachariassen"
+  },
+  "conflicts": [],
+  "score": 1.3,
+  "org": "920358411",
+  "name": "LARSZACHARIASSEN AS",
+  "domain": "larszachariassen.no",
+  "channel": "name_guess",
+  "url": "https://larszachariassen.no",
+  "pages": 3
+ },
+ {
+  "org": "999303005",
+  "name": "GYNEKOLOGENE PÅ BEKKESTUA AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "936184154",
+  "name": "BLUPPBLUPP AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "org_number": "982803330",
+   "legal_name": "t bruvik",
+   "registry_phone": "92224853",
+   "address": "Synningavegen 3E",
+   "postcode_city": "5259 hjellestad"
+  },
+  "conflicts": [],
+  "score": 2.1,
+  "org": "982803330",
+  "name": "T BRUVIK AS",
+  "domain": "tbruvik.no",
+  "channel": "name_guess",
+  "url": "https://www.tbruvik.no/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "916788142",
+  "name": "WALSETH HOLDING AS",
+  "domain": "walseth.no",
+  "channel": "name_guess",
+  "url": "http://walseth.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "936343430",
+  "name": "MONSÖY AS",
+  "domain": "monsoy.no",
+  "channel": "name_guess",
+  "url": "https://monsoy.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "923728902"
+  ],
+  "score": 0,
+  "org": "921534884",
+  "name": "NORBYGG MODUL AS",
+  "domain": "norbygg.no",
+  "channel": "name_guess",
+  "url": "https://norbygg.no",
+  "pages": 4
+ },
+ {
+  "signals": {
+   "legal_name": "skjebergveien 25",
+   "registry_phone": "93032804",
+   "address": "Skjebergveien 25",
+   "postcode_city": "1739 borgenhaugen",
+   "registry_email_domain": "directa.no"
+  },
+  "conflicts": [],
+  "score": 1.65,
+  "org": "991313494",
+  "name": "SKJEBERGVEIEN 25 AS",
+  "domain": "directa.no",
+  "channel": "registry_email_domain",
+  "url": "https://directa.no",
+  "pages": 4
+ },
+ {
+  "org": "925597228",
+  "name": "TMM PRODUKSJON AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "931631756",
+  "name": "GBAS HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "961469643",
+  "name": "AL LANDÅSSVINGEN BORETTSLAG",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "933666093",
+  "name": "GOLDMINE HOLDING AS",
+  "domain": "goldmine.com",
+  "channel": "name_guess",
+  "url": "https://www.goldmine.com/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "990690685",
+  "name": "MOSVOLD EIENDOM AS",
+  "domain": "mosvoldeiendom.no",
+  "channel": "name_guess",
+  "url": "https://mosvoldeiendom.no",
+  "pages": 8
+ },
+ {
+  "org": "919026782",
+  "name": "COIN TRADE EARTH AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "924749563",
+  "name": "INNELUKS AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "346278625"
+  ],
+  "score": 0,
+  "org": "935479541",
+  "name": "SMART MILJØ KONSULENT NORGE AS",
+  "domain": "smart.no",
+  "channel": "name_guess",
+  "url": "https://www.smart.no/",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "928785629",
+  "name": "NORDLAND EIENDOMS SERVICE AS",
+  "domain": "nordland.com",
+  "channel": "name_guess",
+  "url": "http://nordland.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "929349490",
+  "name": "MESNALI PANORAMA AS",
+  "domain": "mesnali.no",
+  "channel": "name_guess",
+  "url": "https://mesnali.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "933900371",
+  "name": "FROSTY SPORTS AS",
+  "domain": "frosty.no",
+  "channel": "name_guess",
+  "url": "http://frosty.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "989149121",
+  "name": "ANSOL INVEST AS",
+  "domain": "ansol.com",
+  "channel": "name_guess",
+  "url": "http://ansol.com",
+  "pages": 1
+ },
+ {
+  "org": "990750823",
+  "name": "NCR HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "974493586"
+  ],
+  "score": 0,
+  "org": "935819091",
+  "name": "FAGERSTRAND VERTSHUS AS",
+  "domain": "fagerstrand.no",
+  "channel": "name_guess",
+  "url": "https://fagerstrandif.no/",
+  "pages": 2
+ },
+ {
+  "org": "998996147",
+  "name": "G-S INVEST AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "930248061",
+  "name": "DCNO 2 AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "913072324",
+  "name": "TORGET KONSULENTER AS",
+  "domain": "torget.no",
+  "channel": "name_guess",
+  "url": "https://www.torget.no/",
+  "pages": 8
+ },
+ {
+  "org": "923528660",
+  "name": "EIGARSEKSJONSSAMEIGE KARIBYEN 3",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "tolkenett",
+   "address": "Schweigaards gate 12",
+   "postcode_city": "0185 oslo"
+  },
+  "conflicts": [],
+  "score": 0.75,
+  "org": "935975131",
+  "name": "TOLKENETT AS",
+  "domain": "tolkenett.no",
+  "channel": "name_guess",
+  "url": "https://tolkenett.no",
+  "pages": 5
+ },
+ {
+  "org": "921657293",
+  "name": "LIMAVI AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "828565192",
+  "name": "SANTHE EIENDOM AS",
+  "domain": "santhe.com",
+  "channel": "name_guess",
+  "url": "http://santhe.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "931150359",
+  "name": "HANSEN MASKIN AS",
+  "domain": "hansenmaskin.no",
+  "channel": "name_guess",
+  "url": "https://hansenmaskin.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "928411605",
+  "name": "ANERO AS",
+  "domain": "anero.com",
+  "channel": "name_guess",
+  "url": "https://anero.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "914794943"
+  ],
+  "score": 0,
+  "org": "921673981",
+  "name": "WEIBEL NORWAY AS",
+  "domain": "weibel.no",
+  "channel": "name_guess",
+  "url": "https://www.weibel-engros.no/shop/frontpage.html",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "981289269",
+  "name": "MILJØ OG GRAVESERVICE AS",
+  "domain": "miljo.com",
+  "channel": "name_guess",
+  "url": "https://miljo.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "835983552",
+  "name": "SJOKO LOCO AS",
+  "domain": "sjoko.no",
+  "channel": "name_guess",
+  "url": "https://sjoko.no",
+  "pages": 1
+ },
+ {
+  "org": "930169064",
+  "name": "C. J. BYGG AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "920007198",
+  "name": "MOS INVEST AS",
+  "domain": "mosinvest.com",
+  "channel": "name_guess",
+  "url": "https://www.hugedomains.com/domain_profile.cfm?d=mosinvest.com",
+  "pages": 6
+ },
+ {
+  "org": "916289960",
+  "name": "DEN NORSKE SKOLEN VED SHAPE",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "948725401",
+  "name": "P S EIENDOM AS",
+  "domain": "pseiendom.no",
+  "channel": "name_guess",
+  "url": "http://pseiendom.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "992170751",
+  "name": "STORGATA 51 AS",
+  "domain": "storgata.no",
+  "channel": "name_guess",
+  "url": "http://storgata.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "zerofy",
+   "registry_phone": "90871036",
+   "registry_email_domain": "zerofy.io"
+  },
+  "conflicts": [],
+  "score": 1.2,
+  "org": "929894286",
+  "name": "ZEROFY AS",
+  "domain": "zerofy.io",
+  "channel": "registry_email_domain",
+  "url": "https://zerofy.io",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "922968233",
+  "name": "GRØNLIE HOLDING AS",
+  "domain": "gronlie.no",
+  "channel": "name_guess",
+  "url": "http://gronlie.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "early years"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "936264220",
+  "name": "EARLY YEARS AS",
+  "domain": "early-years.com",
+  "channel": "name_guess",
+  "url": "https://early-years.com",
+  "pages": 3
+ },
+ {
+  "signals": {
+   "legal_name": "kjæreng gård",
+   "address": "Åsbergvegen 38",
+   "postcode_city": "9021 tromsdalen"
+  },
+  "conflicts": [],
+  "score": 0.75,
+  "org": "890203582",
+  "name": "KJÆRENG GÅRD AS",
+  "domain": "kjaerenggard.no",
+  "channel": "name_guess",
+  "url": "https://kjaerenggard.no",
+  "pages": 2
+ },
+ {
+  "signals": {
+   "org_number": "934973909",
+   "legal_name": "wilderness vision"
+  },
+  "conflicts": [
+   "035289933",
+   "077252002",
+   "081360286"
+  ],
+  "score": 1.3,
+  "org": "934973909",
+  "name": "WILDERNESS VISION AS",
+  "domain": "wildernessvision.no",
+  "channel": "name_guess",
+  "url": "https://wildernessvision.no",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "935412641",
+  "name": "MIDLIFE AS",
+  "domain": "midlife.no",
+  "channel": "name_guess",
+  "url": "https://midlife.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "cerno"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "935851882",
+  "name": "CERNO AS",
+  "domain": "cerno.com",
+  "channel": "name_guess",
+  "url": "https://www.cerno.com/",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "935992060",
+  "name": "TOLLBUGATA 25 UTVIKLING AS",
+  "domain": "tollbugata.no",
+  "channel": "name_guess",
+  "url": "https://www.tollbugata.no/my",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "org_number": "898130282",
+   "legal_name": "kamperhaug boligutvikling",
+   "registry_phone": "90540068",
+   "address": "Rokkeveien 41",
+   "postcode_city": "1743 klavestadhaugen",
+   "registry_email_domain": "kamperhaug.no"
+  },
+  "conflicts": [],
+  "score": 2.65,
+  "org": "898130282",
+  "name": "KAMPERHAUG BOLIGUTVIKLING AS",
+  "domain": "kamperhaug.no",
+  "channel": "registry_email_domain",
+  "url": "https://kamperhaug.no",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "919195487",
+  "name": "STORGATA 12 SAMEIE",
+  "domain": "storgata.no",
+  "channel": "name_guess",
+  "url": "http://storgata.no",
+  "pages": 8
+ },
+ {
+  "org": "936528430",
+  "name": "BRATTFOSS HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "934330137",
+  "name": "LEW INVEST AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "tjøstolvsen",
+   "registry_phone": "51959300"
+  },
+  "conflicts": [],
+  "score": 0.65,
+  "org": "933661059",
+  "name": "TJØSTOLVSEN AS",
+  "domain": "tjostolvsen.no",
+  "channel": "name_guess",
+  "url": "https://tjostolvsen.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "913023005",
+  "name": "GT AUTO AS",
+  "domain": "gtauto.no",
+  "channel": "name_guess",
+  "url": "http://gtauto.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "989161717",
+  "name": "FALKUM HOLDING AS",
+  "domain": "falkumholding.no",
+  "channel": "name_guess",
+  "url": "https://falkumholding.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "drivkraft"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "923795227",
+  "name": "DRIVKRAFT AS",
+  "domain": "drivkraft.com",
+  "channel": "name_guess",
+  "url": "https://drivkraft.com",
+  "pages": 1
+ },
+ {
+  "org": "989209760",
+  "name": "WIEN HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "927572869",
+  "name": "NJH AS",
+  "domain": "njh.com",
+  "channel": "name_guess",
+  "url": "https://njh.com",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "org_number": "930703176",
+   "legal_name": "meuble",
+   "address": "Moserudveien 1",
+   "postcode_city": "3402 lier"
+  },
+  "conflicts": [
+   "238987326",
+   "699003476",
+   "965690034"
+  ],
+  "score": 1.75,
+  "org": "930703176",
+  "name": "MEUBLE AS",
+  "domain": "meuble.no",
+  "channel": "name_guess",
+  "url": "https://www.meuble.no/",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "836341112",
+  "name": "SPØRCK SERVICE AS",
+  "domain": "sporck.no",
+  "channel": "name_guess",
+  "url": "https://sandy.sporck.no/",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "918313117",
+  "name": "B.T.M. INVEST AS",
+  "domain": "btminvest.com",
+  "channel": "name_guess",
+  "url": "https://btminvest.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "917357269",
+  "name": "HELGELAND RETAIL AS",
+  "domain": "helgeland.no",
+  "channel": "name_guess",
+  "url": "https://infohelgeland.no/oppgradering2/",
+  "pages": 5
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "932693453",
+  "name": "MARCHMANN ANDERSEN HOLDING AS",
+  "domain": "marchmann.no",
+  "channel": "name_guess",
+  "url": "https://marchmann.no",
+  "pages": 7
+ },
+ {
+  "signals": {
+   "org_number": "922973423",
+   "legal_name": "korsetten",
+   "address": "Storgata 1",
+   "postcode_city": "1850 mysen"
+  },
+  "conflicts": [
+   "699003476"
+  ],
+  "score": 1.75,
+  "org": "922973423",
+  "name": "KORSETTEN AS",
+  "domain": "korsetten.no",
+  "channel": "name_guess",
+  "url": "https://korsetten.no",
+  "pages": 4
+ },
+ {
+  "org": "834439212",
+  "name": "FAIRHAIR LABS AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "924491191",
+  "name": "RUNOFTHEMILL AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "923479147",
+  "name": "ASO RISK MANAGEMENT AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "enger transport",
+   "registry_phone": "64923960",
+   "address": "Landskaugveien 28",
+   "postcode_city": "1914 ytre enebakk"
+  },
+  "conflicts": [],
+  "score": 1.1,
+  "org": "998913055",
+  "name": "ENGER TRANSPORT AS",
+  "domain": "engertransport.no",
+  "channel": "name_guess",
+  "url": "https://www.engertransport.no/",
+  "pages": 6
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "920226035",
+  "name": "HM SKOG AS",
+  "domain": "hmskog.no",
+  "channel": "name_guess",
+  "url": "https://parkert.renrorosdigital.no/",
+  "pages": 1
+ },
+ {
+  "org": "930572772",
+  "name": "IDÊ BYGG BRETT HARVEY AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "885806082",
+  "name": "LOSNA VILLSAULAG ANS",
+  "domain": "losna.no",
+  "channel": "name_guess",
+  "url": "http://losna.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "address": "Oslofjordveien 9",
+   "postcode_city": "3159 melsomvik"
+  },
+  "conflicts": [
+   "121339528",
+   "429742862",
+   "569505194"
+  ],
+  "score": 0.45,
+  "org": "997671775",
+  "name": "OSLOFJORD PROPERTY AS",
+  "domain": "oslofjord.com",
+  "channel": "name_guess",
+  "url": "https://oslofjord.com",
+  "pages": 5
+ },
+ {
+  "signals": {
+   "legal_name": "dagenborg",
+   "address": "Skattørvegen 60",
+   "postcode_city": "9018 tromsø"
+  },
+  "conflicts": [
+   "171704154",
+   "626136486",
+   "692142675"
+  ],
+  "score": 0.75,
+  "org": "957057438",
+  "name": "DAGENBORG AS",
+  "domain": "dagenborg.no",
+  "channel": "name_guess",
+  "url": "https://dagenborg.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "postcode_city": "9520 kautokeino"
+  },
+  "conflicts": [
+   "018223031",
+   "024383024",
+   "365073546"
+  ],
+  "score": 0.2,
+  "org": "983520952",
+  "name": "JUHLS HOLDING AS",
+  "domain": "juhls.no",
+  "channel": "name_guess",
+  "url": "https://www.juhls.no/",
+  "pages": 5
+ },
+ {
+  "org": "918426469",
+  "name": "KRI INVESTIMENTOS AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "923735097",
+  "name": "NARDO VVS AS",
+  "domain": "nardo.com",
+  "channel": "name_guess",
+  "url": "https://nardo.com",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "org_number": "917665613"
+  },
+  "conflicts": [],
+  "score": 1.0,
+  "org": "917665613",
+  "name": "FEJA AS",
+  "domain": "feja.no",
+  "channel": "name_guess",
+  "url": "https://www.feja.no/",
+  "pages": 3
+ },
+ {
+  "signals": {
+   "legal_name": "polaris nordmøre",
+   "address": "Surnadalsvegen 2077",
+   "postcode_city": "6653 øvre surnadal"
+  },
+  "conflicts": [],
+  "score": 0.75,
+  "org": "928869512",
+  "name": "POLARIS NORDMØRE AS",
+  "domain": "polaris-nordmore.com",
+  "channel": "name_guess",
+  "url": "https://www.polaris-nordmore.com/",
+  "pages": 4
+ },
+ {
+  "signals": {
+   "legal_name": "expat relocation",
+   "postcode_city": "0191 oslo"
+  },
+  "conflicts": [],
+  "score": 0.5,
+  "org": "930714984",
+  "name": "EXPAT RELOCATION AS",
+  "domain": "expatrelocation.no",
+  "channel": "name_guess",
+  "url": "https://expatrelocation.no",
+  "pages": 3
+ },
+ {
+  "signals": {
+   "registry_email_domain": "bate.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "915526799",
+  "name": "SAMEIET DR. MARTHA PERSENSGATE",
+  "domain": "bate.no",
+  "channel": "registry_email_domain",
+  "url": "https://bate.no",
+  "pages": 3
+ },
+ {
+  "signals": {
+   "registry_email_domain": "io.kommune.no"
+  },
+  "conflicts": [
+   "920123899"
+  ],
+  "score": 0.55,
+  "org": "995730464",
+  "name": "HELENE OG JOHAN KALLAK'S STIFTELSE",
+  "domain": "io.kommune.no",
+  "channel": "registry_email_domain",
+  "url": "https://www.io.kommune.no/",
+  "pages": 2
+ },
+ {
+  "org": "933786013",
+  "name": "FRA A TIL STIL BOLIGSTYLING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "registry_email_domain": "sebb.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "964419620",
+  "name": "SEBB AS",
+  "domain": "sebb.no",
+  "channel": "registry_email_domain",
+  "url": "https://www.sebb.no/",
+  "pages": 5
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "971142480",
+  "name": "BERGSLAND EIENDOM AS",
+  "domain": "bergsland.com",
+  "channel": "name_guess",
+  "url": "https://bergsland.com",
+  "pages": 8
+ },
+ {
+  "org": "912203824",
+  "name": "A1 TRAFIKKSKOLE AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "lensmannslia 4"
+  },
+  "conflicts": [
+   "037676136",
+   "156106372",
+   "169099367"
+  ],
+  "score": 0.3,
+  "org": "990598436",
+  "name": "LENSMANNSLIA 4 AS",
+  "domain": "lensmannslia4.no",
+  "channel": "name_guess",
+  "url": "https://lensmannslia4.no",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "005087031",
+   "007094116",
+   "043182226"
+  ],
+  "score": 0,
+  "org": "920806546",
+  "name": "KONA AS",
+  "domain": "kona.no",
+  "channel": "name_guess",
+  "url": "https://www.hyundai.com/no/no",
+  "pages": 2
+ },
+ {
+  "org": "825791132",
+  "name": "LACCA HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "931244817",
+  "name": "GOGANI EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "983895409",
+  "name": "NERBUTIKKEN AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "926109480",
+  "name": "TIGERSTADEN HOLDING AS",
+  "domain": "tigerstaden.no",
+  "channel": "name_guess",
+  "url": "https://tigerstaden.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "org_number": "965362584",
+   "registry_phone": "69339180",
+   "address": "Engelsvikenveien 158",
+   "postcode_city": "1628 engelsviken",
+   "registry_email_domain": "ragnar-larsen.no"
+  },
+  "conflicts": [],
+  "score": 2.35,
+  "org": "965362584",
+  "name": "ØSTFOLD OLJE RAGNAR LARSEN & SØNNER AS",
+  "domain": "ragnar-larsen.no",
+  "channel": "registry_email_domain",
+  "url": "https://ragnar-larsen.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "skilthuset",
+   "registry_phone": "51841050",
+   "address": "Torneroseveien 4",
+   "postcode_city": "4315 sandnes",
+   "registry_email_domain": "skilthuset.no"
+  },
+  "conflicts": [],
+  "score": 1.65,
+  "org": "953051060",
+  "name": "SKILTHUSET AS",
+  "domain": "skilthuset.no",
+  "channel": "registry_email_domain",
+  "url": "https://skilthuset.no",
+  "pages": 3
+ },
+ {
+  "org": "934349016",
+  "name": "NORLAND GRAVING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "team vikings"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "921294689",
+  "name": "TEAM VIKINGS AS",
+  "domain": "team-vikings.com",
+  "channel": "name_guess",
+  "url": "https://team-vikings.com",
+  "pages": 1
+ },
+ {
+  "org": "923852433",
+  "name": "F.S EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "919894105",
+  "name": "A&A ENTREPRENØR AS",
+  "domain": "aaentreprenor.no",
+  "channel": "name_guess",
+  "url": "https://aaentreprenor.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "registry_email_domain": "metall.no"
+  },
+  "conflicts": [
+   "986795863"
+  ],
+  "score": 0.55,
+  "org": "924520736",
+  "name": "EVENTHUSET LINDBERG AS",
+  "domain": "metall.no",
+  "channel": "registry_email_domain",
+  "url": "https://www.metall.no/",
+  "pages": 7
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "923661573",
+  "name": "STADSBYGD FARGEHANDEL AS",
+  "domain": "stadsbygd.no",
+  "channel": "name_guess",
+  "url": "https://stadsbygd.no",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "114643483",
+   "120281895",
+   "179424479"
+  ],
+  "score": 0,
+  "org": "978601936",
+  "name": "STAVA EIENDOM AS",
+  "domain": "stava.no",
+  "channel": "name_guess",
+  "url": "https://www.google.com/a/stava.no/ServiceLogin?service=mail&passive=true&continue=https://mail.google.com/mail/&ss=1&ltmpl=default&ltmplcache=2&emr=1&osid=1",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "928670473",
+  "name": "BEAUTY BY MAYLINN AS",
+  "domain": "beautybymaylinn.no",
+  "channel": "name_guess",
+  "url": "http://beautybymaylinn.no",
+  "pages": 8
+ },
+ {
+  "org": "998541042",
+  "name": "ETERNITVEIEN 27 AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "registry_email_domain": "slettenholding.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "995745682",
+  "name": "STEINAR SLETTEN HOLDING AS",
+  "domain": "slettenholding.no",
+  "channel": "registry_email_domain",
+  "url": "http://slettenholding.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "postcode_city": "4262 avaldsnes"
+  },
+  "conflicts": [
+   "991926577"
+  ],
+  "score": 0.2,
+  "org": "935153220",
+  "name": "ESPIRA EIKENØTTA EIENDOM AS",
+  "domain": "espira.no",
+  "channel": "name_guess",
+  "url": "https://espira.no",
+  "pages": 8
+ },
+ {
+  "org": "928867927",
+  "name": "SNØHULA AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "address": "Vistnesveien 5",
+   "postcode_city": "4070 randaberg",
+   "registry_email_domain": "vvg.no"
+  },
+  "conflicts": [],
+  "score": 1.0,
+  "org": "916039719",
+  "name": "ALTERA AS",
+  "domain": "vvg.no",
+  "channel": "registry_email_domain",
+  "url": "https://sun2nor.no/",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "org_number": "928806979",
+   "legal_name": "mitro norge",
+   "postcode_city": "2013 skjetten"
+  },
+  "conflicts": [],
+  "score": 1.5,
+  "org": "928806979",
+  "name": "MITRO NORGE AS",
+  "domain": "mitro.no",
+  "channel": "name_guess",
+  "url": "https://mitro.no",
+  "pages": 5
+ },
+ {
+  "signals": {
+   "registry_email_domain": "cmsnorge.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "988890359",
+  "name": "MC INVEST AS",
+  "domain": "cmsnorge.no",
+  "channel": "registry_email_domain",
+  "url": "https://cmsnorge.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "867040552",
+  "name": "ODD AS",
+  "domain": "odd.no",
+  "channel": "name_guess",
+  "url": "https://www.odd.no/",
+  "pages": 3
+ },
+ {
+  "org": "935113709",
+  "name": "HEMA EQUITY AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "930124133",
+  "name": "R.SKOGLUND HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "996617122",
+  "name": "THIS IS CROSSFIT AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "000000000",
+   "357605008",
+   "848129631"
+  ],
+  "score": 0,
+  "org": "925144460",
+  "name": "KJELL SVELA HOLDING AS",
+  "domain": "kjell.com",
+  "channel": "name_guess",
+  "url": "https://www.kjell.com:443/se",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "934219554",
+  "name": "NEWCO 2 AS",
+  "domain": "newco2.com",
+  "channel": "name_guess",
+  "url": "https://newco2.com",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "932352672",
+  "name": "BIGOM HOLDING AS",
+  "domain": "bigom.com",
+  "channel": "name_guess",
+  "url": "https://bigom.com",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "971230126"
+  ],
+  "score": 0,
+  "org": "916375921",
+  "name": "GNISTEN BIL OG MASKIN AS",
+  "domain": "gnisten.no",
+  "channel": "name_guess",
+  "url": "https://gnisten.no",
+  "pages": 7
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "977119235",
+  "name": "STIFTELSEN BO-TRYGG",
+  "domain": "stiftelsen.no",
+  "channel": "name_guess",
+  "url": "https://stiftelsen.no",
+  "pages": 8
+ },
+ {
+  "org": "920122558",
+  "name": "EKTEHAANDVERK AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "geilo mushing"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "936199283",
+  "name": "GEILO MUSHING AS",
+  "domain": "geilomushing.com",
+  "channel": "name_guess",
+  "url": "https://geilomushing.com",
+  "pages": 5
+ },
+ {
+  "signals": {
+   "legal_name": "cosmediderm",
+   "address": "Dronningens gate 17",
+   "postcode_city": "1530 moss"
+  },
+  "conflicts": [],
+  "score": 0.75,
+  "org": "916165110",
+  "name": "COSMEDIDERM AS",
+  "domain": "cosmediderm.no",
+  "channel": "name_guess",
+  "url": "https://cosmediderm.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "address": "Brannstasjonsveien 10",
+   "postcode_city": "4312 sandnes"
+  },
+  "conflicts": [
+   "948478110"
+  ],
+  "score": 0.45,
+  "org": "828825062",
+  "name": "INDUSTRIKRAN HOLDING AS",
+  "domain": "industrikran.no",
+  "channel": "name_guess",
+  "url": "https://industrikran.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "980531155",
+  "name": "STIFTELSEN AKER FERIEBOLIGER REGION ØST",
+  "domain": "stiftelsen.no",
+  "channel": "name_guess",
+  "url": "https://stiftelsen.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "legal_name": "camp lyngdal",
+   "address": "Kvavik",
+   "postcode_city": "4580 lyngdal"
+  },
+  "conflicts": [],
+  "score": 0.75,
+  "org": "956426421",
+  "name": "CAMP LYNGDAL AS",
+  "domain": "camplyngdal.no",
+  "channel": "name_guess",
+  "url": "https://www.camplyngdal.no/",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "org_number": "981622774",
+   "legal_name": "rumag skilt og reklame",
+   "registry_phone": "97523500",
+   "address": "Maskinveien 8",
+   "postcode_city": "4033 stavanger"
+  },
+  "conflicts": [],
+  "score": 2.1,
+  "org": "981622774",
+  "name": "RUMAG SKILT OG REKLAME AS",
+  "domain": "rumag.no",
+  "channel": "name_guess",
+  "url": "https://rumag.com/",
+  "pages": 6
+ },
+ {
+  "org": "989092952",
+  "name": "FREDLUND AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "pegasus holdings"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "836494512",
+  "name": "PEGASUS HOLDINGS AS",
+  "domain": "pegasusholdings.com",
+  "channel": "name_guess",
+  "url": "https://www.pegasusholdings.com/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "986865632",
+  "name": "AGNETE TORSTENSRUD",
+  "domain": "agnete.com",
+  "channel": "name_guess",
+  "url": "https://agnete.com/login.php",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "914048419",
+  "name": "FERNCLIFF TIH AS",
+  "domain": "ferncliff.com",
+  "channel": "name_guess",
+  "url": "https://ferncliff.com",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "982110904",
+  "name": "ADVANCED INTERNATIONAL MANAGEMENT AS",
+  "domain": "advanced.com",
+  "channel": "name_guess",
+  "url": "https://www.advanced.com/",
+  "pages": 2
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "912394867",
+  "name": "HITRA TURISTSERVICE HOLDING AS",
+  "domain": "hitra.no",
+  "channel": "name_guess",
+  "url": "https://www.hitra.no",
+  "pages": 1
+ },
+ {
+  "org": "995840707",
+  "name": "NORWEGIAN SECURITY ASSIST AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "926448307",
+  "name": "INVESTUM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "106003556",
+   "106003629"
+  ],
+  "score": 0,
+  "org": "926458892",
+  "name": "MARIUS KNUDSEN AS",
+  "domain": "marius.no",
+  "channel": "name_guess",
+  "url": "https://www.marius.no/",
+  "pages": 2
+ },
+ {
+  "signals": {
+   "legal_name": "paytec",
+   "address": "Strandgata 207"
+  },
+  "conflicts": [
+   "184324806",
+   "260266667",
+   "277333333"
+  ],
+  "score": 0.55,
+  "org": "998189403",
+  "name": "PAYTEC AS",
+  "domain": "paytec.no",
+  "channel": "name_guess",
+  "url": "https://paytec.no",
+  "pages": 3
+ },
+ {
+  "org": "920119336",
+  "name": "FNP I5 AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "932862301",
+  "name": "APSD LEGEVIRKSOMHET AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "hjemservice"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "897869292",
+  "name": "HJEMSERVICE AS",
+  "domain": "hjemservice.no",
+  "channel": "name_guess",
+  "url": "http://hjemservice.no",
+  "pages": 8
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "931945017",
+  "name": "PRINS FRISØR AS",
+  "domain": "prins.no",
+  "channel": "name_guess",
+  "url": "https://prins.no",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "938279896"
+  ],
+  "score": 0,
+  "org": "919654333",
+  "name": "BERG-ET AS",
+  "domain": "berget.no",
+  "channel": "name_guess",
+  "url": "https://westcontrol.com/",
+  "pages": 4
+ },
+ {
+  "org": "919924802",
+  "name": "DEN GULE KNAPP AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "tringa"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "980335003",
+  "name": "TRINGA AS",
+  "domain": "tringa.com",
+  "channel": "name_guess",
+  "url": "https://tringa.com",
+  "pages": 3
+ },
+ {
+  "signals": {},
+  "conflicts": [
+   "971299401"
+  ],
+  "score": 0,
+  "org": "820334582",
+  "name": "VÅRDAL VVS AS",
+  "domain": "vardal.no",
+  "channel": "name_guess",
+  "url": "https://vardal.no",
+  "pages": 3
+ },
+ {
+  "org": "936602134",
+  "name": "DEMINGANE EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "929606132",
+  "name": "PAULSEN FRAKT & ANLEGG AS",
+  "domain": "paulsen.no",
+  "channel": "name_guess",
+  "url": "https://www.paulsen.no",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "legal_name": "mango event og teknikk"
+  },
+  "conflicts": [],
+  "score": 0.3,
+  "org": "932993953",
+  "name": "MANGO EVENT OG TEKNIKK AS",
+  "domain": "mango.no",
+  "channel": "name_guess",
+  "url": "https://www.mango.no/",
+  "pages": 3
+ },
+ {
+  "signals": {
+   "legal_name": "krøgenes næringsutvikling",
+   "registry_email_domain": "havsjainvest.no"
+  },
+  "conflicts": [],
+  "score": 0.85,
+  "org": "897720302",
+  "name": "KRØGENES NÆRINGSUTVIKLING AS",
+  "domain": "havsjainvest.no",
+  "channel": "registry_email_domain",
+  "url": "https://www.miramarecapital.com/",
+  "pages": 3
+ },
+ {
+  "org": "994465198",
+  "name": "P5 RADIO HALVE NORGE AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "postcode_city": "4331 ålgård"
+  },
+  "conflicts": [],
+  "score": 0.2,
+  "org": "914533260",
+  "name": "X-RIG AS",
+  "domain": "xrig.no",
+  "channel": "name_guess",
+  "url": "https://xrig.no",
+  "pages": 3
+ },
+ {
+  "org": "932952459",
+  "name": "TSR ANLEGG AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "935197333",
+  "name": "SABR AS",
+  "domain": "sabr.com",
+  "channel": "name_guess",
+  "url": "https://sabr.com",
+  "pages": 1
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "928892018",
+  "name": "DATOM INVEST AS",
+  "domain": "datom.com",
+  "channel": "name_guess",
+  "url": "https://datom.com",
+  "pages": 1
+ },
+ {
+  "org": "920936261",
+  "name": "SR PROSJEKT AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "915093191",
+  "name": "MILJØBETONG AS",
+  "domain": "miljobetong.no",
+  "channel": "name_guess",
+  "url": "https://www.roxmaskin.no/",
+  "pages": 1
+ },
+ {
+  "org": "847406712",
+  "name": "TORE OLSEN SALG AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "address": "Ruseløkkveien 6",
+   "postcode_city": "0251 oslo"
+  },
+  "conflicts": [],
+  "score": 0.45,
+  "org": "822020852",
+  "name": "ECOVIS MOBILITY SERVICES AS",
+  "domain": "ecovis.no",
+  "channel": "name_guess",
+  "url": "https://www.ecovis.no/",
+  "pages": 1
+ },
+ {
+  "org": "982484138",
+  "name": "AKTA EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "hecotron",
+   "address": "Gunnar Schjelderups vei 9",
+   "postcode_city": "0485 oslo"
+  },
+  "conflicts": [
+   "344469172"
+  ],
+  "score": 0.75,
+  "org": "967301515",
+  "name": "HECOTRON AS",
+  "domain": "hecotron.no",
+  "channel": "name_guess",
+  "url": "https://www.hecotron.no/",
+  "pages": 2
+ },
+ {
+  "org": "934600002",
+  "name": "BLUEBIRD AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "933542106",
+  "name": "AEMI HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {
+   "legal_name": "nordic wildfish sales",
+   "registry_phone": "90018421",
+   "address": "Nordstrandfjørå 71",
+   "postcode_city": "6050 valderøya",
+   "registry_email_domain": "nordicwildfish.no"
+  },
+  "conflicts": [],
+  "score": 1.65,
+  "org": "914549434",
+  "name": "NORDIC WILDFISH SALES AS",
+  "domain": "nordicwildfish.no",
+  "channel": "registry_email_domain",
+  "url": "https://www.nordicwildfish.no/",
+  "pages": 4
+ },
+ {
+  "org": "992472545",
+  "name": "3G EIENDOM AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "914312418",
+  "name": "SUNBAY AS",
+  "domain": "sunbay.com",
+  "channel": "name_guess",
+  "url": "https://sunbay.com",
+  "pages": 8
+ },
+ {
+  "org": "923773649",
+  "name": "GICO HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "934061950",
+  "name": "MELTZERSGATE 5 HOLDING AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "org": "974445123",
+  "name": "HIFISENTRALEN AS",
+  "score": 0.0,
+  "signals": {},
+  "conflicts": [],
+  "channel": "none"
+ },
+ {
+  "signals": {},
+  "conflicts": [],
+  "score": 0,
+  "org": "930916803",
+  "name": "FOSSEIDE-LANDSEM MASKINLAG AS",
+  "domain": "fosseide.com",
+  "channel": "name_guess",
+  "url": "https://fossei.de/",
+  "pages": 1
+ },
+ {
+  "signals": {
+   "registry_email_domain": "terell.no"
+  },
+  "conflicts": [],
+  "score": 0.55,
+  "org": "911838931",
+  "name": "GREV EIENDOMSINVEST AS",
+  "domain": "terell.no",
+  "channel": "registry_email_domain",
+  "url": "https://terell.no",
+  "pages": 8
+ },
+ {
+  "signals": {
+   "org_number": "934756118",
+   "legal_name": "bb proff"
+  },
+  "conflicts": [],
+  "score": 1.3,
+  "org": "934756118",
+  "name": "BB PROFF AS",
+  "domain": "bbproff.no",
+  "channel": "name_guess",
+  "url": "https://bbproff.no",
+  "pages": 3
+ }
+]

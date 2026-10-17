@@ -1,0 +1,11 @@
+{
+ "universe": "/Users/jd/Downloads/signalpost-company-universe-2025.jsonl.gz",
+ "seed": 20261013,
+ "split": "validation",
+ "per_slice": 110,
+ "has_site_population": 8964,
+ "no_site_population": 72984,
+ "rows": 220,
+ "content_sha256": "1e349cda918e6dc2ba3c3f299ce747438548b293e4dc51ee7cd56e48d9f3e934",
+ "labelling": "registry website field, hidden from the agent at run time"
+}

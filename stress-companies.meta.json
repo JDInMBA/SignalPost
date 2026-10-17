@@ -1,0 +1,33 @@
+{
+ "universe_rows": 411160,
+ "selected": 60,
+ "seed": 20261013,
+ "stratified": true,
+ "content_sha256": "8d53d406cabd721bf801d0ab3bee7c951f2c5c703f116b70aea8ef2c325cbf33",
+ "with_registry_website": 31,
+ "legal_forms": {
+  "ESEK": 4,
+  "DA": 5,
+  "NUF": 5,
+  "ENK": 4,
+  "ASA": 3,
+  "BBL": 2,
+  "IKS": 4,
+  "ANNA": 2,
+  "SA": 5,
+  "AS": 3,
+  "ANS": 2,
+  "SPA": 1,
+  "STI": 5,
+  "S\u00c6R": 2,
+  "PK": 1,
+  "BRL": 1,
+  "BA": 2,
+  "FLI": 2,
+  "KS": 2,
+  "SF": 1,
+  "GFS": 1,
+  "KIRK": 2,
+  "SAM": 1
+ }
+}

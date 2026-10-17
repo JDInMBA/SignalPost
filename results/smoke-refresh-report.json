@@ -1,0 +1,126 @@
+{
+ "run_id": "smoke-refresh-20261013",
+ "agent": "signalpost-agent/1.0.0",
+ "started_at": "2026-10-13T10:39:02Z",
+ "completed_at": "2026-10-13T10:45:05Z",
+ "inputs": 100,
+ "envelopes_written": 100,
+ "one_envelope_per_input": true,
+ "resumed_from_previous_output": 0,
+ "runtime_seconds": 363.1,
+ "requests": 1135,
+ "bytes_downloaded": 9905799,
+ "third_party_cost_usd": 0.0,
+ "cost_model": "official open-data APIs only; no paid connector enabled",
+ "latency_ms": {
+  "p50": 13959,
+  "p95": 55457,
+  "max": 89858
+ },
+ "terminal_status": {
+  "completed": 100
+ },
+ "field_availability": {
+  "annual_account_filings": {
+   "available": 100
+  },
+  "annual_accounts": {
+   "available": 100
+  },
+  "careers_page": {
+   "not_available": 13,
+   "available": 2
+  },
+  "company_owned_profiles": {
+   "available": 7,
+   "not_available": 8
+  },
+  "company_published_activity": {
+   "not_available": 14,
+   "available": 1
+  },
+  "group_structure": {
+   "not_available": 92,
+   "available": 8
+  },
+  "hiring_signal": {
+   "blocked": 100
+  },
+  "job_postings": {
+   "blocked": 100
+  },
+  "leadership": {
+   "available": 100
+  },
+  "legal_identity": {
+   "available": 100
+  },
+  "official_website": {
+   "not_available": 47,
+   "blocked": 7,
+   "ambiguous": 31,
+   "available": 15
+  },
+  "operating_status": {
+   "available": 100
+  },
+  "public_brand_aliases": {
+   "not_available": 78,
+   "available": 22
+  },
+  "registered_employees": {
+   "not_available": 72,
+   "available": 28
+  },
+  "registered_workplaces": {
+   "not_available": 27,
+   "available": 73
+  },
+  "registry_contact": {
+   "not_available": 68,
+   "available": 32
+  },
+  "stated_purpose": {
+   "available": 100
+  },
+  "website_contact": {
+   "available": 14,
+   "not_available": 1
+  },
+  "website_description": {
+   "available": 15
+  },
+  "website_structured_organisation": {
+   "available": 6,
+   "not_available": 9
+  }
+ },
+ "website_publication_tiers": {
+  "A_org_number_on_page": 5,
+  "D_site_identity_name_plus_locator": 1,
+  "C_registry_email_domain_plus_corroboration": 4,
+  "B_registry_declared_website": 5
+ },
+ "candidates_rejected_for_conflicting_org_number": 5,
+ "material_changes": {},
+ "errors": {},
+ "nav_jobs_index": {
+  "present": false
+ },
+ "nav_run_snapshot": {
+  "attempted": true,
+  "advertisements": 0,
+  "distinct_employer_names": 0,
+  "pages": 0,
+  "reported_total_active": null,
+  "blocked": true
+ },
+ "declared_caches": [
+  {
+   "name": "nav_jobs_index",
+   "role": "candidate index only; every advertisement re-fetched and re-verified live",
+   "present": false,
+   "built_at": null
+  }
+ ]
+}

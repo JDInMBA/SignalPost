@@ -1,0 +1,14 @@
+{
+ "universe_rows": 411160,
+ "selected": 100,
+ "seed": 20261013,
+ "stratified": false,
+ "content_sha256": "b3679dd40a6f08d18d67ea8e9da704736c18c774a9692359ae8b5df86c852b7d",
+ "with_registry_website": 9,
+ "legal_forms": {
+  "AS": 95,
+  "ESEK": 3,
+  "FLI": 1,
+  "STI": 1
+ }
+}

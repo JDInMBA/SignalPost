@@ -1,0 +1,115 @@
+{
+ "gold_rows": 120,
+ "envelopes": 120,
+ "one_envelope_per_input": true,
+ "missing_envelopes": [],
+ "labelled_slice": {
+  "companies": 60,
+  "published": 35,
+  "correct_exact_domain": 33,
+  "registry_disagreements_with_org_number_proof": 2,
+  "wrong_company_publications": 0,
+  "abstained": 25,
+  "exact_domain_precision": 0.9428571428571428,
+  "exact_entity_precision": 1.0,
+  "recall": 0.55,
+  "abstention_rate": 0.4166666666666667
+ },
+ "unlabelled_slice": {
+  "companies": 60,
+  "published_new_websites": 7,
+  "discovery_rate": 0.11666666666666667,
+  "candidates_vetoed_for_conflicting_org_number": 0
+ },
+ "publication_tiers": {
+  "C_registry_email_domain_plus_corroboration": 20,
+  "A_org_number_on_page": 18,
+  "D_site_identity_name_plus_locator": 4
+ },
+ "discovery_channels": {
+  "registry_email_domain": 34,
+  "name_guess": 5,
+  "subunit_website": 3
+ },
+ "wrong_company_detail": [],
+ "registry_disagreement_detail": [
+  {
+   "organisation_number": "953314525",
+   "name": "UNIKRING BORETTSLAG",
+   "published": "unikring.com",
+   "registry_field": "usbl.no",
+   "tier": "A_org_number_on_page",
+   "channel": "name_guess",
+   "basis": "organisation number printed on the published page"
+  },
+  {
+   "organisation_number": "933401901",
+   "name": "NORWAY BY BIKE AS",
+   "published": "norwaybybike.com",
+   "registry_field": "norwaybike.com",
+   "tier": "A_org_number_on_page",
+   "channel": "registry_email_domain",
+   "basis": "organisation number printed on the published page"
+  }
+ ],
+ "evidence_validity": {
+  "available_claims": 1201,
+  "with_resolving_evidence": 1201,
+  "rate": 1.0
+ },
+ "family_availability": {
+  "contact": {
+   "not_available": 41,
+   "available": 121
+  },
+  "dated_activity": {
+   "not_available": 41,
+   "available": 1
+  },
+  "description": {
+   "available": 49,
+   "not_available": 35
+  },
+  "financials": {
+   "available": 240
+  },
+  "group": {
+   "not_available": 110,
+   "available": 10
+  },
+  "hiring": {
+   "not_available": 32,
+   "available": 10
+  },
+  "identity": {
+   "available": 400,
+   "not_available": 80
+  },
+  "leadership": {
+   "available": 120
+  },
+  "locations": {
+   "available": 120
+  },
+  "social_profiles": {
+   "available": 30,
+   "not_available": 12
+  },
+  "website": {
+   "blocked": 10,
+   "ambiguous": 48,
+   "available": 42,
+   "not_available": 20
+  },
+  "workforce": {
+   "not_available": 62,
+   "available": 58
+  }
+ },
+ "cost": {
+  "requests": 19417,
+  "requests_per_company": 161.8,
+  "latency_p50_ms": 23105,
+  "latency_p95_ms": 171332
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "gold_rows": 120,
+ "envelopes": 120,
+ "one_envelope_per_input": true,
+ "missing_envelopes": [],
+ "labelled_slice": {
+  "companies": 60,
+  "published": 30,
+  "correct_exact_domain": 29,
+  "registry_disagreements_with_org_number_proof": 1,
+  "wrong_company_publications": 0,
+  "abstained": 30,
+  "exact_domain_precision": 0.9666666666666667,
+  "exact_entity_precision": 1.0,
+  "recall": 0.48333333333333334,
+  "abstention_rate": 0.5
+ },
+ "unlabelled_slice": {
+  "companies": 60,
+  "published_new_websites": 9,
+  "discovery_rate": 0.15,
+  "candidates_vetoed_for_conflicting_org_number": 1
+ },
+ "publication_tiers": {
+  "C_registry_email_domain_plus_corroboration": 21,
+  "A_org_number_on_page": 12,
+  "D_site_identity_name_plus_locator": 6
+ },
+ "discovery_channels": {
+  "registry_email_domain": 31,
+  "subunit_website": 2,
+  "name_guess": 6
+ },
+ "wrong_company_detail": [],
+ "registry_disagreement_detail": [
+  {
+   "organisation_number": "933401901",
+   "name": "NORWAY BY BIKE AS",
+   "published": "norwaybybike.com",
+   "registry_field": "norwaybike.com",
+   "tier": "A_org_number_on_page",
+   "channel": "registry_email_domain",
+   "basis": "organisation number printed on the published page"
+  }
+ ],
+ "evidence_validity": {
+  "available_claims": 1164,
+  "with_resolving_evidence": 1164,
+  "rate": 1.0
+ },
+ "family_availability": {
+  "contact": {
+   "not_available": 42,
+   "available": 117
+  },
+  "dated_activity": {
+   "not_available": 38,
+   "available": 1
+  },
+  "description": {
+   "available": 44,
+   "not_available": 34
+  },
+  "financials": {
+   "available": 240
+  },
+  "group": {
+   "not_available": 110,
+   "available": 10
+  },
+  "hiring": {
+   "not_available": 31,
+   "available": 8
+  },
+  "identity": {
+   "available": 400,
+   "not_available": 80
+  },
+  "leadership": {
+   "available": 120
+  },
+  "locations": {
+   "available": 101,
+   "not_available": 19
+  },
+  "social_profiles": {
+   "available": 26,
+   "not_available": 13
+  },
+  "website": {
+   "not_available": 40,
+   "available": 39,
+   "ambiguous": 35,
+   "blocked": 6
+  },
+  "workforce": {
+   "not_available": 62,
+   "available": 58
+  }
+ },
+ "cost": {
+  "requests": 13213,
+  "requests_per_company": 110.1,
+  "latency_p50_ms": 18868,
+  "latency_p95_ms": 74641
+ }
+}

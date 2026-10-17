@@ -1,0 +1,78 @@
+# Submission
+
+Email to `submit@builderr.ai`.
+
+| item | value |
+|---|---|
+| Agent name | Signalpost agent |
+| Repository | `<REPO_URL>` |
+| Exact commit hash | `<COMMIT>` |
+| Contact | `<EMAIL>` |
+| Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
+
+## Install step (declared)
+
+```bash
+python3.12 -m venv .venv && ./.venv/bin/pip install -r requirements.txt && ./.venv/bin/pip install --no-deps -e .
+```
+
+## Run command (one line, pasteable)
+
+```bash
+./.venv/bin/python -m signalpost run --organisations BATCH.jsonl --output out/envelopes.jsonl --report out/run-report.json --run-id OFFICIAL
+```
+
+Add `--previous PREVIOUS.jsonl` to enable the refresh diff, and
+`--time-budget-seconds N` to guarantee the run terminates inside a fixed budget
+with every remaining input still receiving a terminal envelope.
+
+## Models, APIs, licences
+
+| | |
+|---|---|
+| Models | **none.** No LLM call at any point. The summary is assembled from claims by template, so nothing can be fabricated and no model key is needed |
+| APIs | Brønnøysundregistrene Enhetsregisteret and Regnskapsregisteret (NLOD 2.0, no key); Nav Arbeidsplassen public job service and official change feed (Nav API terms, public rotating token fetched at run time) |
+| Other | company websites, crawled under robots.txt |
+| Python licences | BSD-3 (beautifulsoup4, extruct), MIT (pydantic, rapidfuzz, tldextract, phonenumbers, pypdf), Apache-2 (trafilatura), BSD (lxml) |
+
+## Expected cost per official batch
+
+**$0.00.** No paid connector, no API key, no model call. `third_party_cost_usd` is
+`0.0` in every run report.
+
+## Source rights
+
+See `SOURCES.md`. Every source is an official open-data API, an official public
+service whose robots policy permits the access pattern, or a company's own site.
+Restricted platforms are not scraped; their URLs appear only when the verified
+company site publishes them itself. `w2.brreg.no/kunngjoring/` is declined because
+its robots.txt disallows it.
+
+## Secrets
+
+None required. No credential is tied to any personal account, so any run is
+reproducible by a third party. If a secret is ever added it is read from a
+documented environment variable and never placed in a URL.
+
+## Declared caches
+
+`cache/nav_jobs_index.json` — organisation number → Nav advertisement ids, built
+from Nav's official change feed by `tools/build_nav_index.py`. It is a **candidate
+index only**: every advertisement it nominates is re-fetched live and its
+organisation number re-read from the live page before anything is published. The
+file carries `built_at`, `content_sha256` and feed position, and is reported in
+every run report under `declared_caches`. The agent runs correctly without it.
+
+## Official-run checklist
+
+| requirement | status |
+|---|---|
+| exactly one terminal envelope per input | enforced in `batch.py`; `one_envelope_per_input` asserted in the run report and the CLI exits non-zero if it fails |
+| honest availability states | six states, `not_available` never written as `0`/`""`/`[]` |
+| no fabricated financial value | nulls stay null; accounts sorted newest-first so the latest filed period is the one reported |
+| no material wrong-company publication | tiered identity gate with a conflicting-org-number veto; **0** on the development gold set |
+| claim-level source, retrieval time, reporting period | every evidence record; `validate_integrity()` rejects a dangling reference before writing |
+| idempotent refresh, prior evidence preserved | `refresh.py`, three regression tests |
+| reproducible setup, pinned dependencies, one command | `requirements.txt` fully pinned; command above |
+| documented source rights and safe URL handling | `SOURCES.md` |
+| 100-company smoke test | `SMOKE_TEST.md` |

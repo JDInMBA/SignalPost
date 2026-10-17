@@ -1,0 +1,1827 @@
+{
+ "seed": 20261013,
+ "sample": 150,
+ "counts": {
+  "other_company": 16,
+  "live_unverified": 66,
+  "no_candidate_resolved": 61,
+  "verified": 7
+ },
+ "results": [
+  {
+   "org": "928468240",
+   "name": "TITRAN AS",
+   "status": "other_company",
+   "domain": "titran.no",
+   "other_orgs": [
+    "432436489",
+    "792114792",
+    "923471804"
+   ],
+   "tried": 1,
+   "resolved": [
+    "titran.no"
+   ]
+  },
+  {
+   "org": "913870379",
+   "name": "TASIK TOBA SUBSEA AS",
+   "status": "live_unverified",
+   "domain": "tasik.com",
+   "tried": 1,
+   "resolved": [
+    "tasik.com"
+   ]
+  },
+  {
+   "org": "915215262",
+   "name": "ROMNES DRAMMEN AS",
+   "status": "other_company",
+   "domain": "romnes.no",
+   "other_orgs": [
+    "119165504"
+   ],
+   "tried": 1,
+   "resolved": [
+    "romnes.no"
+   ]
+  },
+  {
+   "org": "922285349",
+   "name": "OLE SIEM INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "olesieminvest.no",
+    "olesieminvest.com",
+    "ole-siem-invest.no",
+    "ole-siem-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "923005854",
+   "name": "UTEVENT AS",
+   "status": "live_unverified",
+   "domain": "utevent.com",
+   "tried": 2,
+   "resolved": [
+    "utevent.com"
+   ]
+  },
+  {
+   "org": "924455500",
+   "name": "LOKALBRYGG AS",
+   "status": "other_company",
+   "domain": "lokalbrygg.no",
+   "other_orgs": [
+    "229245171"
+   ],
+   "tried": 1,
+   "resolved": [
+    "lokalbrygg.no"
+   ]
+  },
+  {
+   "org": "916484143",
+   "name": "PETERSON HOLDING AS",
+   "status": "live_unverified",
+   "domain": "peterson.no",
+   "tried": 4,
+   "resolved": [
+    "petersonholding.com",
+    "peterson.no"
+   ]
+  },
+  {
+   "org": "826008172",
+   "name": "KRIDA VENTURES AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "kridaventures.no",
+    "kridaventures.com",
+    "krida-ventures.no",
+    "krida-ventures.com",
+    "krida.no",
+    "krida.com"
+   ],
+   "resolved": [
+    "krida.com"
+   ]
+  },
+  {
+   "org": "989099833",
+   "name": "WORRE HOLDING AS",
+   "status": "live_unverified",
+   "domain": "worre.no",
+   "tried": 1,
+   "resolved": [
+    "worre.no"
+   ]
+  },
+  {
+   "org": "835189392",
+   "name": "FRANCES HOLDING AS",
+   "status": "live_unverified",
+   "domain": "frances-holding.com",
+   "tried": 2,
+   "resolved": [
+    "frances-holding.com"
+   ]
+  },
+  {
+   "org": "993429228",
+   "name": "LUDVIG V INVEST AS",
+   "status": "other_company",
+   "domain": "ludvig.no",
+   "other_orgs": [
+    "981532848"
+   ],
+   "tried": 2,
+   "resolved": [
+    "ludvig.no"
+   ]
+  },
+  {
+   "org": "932771969",
+   "name": "RAMDAL AS",
+   "status": "live_unverified",
+   "domain": "ramdal.no",
+   "tried": 1,
+   "resolved": [
+    "ramdal.no"
+   ]
+  },
+  {
+   "org": "987255129",
+   "name": "RAJE HYTTEGREND AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "rajehyttegrend.no",
+    "rajehyttegrend.com",
+    "raje-hyttegrend.no",
+    "raje-hyttegrend.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "981398696",
+   "name": "STEINBRA EIENDOM AS",
+   "status": "live_unverified",
+   "domain": "steinbraeiendom.no",
+   "tried": 1,
+   "resolved": [
+    "steinbraeiendom.no"
+   ]
+  },
+  {
+   "org": "931794973",
+   "name": "23BYGG AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "23bygg.no",
+    "23bygg.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "935247284",
+   "name": "TIND TOPCO AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "tindtopco.no",
+    "tindtopco.com",
+    "tind-topco.no",
+    "tind-topco.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "825012672",
+   "name": "HOMY AS",
+   "status": "verified",
+   "domain": "homy.no",
+   "final_url": "https://homy.no",
+   "tried": 1,
+   "resolved": [
+    "homy.no"
+   ]
+  },
+  {
+   "org": "931730274",
+   "name": "FRETIKI HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "fretikiholding.no",
+    "fretikiholding.com",
+    "fretiki-holding.no",
+    "fretiki-holding.com",
+    "fretiki.no",
+    "fretiki.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "915691609",
+   "name": "JAT AGENTUR AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "jatagentur.no",
+    "jatagentur.com",
+    "jat-agentur.no",
+    "jat-agentur.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "912861554",
+   "name": "KRAFT BLIKK AS",
+   "status": "live_unverified",
+   "domain": "kraft.com",
+   "tried": 5,
+   "resolved": [
+    "kraftblikk.no",
+    "kraft.no",
+    "kraft.com"
+   ]
+  },
+  {
+   "org": "921368429",
+   "name": "FROLAND REGNSKAP AS",
+   "status": "live_unverified",
+   "domain": "frolandregnskap.no",
+   "tried": 1,
+   "resolved": [
+    "frolandregnskap.no"
+   ]
+  },
+  {
+   "org": "987902361",
+   "name": "PIZZABUSSEN AS",
+   "status": "verified",
+   "domain": "pizzabussen.no",
+   "final_url": "https://pizzabussen.no",
+   "tried": 1,
+   "resolved": [
+    "pizzabussen.no"
+   ]
+  },
+  {
+   "org": "934393694",
+   "name": "BRAUT EGELI HOLDING AS",
+   "status": "live_unverified",
+   "domain": "braut.com",
+   "tried": 3,
+   "resolved": [
+    "braut.no",
+    "braut.com"
+   ]
+  },
+  {
+   "org": "919298685",
+   "name": "GJØSTØL INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "gjostolinvest.no",
+    "gjostolinvest.com",
+    "gjostol-invest.no",
+    "gjostol-invest.com",
+    "gjostol.no",
+    "gjostol.com",
+    "gjoestoelinvest.no",
+    "gjoestoelinvest.com"
+   ],
+   "resolved": [
+    "gjostol.no"
+   ]
+  },
+  {
+   "org": "922834199",
+   "name": "AOP ORPHAN PHARMACEUTICALS SWEDEN AB NUF",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "aoporphanpharmaceuticalsswedenab.no",
+    "aoporphanpharmaceuticalsswedenab.com",
+    "aop-orphan-pharmaceuticals-sweden-ab.no",
+    "aop-orphan-pharmaceuticals-sweden-ab.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "933436853",
+   "name": "SH MULTISERVICE AS",
+   "status": "live_unverified",
+   "domain": "shmultiservice.com",
+   "tried": 1,
+   "resolved": [
+    "shmultiservice.com"
+   ]
+  },
+  {
+   "org": "934354796",
+   "name": "VI BYGGER SAMMEN AS",
+   "status": "verified",
+   "domain": "vibyggersammen.no",
+   "final_url": "https://www.vibyggersammen.no/",
+   "tried": 1,
+   "resolved": [
+    "vibyggersammen.no"
+   ]
+  },
+  {
+   "org": "931144359",
+   "name": "PROSJEKTSPESIALISTEN AS",
+   "status": "live_unverified",
+   "domain": "prosjektspesialisten.no",
+   "tried": 1,
+   "resolved": [
+    "prosjektspesialisten.no"
+   ]
+  },
+  {
+   "org": "935727448",
+   "name": "NM TJENESTER AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "nmtjenester.no",
+    "nmtjenester.com",
+    "nm-tjenester.no",
+    "nm-tjenester.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "924591188",
+   "name": "SOLHEIM TRAFIKKSKOLE AS",
+   "status": "live_unverified",
+   "domain": "solheim.no",
+   "tried": 2,
+   "resolved": [
+    "solheim.no"
+   ]
+  },
+  {
+   "org": "935933315",
+   "name": "FAGERLIVEIEN  AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "fagerliveien.no",
+    "fagerliveien.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "934012879",
+   "name": "STOKKIS HOLDING & INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 4,
+   "candidates": [
+    "stokkisholdinginvest.no",
+    "stokkisholdinginvest.com",
+    "stokkis-holding-invest.no",
+    "stokkis-holding-invest.com",
+    "stokkis.no",
+    "stokkis.com"
+   ],
+   "resolved": [
+    "stokkis.no",
+    "stokkis.com"
+   ]
+  },
+  {
+   "org": "927667525",
+   "name": "VILSTO AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "vilsto.no",
+    "vilsto.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "911729725",
+   "name": "MR.MODIG AS",
+   "status": "other_company",
+   "domain": "mrmodig.no",
+   "other_orgs": [
+    "867112693"
+   ],
+   "tried": 1,
+   "resolved": [
+    "mrmodig.no"
+   ]
+  },
+  {
+   "org": "833250612",
+   "name": "ITG HOLDING AS",
+   "status": "live_unverified",
+   "domain": "itgholding.com",
+   "tried": 1,
+   "resolved": [
+    "itgholding.com"
+   ]
+  },
+  {
+   "org": "935487544",
+   "name": "TMH HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "tmhholding.no",
+    "tmhholding.com",
+    "tmh-holding.no",
+    "tmh-holding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "925194948",
+   "name": "NADDERUD PARK AS",
+   "status": "live_unverified",
+   "domain": "nadderud.no",
+   "tried": 1,
+   "resolved": [
+    "nadderud.no"
+   ]
+  },
+  {
+   "org": "918147330",
+   "name": "CNS AS",
+   "status": "live_unverified",
+   "domain": "cns.no",
+   "tried": 2,
+   "resolved": [
+    "cns.no"
+   ]
+  },
+  {
+   "org": "935745527",
+   "name": "ETHIONORDISK TRADE AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "ethionordisktrade.no",
+    "ethionordisktrade.com",
+    "ethionordisk-trade.no",
+    "ethionordisk-trade.com",
+    "ethionordisk.no",
+    "ethionordisk.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "990522677",
+   "name": "SAMEIE BUØYA B2",
+   "status": "live_unverified",
+   "domain": "sameie.no",
+   "tried": 2,
+   "resolved": [
+    "sameie.no"
+   ]
+  },
+  {
+   "org": "985134723",
+   "name": "NOAS INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "noasinvest.no",
+    "noasinvest.com",
+    "noas-invest.no",
+    "noas-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "875414992",
+   "name": "STIFTELSEN AUKLEND OVERGANGSBOLIG",
+   "status": "live_unverified",
+   "domain": "stiftelsen.no",
+   "tried": 1,
+   "resolved": [
+    "stiftelsen.no"
+   ]
+  },
+  {
+   "org": "824514402",
+   "name": "KSB INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "ksbinvest.no",
+    "ksbinvest.com",
+    "ksb-invest.no",
+    "ksb-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "933838730",
+   "name": "BIDTNES DAGLIGVARE AS",
+   "status": "other_company",
+   "domain": "bidtnes.com",
+   "other_orgs": [
+    "000252212",
+    "043113097",
+    "308144801"
+   ],
+   "tried": 2,
+   "resolved": [
+    "bidtnes.com"
+   ]
+  },
+  {
+   "org": "914499364",
+   "name": "HISTORIEHUSET HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "historiehusetholding.no",
+    "historiehusetholding.com",
+    "historiehuset-holding.no",
+    "historiehuset-holding.com",
+    "historiehuset.no",
+    "historiehuset.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "919045426",
+   "name": "INVESTEEN AS",
+   "status": "live_unverified",
+   "domain": "investeen.com",
+   "tried": 1,
+   "resolved": [
+    "investeen.com"
+   ]
+  },
+  {
+   "org": "820827732",
+   "name": "EVJEKLINIKKEN HOLDING AS",
+   "status": "live_unverified",
+   "domain": "evjeklinikken.no",
+   "tried": 1,
+   "resolved": [
+    "evjeklinikken.no"
+   ]
+  },
+  {
+   "org": "930716197",
+   "name": "MEL VESTBY 19 AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "melvestby19.no",
+    "melvestby19.com",
+    "mel-vestby-19.no",
+    "mel-vestby-19.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "931390627",
+   "name": "8009 INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "8009invest.no",
+    "8009invest.com",
+    "8009-invest.no",
+    "8009-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "985205051",
+   "name": "ARKO NORD AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "arkonord.no",
+    "arkonord.com",
+    "arko-nord.no",
+    "arko-nord.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "991035842",
+   "name": "EDOS AS",
+   "status": "live_unverified",
+   "domain": "edos.no",
+   "tried": 1,
+   "resolved": [
+    "edos.no"
+   ]
+  },
+  {
+   "org": "936316379",
+   "name": "SUEZMAX 1 AS",
+   "status": "live_unverified",
+   "domain": "suezmax.no",
+   "tried": 1,
+   "resolved": [
+    "suezmax.no"
+   ]
+  },
+  {
+   "org": "916796862",
+   "name": "HYDROMAR AS",
+   "status": "live_unverified",
+   "domain": "hydromar.no",
+   "tried": 2,
+   "resolved": [
+    "hydromar.no"
+   ]
+  },
+  {
+   "org": "912235580",
+   "name": "CARE EIENDOM AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "careeiendom.no",
+    "careeiendom.com",
+    "care-eiendom.no",
+    "care-eiendom.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "932108569",
+   "name": "FQM AS",
+   "status": "live_unverified",
+   "domain": "fqm.no",
+   "tried": 1,
+   "resolved": [
+    "fqm.no"
+   ]
+  },
+  {
+   "org": "933112292",
+   "name": "SARPSBORG HIFI AS",
+   "status": "other_company",
+   "domain": "sarpsborg.com",
+   "other_orgs": [
+    "938801363"
+   ],
+   "tried": 1,
+   "resolved": [
+    "sarpsborg.com"
+   ]
+  },
+  {
+   "org": "816772052",
+   "name": "JEGFIKKJOBBEN AS",
+   "status": "live_unverified",
+   "domain": "jegfikkjobben.no",
+   "tried": 1,
+   "resolved": [
+    "jegfikkjobben.no"
+   ]
+  },
+  {
+   "org": "919113936",
+   "name": "GKK1 AS",
+   "status": "live_unverified",
+   "domain": "gkk1.com",
+   "tried": 1,
+   "resolved": [
+    "gkk1.com"
+   ]
+  },
+  {
+   "org": "971191643",
+   "name": "FORSOMMER AS",
+   "status": "live_unverified",
+   "domain": "forsommer.no",
+   "tried": 1,
+   "resolved": [
+    "forsommer.no"
+   ]
+  },
+  {
+   "org": "877514412",
+   "name": "TO HJERTER AS",
+   "status": "live_unverified",
+   "domain": "tohjerter.no",
+   "tried": 1,
+   "resolved": [
+    "tohjerter.no"
+   ]
+  },
+  {
+   "org": "989071076",
+   "name": "THORLAND BYGG OG EIGEDOM AS",
+   "status": "other_company",
+   "domain": "thorland.no",
+   "other_orgs": [
+    "981532848"
+   ],
+   "tried": 1,
+   "resolved": [
+    "thorland.no"
+   ]
+  },
+  {
+   "org": "831500352",
+   "name": "AS FAST EIENDOM",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "asfasteiendom.no",
+    "asfasteiendom.com",
+    "as-fast-eiendom.no",
+    "as-fast-eiendom.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "927408635",
+   "name": "NESTVOLDFLATA BORETTSLAG",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "nestvoldflataborettslag.no",
+    "nestvoldflataborettslag.com",
+    "nestvoldflata-borettslag.no",
+    "nestvoldflata-borettslag.com",
+    "nestvoldflata.no",
+    "nestvoldflata.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "924388048",
+   "name": "ANNE CATHRINE AS",
+   "status": "verified",
+   "domain": "annecathrine.no",
+   "final_url": "https://annecathrine.no",
+   "tried": 1,
+   "resolved": [
+    "annecathrine.no"
+   ]
+  },
+  {
+   "org": "913601963",
+   "name": "EGIL KRISTOFFERSEN & SØNNER AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "egilkristoffersensonner.no",
+    "egilkristoffersensonner.com",
+    "egil-kristoffersen-sonner.no",
+    "egil-kristoffersen-sonner.com",
+    "egilkristoffersensoenner.no",
+    "egilkristoffersensoenner.com",
+    "egil-kristoffersen-soenner.no",
+    "egil-kristoffersen-soenner.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "929045262",
+   "name": "P AMUNDSEN HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "pamundsenholding.no",
+    "pamundsenholding.com",
+    "p-amundsen-holding.no",
+    "p-amundsen-holding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "919490004",
+   "name": "TUNGSTEN AS",
+   "status": "live_unverified",
+   "domain": "tungsten.no",
+   "tried": 2,
+   "resolved": [
+    "tungsten.no"
+   ]
+  },
+  {
+   "org": "924190248",
+   "name": "AVENTURA INVEST AS",
+   "status": "live_unverified",
+   "domain": "aventurainvest.com",
+   "tried": 1,
+   "resolved": [
+    "aventurainvest.com"
+   ]
+  },
+  {
+   "org": "998200202",
+   "name": "MICROSAFE AS",
+   "status": "live_unverified",
+   "domain": "microsafe.com",
+   "tried": 3,
+   "resolved": [
+    "microsafe.no",
+    "microsafe.com"
+   ]
+  },
+  {
+   "org": "936786782",
+   "name": "SME OMSORGSBOLIGER AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "smeomsorgsboliger.no",
+    "smeomsorgsboliger.com",
+    "sme-omsorgsboliger.no",
+    "sme-omsorgsboliger.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "925431672",
+   "name": "HOEM OG KROG ENTREPRENØR AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "hoemkrogentreprenor.no",
+    "hoemkrogentreprenor.com",
+    "hoem-krog-entreprenor.no",
+    "hoem-krog-entreprenor.com",
+    "hoemkrogentreprenoer.no",
+    "hoemkrogentreprenoer.com",
+    "hoem-krog-entreprenoer.no",
+    "hoem-krog-entreprenoer.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "929888952",
+   "name": "ASFALTSPESIALISTENE AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "asfaltspesialistene.no",
+    "asfaltspesialistene.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "920195296",
+   "name": "NORHASH HOLDING AS",
+   "status": "live_unverified",
+   "domain": "norhash.no",
+   "tried": 2,
+   "resolved": [
+    "norhash.no"
+   ]
+  },
+  {
+   "org": "930009059",
+   "name": "MB MASKIN ORKLAND AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "mbmaskinorkland.no",
+    "mbmaskinorkland.com",
+    "mb-maskin-orkland.no",
+    "mb-maskin-orkland.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "925302716",
+   "name": "DRIBLO KAPITAL AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "driblokapital.no",
+    "driblokapital.com",
+    "driblo-kapital.no",
+    "driblo-kapital.com",
+    "driblo.no",
+    "driblo.com"
+   ],
+   "resolved": [
+    "driblo.com"
+   ]
+  },
+  {
+   "org": "988957372",
+   "name": "TINNE INVEST AS",
+   "status": "live_unverified",
+   "domain": "tinne.com",
+   "tried": 2,
+   "resolved": [
+    "tinne.com"
+   ]
+  },
+  {
+   "org": "927879220",
+   "name": "ROBUST GRUNNARBEID AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "robustgrunnarbeid.no",
+    "robustgrunnarbeid.com",
+    "robust-grunnarbeid.no",
+    "robust-grunnarbeid.com",
+    "robust.no",
+    "robust.com"
+   ],
+   "resolved": [
+    "robust.no"
+   ]
+  },
+  {
+   "org": "830054332",
+   "name": "HE ENTREPRENØR AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "heentreprenor.no",
+    "heentreprenor.com",
+    "he-entreprenor.no",
+    "he-entreprenor.com",
+    "heentreprenoer.no",
+    "heentreprenoer.com",
+    "he-entreprenoer.no",
+    "he-entreprenoer.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "930358207",
+   "name": "NORINVEST TROMSØ AS",
+   "status": "other_company",
+   "domain": "norinvest.no",
+   "other_orgs": [
+    "153029474"
+   ],
+   "tried": 1,
+   "resolved": [
+    "norinvest.no"
+   ]
+  },
+  {
+   "org": "998688205",
+   "name": "HØGRI AS",
+   "status": "verified",
+   "domain": "hogri.no",
+   "final_url": "https://hogri.no",
+   "tried": 1,
+   "resolved": [
+    "hogri.no"
+   ]
+  },
+  {
+   "org": "930864889",
+   "name": "ASSET MANAGEMENT SERVICE AS",
+   "status": "live_unverified",
+   "domain": "assetmanagementservice.com",
+   "tried": 2,
+   "resolved": [
+    "assetmanagementservice.com"
+   ]
+  },
+  {
+   "org": "912972062",
+   "name": "JARO EIENDOMSUTVIKLING AS",
+   "status": "live_unverified",
+   "domain": "jaroeiendomsutvikling.no",
+   "tried": 2,
+   "resolved": [
+    "jaroeiendomsutvikling.no"
+   ]
+  },
+  {
+   "org": "928730042",
+   "name": "APULS.NO NUF",
+   "status": "live_unverified",
+   "domain": "apuls.no",
+   "tried": 2,
+   "resolved": [
+    "apuls.no"
+   ]
+  },
+  {
+   "org": "930068888",
+   "name": "DT 701 STJØRDAL AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "dt701stjordal.no",
+    "dt701stjordal.com",
+    "dt-701-stjordal.no",
+    "dt-701-stjordal.com",
+    "dt701stjoerdal.no",
+    "dt701stjoerdal.com",
+    "dt-701-stjoerdal.no",
+    "dt-701-stjoerdal.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "929970217",
+   "name": "BORING BANKING OG SAGING AS",
+   "status": "other_company",
+   "domain": "boring.no",
+   "other_orgs": [
+    "990405700"
+   ],
+   "tried": 1,
+   "resolved": [
+    "boring.no"
+   ]
+  },
+  {
+   "org": "921726686",
+   "name": "WAYNE ENTERPRISES SPORTS AGENCY AS",
+   "status": "live_unverified",
+   "domain": "wayne.com",
+   "tried": 1,
+   "resolved": [
+    "wayne.com"
+   ]
+  },
+  {
+   "org": "921794703",
+   "name": "UTEPRODUKTER AS",
+   "status": "live_unverified",
+   "domain": "uteprodukter.no",
+   "tried": 2,
+   "resolved": [
+    "uteprodukter.no"
+   ]
+  },
+  {
+   "org": "930609188",
+   "name": "WITSØ OG SVEA TAKST AS",
+   "status": "live_unverified",
+   "domain": "witso.no",
+   "tried": 2,
+   "resolved": [
+    "witso.no"
+   ]
+  },
+  {
+   "org": "933749096",
+   "name": "STRATEGI PILOT AS",
+   "status": "live_unverified",
+   "domain": "strategipilot.com",
+   "tried": 1,
+   "resolved": [
+    "strategipilot.com"
+   ]
+  },
+  {
+   "org": "926543261",
+   "name": "NEWCO EIENDOM AS",
+   "status": "live_unverified",
+   "domain": "newco.no",
+   "tried": 2,
+   "resolved": [
+    "newco.no"
+   ]
+  },
+  {
+   "org": "923100318",
+   "name": "STORKLEVA HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "storklevaholding.no",
+    "storklevaholding.com",
+    "storkleva-holding.no",
+    "storkleva-holding.com",
+    "storkleva.no",
+    "storkleva.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "924320214",
+   "name": "REGENTAS AS",
+   "status": "live_unverified",
+   "domain": "regentas.com",
+   "tried": 1,
+   "resolved": [
+    "regentas.com"
+   ]
+  },
+  {
+   "org": "915604560",
+   "name": "LUX BY MARIT AS",
+   "status": "other_company",
+   "domain": "luxbymarit.no",
+   "other_orgs": [
+    "116238438",
+    "193775365"
+   ],
+   "tried": 1,
+   "resolved": [
+    "luxbymarit.no"
+   ]
+  },
+  {
+   "org": "930826561",
+   "name": "INVEEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "inveest.no",
+    "inveest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "997715624",
+   "name": "MATHIASSEN MASKIN AS",
+   "status": "live_unverified",
+   "domain": "mathiassenmaskin.no",
+   "tried": 1,
+   "resolved": [
+    "mathiassenmaskin.no"
+   ]
+  },
+  {
+   "org": "923182985",
+   "name": "LODEX AS",
+   "status": "other_company",
+   "domain": "lodex.com",
+   "other_orgs": [
+    "351121599"
+   ],
+   "tried": 1,
+   "resolved": [
+    "lodex.com"
+   ]
+  },
+  {
+   "org": "934058763",
+   "name": "DAYTHINGS AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "daythings.no",
+    "daythings.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "925216402",
+   "name": "AS SKOGMO BRUK",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "asskogmobruk.no",
+    "asskogmobruk.com",
+    "as-skogmo-bruk.no",
+    "as-skogmo-bruk.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "828651552",
+   "name": "MYRENG FISK AS",
+   "status": "live_unverified",
+   "domain": "myrengfisk.no",
+   "tried": 2,
+   "resolved": [
+    "myrengfisk.no"
+   ]
+  },
+  {
+   "org": "997102940",
+   "name": "GPA EIENDOM AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "gpaeiendom.no",
+    "gpaeiendom.com",
+    "gpa-eiendom.no",
+    "gpa-eiendom.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "929363833",
+   "name": "SJØTROLL HAVBRUK AS",
+   "status": "no_candidate_resolved",
+   "tried": 6,
+   "candidates": [
+    "sjotrollhavbruk.no",
+    "sjotrollhavbruk.com",
+    "sjotroll-havbruk.no",
+    "sjotroll-havbruk.com",
+    "sjotroll.no",
+    "sjotroll.com",
+    "sjoetrollhavbruk.no",
+    "sjoetrollhavbruk.com"
+   ],
+   "resolved": [
+    "sjotrollhavbruk.no",
+    "sjotroll.no",
+    "sjotroll.com"
+   ]
+  },
+  {
+   "org": "931884794",
+   "name": "FJORDYW AS",
+   "status": "no_candidate_resolved",
+   "tried": 4,
+   "candidates": [
+    "fjordyw.no",
+    "fjordyw.com"
+   ],
+   "resolved": [
+    "fjordyw.no",
+    "fjordyw.com"
+   ]
+  },
+  {
+   "org": "978664512",
+   "name": "HECTO EIENDOM AS",
+   "status": "live_unverified",
+   "domain": "hecto.no",
+   "tried": 1,
+   "resolved": [
+    "hecto.no"
+   ]
+  },
+  {
+   "org": "926678329",
+   "name": "ITM HOLMEDAL AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "itmholmedal.no",
+    "itmholmedal.com",
+    "itm-holmedal.no",
+    "itm-holmedal.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "918001417",
+   "name": "JARDAR HOLDING AS",
+   "status": "other_company",
+   "domain": "jardar.no",
+   "other_orgs": [
+    "971261633"
+   ],
+   "tried": 1,
+   "resolved": [
+    "jardar.no"
+   ]
+  },
+  {
+   "org": "967021512",
+   "name": "ACAL BFI NORWAY NUF",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "acalbfinorway.no",
+    "acalbfinorway.com",
+    "acal-bfi-norway.no",
+    "acal-bfi-norway.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "987671750",
+   "name": "A.J. HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "ajholding.no",
+    "ajholding.com",
+    "a-j-holding.no",
+    "a-j-holding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "914606748",
+   "name": "SKOLE OG BARNEHAGESERVICE AS",
+   "status": "live_unverified",
+   "domain": "skole.no",
+   "tried": 1,
+   "resolved": [
+    "skole.no"
+   ]
+  },
+  {
+   "org": "931620568",
+   "name": "BIOLTAS AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "bioltas.no",
+    "bioltas.com"
+   ],
+   "resolved": [
+    "bioltas.no"
+   ]
+  },
+  {
+   "org": "936176550",
+   "name": "HÅNDVERKERSTALLEN AS",
+   "status": "live_unverified",
+   "domain": "handverkerstallen.no",
+   "tried": 1,
+   "resolved": [
+    "handverkerstallen.no"
+   ]
+  },
+  {
+   "org": "927726912",
+   "name": "KÅFJORD TAXI AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "kafjordtaxi.no",
+    "kafjordtaxi.com",
+    "kafjord-taxi.no",
+    "kafjord-taxi.com",
+    "kafjord.no",
+    "kafjord.com",
+    "kaafjordtaxi.no",
+    "kaafjordtaxi.com"
+   ],
+   "resolved": [
+    "kafjord.com"
+   ]
+  },
+  {
+   "org": "922196028",
+   "name": "A.P & CO AS",
+   "status": "live_unverified",
+   "domain": "apco.com",
+   "tried": 1,
+   "resolved": [
+    "apco.com"
+   ]
+  },
+  {
+   "org": "989115677",
+   "name": "AS BONI",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "asboni.no",
+    "asboni.com",
+    "as-boni.no",
+    "as-boni.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "936272681",
+   "name": "AKERSHUS BILUTLEIE AS",
+   "status": "verified",
+   "domain": "akershusbilutleie.no",
+   "final_url": "https://www.akershusbilutleie.no/",
+   "tried": 1,
+   "resolved": [
+    "akershusbilutleie.no"
+   ]
+  },
+  {
+   "org": "824755442",
+   "name": "KH BYGG & VEDLIKEHOLD AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "khbyggvedlikehold.no",
+    "khbyggvedlikehold.com",
+    "kh-bygg-vedlikehold.no",
+    "kh-bygg-vedlikehold.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "931868446",
+   "name": "GO TRENING ØYER AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "gotreningoyer.no",
+    "gotreningoyer.com",
+    "go-trening-oyer.no",
+    "go-trening-oyer.com",
+    "gotreningoeyer.no",
+    "gotreningoeyer.com",
+    "go-trening-oeyer.no",
+    "go-trening-oeyer.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "994769294",
+   "name": "TRAFIKKSKULEN DIN AS",
+   "status": "live_unverified",
+   "domain": "trafikkskulen.no",
+   "tried": 3,
+   "resolved": [
+    "trafikkskulen-din.no",
+    "trafikkskulen.no"
+   ]
+  },
+  {
+   "org": "932414414",
+   "name": "LE SHAKER AS",
+   "status": "live_unverified",
+   "domain": "le-shaker.com",
+   "tried": 2,
+   "resolved": [
+    "le-shaker.com"
+   ]
+  },
+  {
+   "org": "924639237",
+   "name": "E SOLUTIONS AS",
+   "status": "live_unverified",
+   "domain": "esolutions.no",
+   "tried": 2,
+   "resolved": [
+    "esolutions.no"
+   ]
+  },
+  {
+   "org": "933835375",
+   "name": "TECH SOLUTIONS AS",
+   "status": "live_unverified",
+   "domain": "techsolutions.com",
+   "tried": 4,
+   "resolved": [
+    "techsolutions.no",
+    "techsolutions.com"
+   ]
+  },
+  {
+   "org": "988201103",
+   "name": "BRET HOLDING AS",
+   "status": "live_unverified",
+   "domain": "bretholding.com",
+   "tried": 2,
+   "resolved": [
+    "bretholding.com"
+   ]
+  },
+  {
+   "org": "926942522",
+   "name": "NORSKE MIKROHUS GRUPPEN AS",
+   "status": "live_unverified",
+   "domain": "norske.com",
+   "tried": 1,
+   "resolved": [
+    "norske.com"
+   ]
+  },
+  {
+   "org": "935044987",
+   "name": "HAVRENT AS",
+   "status": "live_unverified",
+   "domain": "havrent.no",
+   "tried": 1,
+   "resolved": [
+    "havrent.no"
+   ]
+  },
+  {
+   "org": "917064474",
+   "name": "GRIMSTAD UTVIKLING AS",
+   "status": "live_unverified",
+   "domain": "grimstad.com",
+   "tried": 1,
+   "resolved": [
+    "grimstad.com"
+   ]
+  },
+  {
+   "org": "933869490",
+   "name": "TAXI CAB AS",
+   "status": "live_unverified",
+   "domain": "taxicab.no",
+   "tried": 1,
+   "resolved": [
+    "taxicab.no"
+   ]
+  },
+  {
+   "org": "929331990",
+   "name": "VIK EIGEDOM VANYLVEN AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "vikeigedomvanylven.no",
+    "vikeigedomvanylven.com",
+    "vik-eigedom-vanylven.no",
+    "vik-eigedom-vanylven.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "925092576",
+   "name": "EVEBØ BLIKKENSLAGERVERKSTAD AS",
+   "status": "live_unverified",
+   "domain": "evebo.no",
+   "tried": 1,
+   "resolved": [
+    "evebo.no"
+   ]
+  },
+  {
+   "org": "929380177",
+   "name": "GBK AS",
+   "status": "no_candidate_resolved",
+   "tried": 2,
+   "candidates": [
+    "gbk.no",
+    "gbk.com"
+   ],
+   "resolved": [
+    "gbk.com"
+   ]
+  },
+  {
+   "org": "926788647",
+   "name": "BJØRNHOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "bjornholding.no",
+    "bjornholding.com",
+    "bjoernholding.no",
+    "bjoernholding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "932383837",
+   "name": "POSITIVT REGNSKAP AS",
+   "status": "live_unverified",
+   "domain": "positivtregnskap.no",
+   "tried": 1,
+   "resolved": [
+    "positivtregnskap.no"
+   ]
+  },
+  {
+   "org": "917090041",
+   "name": "LO:LE LANDSKAP AS",
+   "status": "live_unverified",
+   "domain": "lolelandskap.no",
+   "tried": 1,
+   "resolved": [
+    "lolelandskap.no"
+   ]
+  },
+  {
+   "org": "984440057",
+   "name": "ANNE MARGRETHES FRISØRSALONG AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "annemargrethesfrisorsalong.no",
+    "annemargrethesfrisorsalong.com",
+    "anne-margrethes-frisorsalong.no",
+    "anne-margrethes-frisorsalong.com",
+    "annemargrethesfrisoersalong.no",
+    "annemargrethesfrisoersalong.com",
+    "anne-margrethes-frisoersalong.no",
+    "anne-margrethes-frisoersalong.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "999051618",
+   "name": "BUSTER EIENDOM AS",
+   "status": "other_company",
+   "domain": "buster.no",
+   "other_orgs": [
+    "100392623"
+   ],
+   "tried": 1,
+   "resolved": [
+    "buster.no"
+   ]
+  },
+  {
+   "org": "980168816",
+   "name": "SOL LAND INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "sollandinvest.no",
+    "sollandinvest.com",
+    "sol-land-invest.no",
+    "sol-land-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "931269437",
+   "name": "EMSU HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "emsuholding.no",
+    "emsuholding.com",
+    "emsu-holding.no",
+    "emsu-holding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "931198327",
+   "name": "SKYPORTS DELIVERIES LIMITED NUF",
+   "status": "live_unverified",
+   "domain": "skyports.com",
+   "tried": 1,
+   "resolved": [
+    "skyports.com"
+   ]
+  },
+  {
+   "org": "914867983",
+   "name": "SAMEIET HELGESHAUGEN 12-30",
+   "status": "live_unverified",
+   "domain": "sameiet.com",
+   "tried": 3,
+   "resolved": [
+    "sameiet.no",
+    "sameiet.com"
+   ]
+  },
+  {
+   "org": "935882389",
+   "name": "J.R GLOBAL INVEST AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "jrglobalinvest.no",
+    "jrglobalinvest.com",
+    "j-r-global-invest.no",
+    "j-r-global-invest.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "974888157",
+   "name": "FINNSKOG SKINN AS",
+   "status": "other_company",
+   "domain": "finnskogskinn.no",
+   "other_orgs": [
+    "238074878",
+    "814623033"
+   ],
+   "tried": 1,
+   "resolved": [
+    "finnskogskinn.no"
+   ]
+  },
+  {
+   "org": "817294502",
+   "name": "ANDENES HOLDING AS",
+   "status": "other_company",
+   "domain": "andenes.no",
+   "other_orgs": [
+    "963031130"
+   ],
+   "tried": 1,
+   "resolved": [
+    "andenes.no"
+   ]
+  },
+  {
+   "org": "824985332",
+   "name": "S.E.K HOLDING AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "sekholding.no",
+    "sekholding.com",
+    "s-e-k-holding.no",
+    "s-e-k-holding.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "924604506",
+   "name": "BOHNE HOLDING AS",
+   "status": "live_unverified",
+   "domain": "bohne.no",
+   "tried": 2,
+   "resolved": [
+    "bohne.no"
+   ]
+  },
+  {
+   "org": "933147851",
+   "name": "EMULATOR AS",
+   "status": "live_unverified",
+   "domain": "emulator.no",
+   "tried": 1,
+   "resolved": [
+    "emulator.no"
+   ]
+  },
+  {
+   "org": "931729381",
+   "name": "LIIS.COM AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "liiscom.no",
+    "liiscom.com",
+    "liis-com.no",
+    "liis-com.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "830777202",
+   "name": "LZN AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "lzn.no",
+    "lzn.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "913237773",
+   "name": "RAVNEVEIEN 6 AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "ravneveien6.no",
+    "ravneveien6.com",
+    "ravneveien-6.no",
+    "ravneveien-6.com",
+    "ravneveien.no",
+    "ravneveien.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "917653895",
+   "name": "SALMA TRANSPORT AS",
+   "status": "verified",
+   "domain": "salmatransport.no",
+   "final_url": "https://salmatransport.no",
+   "tried": 1,
+   "resolved": [
+    "salmatransport.no"
+   ]
+  },
+  {
+   "org": "990764301",
+   "name": "EITRHEIMSVEIEN 52 AS",
+   "status": "no_candidate_resolved",
+   "tried": 0,
+   "candidates": [
+    "eitrheimsveien52.no",
+    "eitrheimsveien52.com",
+    "eitrheimsveien-52.no",
+    "eitrheimsveien-52.com",
+    "eitrheimsveien.no",
+    "eitrheimsveien.com"
+   ],
+   "resolved": []
+  },
+  {
+   "org": "912973557",
+   "name": "LEGNE AS",
+   "status": "live_unverified",
+   "domain": "legne.com",
+   "tried": 2,
+   "resolved": [
+    "legne.com"
+   ]
+  },
+  {
+   "org": "923372520",
+   "name": "EVERA AS",
+   "status": "live_unverified",
+   "domain": "evera.com",
+   "tried": 3,
+   "resolved": [
+    "evera.no",
+    "evera.com"
+   ]
+  }
+ ]
+}

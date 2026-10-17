@@ -1,0 +1,10 @@
+# Pinned for a reproducible clean-machine install.
+beautifulsoup4==4.14.2
+extruct==0.18.0
+lxml==6.0.2
+pydantic==2.12.3
+pypdf==6.1.1
+rapidfuzz==3.14.1
+tldextract==5.3.0
+trafilatura==2.0.0
+phonenumbers==9.0.17
