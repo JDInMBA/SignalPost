@@ -222,7 +222,10 @@ def extract_claims(org: str, domain: str, pages: list[Response],
     # candidate string next to a final_url of https://fuse.no/ put two
     # contradictory facts inside one claim.
     final_url = home.final_url or home.url
-    final_domain = registered_domain(final_url) or registered_domain(domain)
+    # The gate decides which domain is this company's: normally the one the crawl
+    # landed on, but a registry-declared domain stands even when it forwards.
+    final_domain = (verdict_info.get("publish_domain")
+                    or registered_domain(final_url) or registered_domain(domain))
     claims.append(Claim(
         field="official_website", family="website",
         value={"url": final_url, "domain": final_domain,

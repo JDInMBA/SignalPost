@@ -167,3 +167,27 @@ def test_redirect_is_allowed_when_the_destination_is_proven():
         domain="stilbygg.no", channel="registry_email_domain",
         pages=[("https://byggmester.no/", "<title>X</title><footer>Org.nr 981 634 632</footer>")]))
     assert v.accepted and v.tier is Tier.ORG_NUMBER
+
+
+def test_declared_website_stands_even_when_it_redirects():
+    """A declared domain that forwards to a chain portal is still the company's.
+
+    STILBYGG KONGSBERG AS filed stilbygg.no; it forwards to its building chain.
+    The registry attests stilbygg.no, so that is what is published - never the
+    destination.
+    """
+    entity = {"organisation_number": "981634632", "legal_name": "STILBYGG KONGSBERG AS",
+              "website": "stilbygg.no", "email": "post@stilbygg.no",
+              "business_address": {}}
+    v = IdentityGate().evaluate(entity, Candidate(
+        domain="stilbygg.no", channel="registry_website",
+        pages=[("https://norgeshus.no/", "<title>Norgeshus</title>")]))
+    assert v.accepted and v.tier is Tier.REGISTRY_WEBSITE
+    assert v.publish_domain == "stilbygg.no"
+
+    # Without the registry declaring it, the destination is still refused.
+    bare = {k: val for k, val in entity.items() if k != "website"}
+    v2 = IdentityGate().evaluate(bare, Candidate(
+        domain="stilbygg.no", channel="registry_email_domain",
+        pages=[("https://norgeshus.no/", "<title>Norgeshus</title>")]))
+    assert not v2.accepted

@@ -1,21 +1,21 @@
 {
  "run_id": "gold-eval",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-10-18T19:26:50Z",
- "completed_at": "2026-10-18T19:37:04Z",
+ "started_at": "2026-10-18T19:45:42Z",
+ "completed_at": "2026-10-18T19:57:40Z",
  "inputs": 220,
  "envelopes_written": 220,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 613.9,
- "requests": 2943,
- "bytes_downloaded": 20148317,
+ "runtime_seconds": 718.3,
+ "requests": 2952,
+ "bytes_downloaded": 20023824,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 15751,
-  "p95": 49398,
-  "max": 137082
+  "p50": 13865,
+  "p95": 52297,
+  "max": 242900
  },
  "terminal_status": {
   "completed": 220

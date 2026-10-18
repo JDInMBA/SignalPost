@@ -86,6 +86,7 @@ class Verdict:
     reasons: list[str]
     proof_url: str | None = None
     proof_span: str | None = None
+    publish_domain: str | None = None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -93,6 +94,7 @@ class Verdict:
             "confidence": self.confidence, "signals": self.signals,
             "conflicting_organisation_numbers": self.conflicts,
             "reasons": self.reasons, "proof_url": self.proof_url,
+            "publish_domain": self.publish_domain,
         }
 
 
@@ -173,9 +175,14 @@ class IdentityGate:
         if redirected:
             signals["redirected_to"] = landed_domain
 
+        # The registry-declared website is attested by the company itself, so it
+        # stands whether or not it redirects. A declared domain that forwards to a
+        # chain portal is still the domain this company filed, and that is what
+        # gets published - not the destination.
         declared_site = registered_domain(entity.get("website") or entity.get("hjemmeside") or "")
-        if declared_site and declared_site == published_domain:
+        if declared_site and declared_site in {cand_domain, landed_domain}:
             signals["registry_declared_website"] = declared_site
+            published_domain = declared_site
         mail_domain = email_domain(entity.get("email") or entity.get("epostadresse"))
         if mail_domain and mail_domain == published_domain:
             signals["registry_email_domain"] = mail_domain
@@ -222,11 +229,11 @@ class IdentityGate:
         if "org_number_on_page" in signals:
             return Verdict(True, Tier.ORG_NUMBER, 0.99, signals, conflicts,
                            reasons + ["organisation number printed on the page"],
-                           proof_url, proof_span)
+                           proof_url, proof_span, publish_domain=published_domain)
         if "registry_declared_website" in signals:
             return Verdict(True, Tier.REGISTRY_WEBSITE, 0.95, signals, conflicts,
                            reasons + ["domain is the website the company filed with the registry"],
-                           candidate.pages[0][0])
+                           candidate.pages[0][0], publish_domain=published_domain)
 
         # A redirect that leaves the candidate's registrable domain has landed on
         # something the entity does not attest. Chains, franchise portals and
@@ -259,11 +266,13 @@ class IdentityGate:
         if "registry_email_domain" in signals and (has_name_identity or len(locators) >= 2):
             return Verdict(True, Tier.REGISTRY_EMAIL, 0.88, signals, conflicts,
                            reasons + ["domain matches the registry e-mail domain and the page "
-                                      "corroborates the entity"], candidate.pages[0][0])
+                                      "corroborates the entity"], candidate.pages[0][0],
+                           publish_domain=published_domain)
         if self.tier_d_enabled and has_name_identity and locators:
             return Verdict(True, Tier.NAME_AND_LOCATOR, 0.80, signals, conflicts,
                            reasons + ["site identifies itself by the legal name and carries a "
-                                      "registered locator"], candidate.pages[0][0])
+                                      "registered locator"], candidate.pages[0][0],
+                           publish_domain=published_domain)
 
         if signals:
             reasons.append("signals present but below the publication threshold")

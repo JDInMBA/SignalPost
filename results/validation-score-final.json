@@ -101,9 +101,9 @@
   }
  },
  "cost": {
-  "requests": 2943,
+  "requests": 2952,
   "requests_per_company": 13.4,
-  "latency_p50_ms": 15224,
-  "latency_p95_ms": 49398
+  "latency_p50_ms": 13791,
+  "latency_p95_ms": 52297
  }
 }

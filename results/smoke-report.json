@@ -1,21 +1,21 @@
 {
  "run_id": "smoke-100-final",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-10-18T16:54:25Z",
- "completed_at": "2026-10-18T16:59:29Z",
+ "started_at": "2026-10-18T19:40:19Z",
+ "completed_at": "2026-10-18T19:45:41Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 303.8,
- "requests": 1191,
- "bytes_downloaded": 9729372,
+ "runtime_seconds": 322.1,
+ "requests": 1208,
+ "bytes_downloaded": 9799466,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 13376,
-  "p95": 45248,
-  "max": 86690
+  "p50": 13071,
+  "p95": 46509,
+  "max": 86402
  },
  "terminal_status": {
   "completed": 100
@@ -56,9 +56,9 @@
    "available": 100
   },
   "official_website": {
-   "not_available": 50,
+   "not_available": 49,
    "blocked": 6,
-   "ambiguous": 28,
+   "ambiguous": 29,
    "available": 16
   },
   "operating_status": {
@@ -101,7 +101,7 @@
   "C_registry_email_domain_plus_corroboration": 4,
   "B_registry_declared_website": 6
  },
- "candidates_rejected_for_conflicting_org_number": 4,
+ "candidates_rejected_for_conflicting_org_number": 5,
  "material_changes": {},
  "errors": {},
  "nav_jobs_index": {
