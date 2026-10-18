@@ -1,5 +1,6 @@
 """The output contract: one terminal envelope, honest states, resolvable evidence."""
 from __future__ import annotations
+from signalpost.synthesis import build as build_summary
 
 import json
 
@@ -50,6 +51,29 @@ def test_absence_is_never_a_zero():
     claim = payload["claims"][0]
     assert claim["value"] is None and claim["availability"] == "not_available"
 
+def test_blocked_job_postings_do_not_become_zero_open_positions():
+    env = make_envelope()
+    env.claims.append(Claim(
+        field="job_postings",
+        family="hiring",
+        value=None,
+        availability=Availability.BLOCKED,
+        note="NAV returned HTTP 429",
+    ))
+
+    assert build_summary(env)["open_positions"] is None
+
+
+def test_available_empty_job_postings_mean_zero_open_positions():
+    env = make_envelope()
+    env.claims.append(Claim(
+        field="job_postings",
+        family="hiring",
+        value=[],
+        availability=Availability.AVAILABLE,
+    ))
+
+    assert build_summary(env)["open_positions"] == 0
 
 def test_every_allowed_state_round_trips():
     for state in ("available", "not_available", "blocked", "not_applicable",
@@ -159,3 +183,34 @@ def test_a_malformed_nav_cache_cannot_abort_the_run():
               "923609016": "not-a-list"}
     pipe = Pipeline(Fetcher(), PipelineConfig(run_id="t"), nav_index=broken)
     assert pipe.jobs.index == {"810034882": ["good-1"]}
+
+def test_incomplete_nav_snapshot_does_not_claim_no_jobs():
+    """An incomplete national snapshot cannot prove that a company has no jobs."""
+    from signalpost.http import Response
+    from signalpost.sources.nav_jobs import NavJobsClient
+
+    class _Stub:
+        requests = 0
+        bytes_downloaded = 0
+
+        def fetch(self, url, **kw):  # noqa: ANN001
+            body = '{"hits":{"hits":[],"total":{"value":100}}}'
+            return Response(
+                url=url,
+                status=200,
+                body=body.encode(),
+                text=body,
+                final_url=url,
+            )
+
+    client = NavJobsClient(_Stub())
+    client.snapshot_attempted = True
+    client.snapshot_meta = {"complete": False, "reported_total_active": 100}
+
+    claims, evidence = client.collect("810034882", "Example AS")
+
+    jobs_claim = next(c for c in claims if c.field == "job_postings")
+
+    assert jobs_claim.availability is Availability.NOT_AVAILABLE
+    assert jobs_claim.value is None
+    assert "snapshot was incomplete" in jobs_claim.note

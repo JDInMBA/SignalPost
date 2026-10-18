@@ -224,6 +224,10 @@ class NavJobsClient:
                       availability=Availability.BLOCKED,
                       note="hiring source unavailable this run"),
             ], []
+        snapshot_incomplete = (
+            self.snapshot_attempted
+            and not self.snapshot_meta.get("complete", False)
+        )
         if self.snapshot:
             # Name match against the run snapshot. Candidates only - every one is
             # still proved against the advertisement page below.
@@ -277,11 +281,20 @@ class NavJobsClient:
             availability, note = Availability.AVAILABLE, None
         elif blocked:
             availability, note = Availability.BLOCKED, "Nav job service refused the request"
+        elif snapshot_incomplete:
+            availability = Availability.NOT_AVAILABLE
+            note = (
+                "NAV active-advertisement snapshot was incomplete; "
+                "no verified advertisements were found among the candidates checked, "
+                "but absence of jobs cannot be concluded"
+            )
         elif uuids:
             availability = Availability.NOT_AVAILABLE
-            note = (f"{len(uuids)} candidate advertisements checked; none advertised by "
-                    f"this entity or its registered subunits "
-                    f"({rejected} belonged to another entity)")
+            note = (
+                f"{len(uuids)} candidate advertisements checked; none advertised by "
+                f"this entity or its registered subunits "
+                f"({rejected} belonged to another entity)"
+            )
         else:
             availability = Availability.NOT_AVAILABLE
             note = "no advertisement matched this company on the public job service"

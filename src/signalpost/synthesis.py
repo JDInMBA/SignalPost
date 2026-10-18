@@ -51,7 +51,16 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     accounts = _available(claims.get("annual_accounts")) or []
     leaders = _available(claims.get("leadership")) or []
     workplaces = _available(claims.get("registered_workplaces")) or []
-    jobs = _available(claims.get("job_postings")) or []
+    jobs_claim = claims.get("job_postings")
+    jobs_value = _available(jobs_claim)
+    jobs = jobs_value if isinstance(jobs_value, list) else []
+
+    open_positions = (
+        len(jobs)
+        if jobs_claim is not None
+        and jobs_claim.availability == Availability.AVAILABLE
+        else None
+    )
     website = _available(claims.get("official_website")) or {}
     profiles = _available(claims.get("company_owned_profiles")) or []
     activity = _available(claims.get("company_published_activity")) or []
@@ -155,7 +164,7 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
         "leaders": [{"name": p.get("name"), "role": p.get("role")} for p in leaders[:6]],
         "verified_website": website.get("url"),
         "profiles": [p.get("url") for p in profiles],
-        "open_positions": len(jobs),
+        "open_positions": open_positions,
         "recent_activity": (activity[:5] + announcements[:5])[:5],
         "changes_since_last_run": [
             {"field": c.field, "type": c.change_type, "materiality": c.materiality}
