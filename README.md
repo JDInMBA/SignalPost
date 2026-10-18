@@ -75,8 +75,8 @@ website — matching the real universe). Full detail in [SMOKE_TEST.md](SMOKE_TE
 |---|---|
 | exactly one terminal envelope per input | **100/100** |
 | run errors | **none** |
-| runtime / requests / cost | 6.8 min · 1,199 requests · **$0.00** |
-| websites published | **15** from a batch where only 9 have one in the registry |
+| runtime / requests / cost | **5.1 min** · 1,191 requests · **$0.00** |
+| websites published | **16** from a batch where only 9 have one in the registry |
 | candidates vetoed for carrying another company's organisation number | **4** |
 | refresh re-run: companies reporting a change | **0 / 100** |
 
@@ -127,6 +127,7 @@ looser matching:
 | [REFRESH.md](REFRESH.md) | snapshots, diffs and idempotence |
 | [EVAL.md](EVAL.md) | the gold set, metrics, the four measured iterations and the promotion gate |
 | [SMOKE_TEST.md](SMOKE_TEST.md) | the 100-company result and how to reproduce it |
+| [CLEAN_INSTALL.md](CLEAN_INSTALL.md) | fresh-clone verification at the pinned commit |
 | [SUBMISSION.md](SUBMISSION.md) | submission checklist, declared models, APIs and cost |
 | [SOURCES.md](SOURCES.md) | every source, its licence and its access policy |
 | [LIMITATIONS.md](LIMITATIONS.md) | what this does not do, and what we got wrong |

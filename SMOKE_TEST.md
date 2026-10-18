@@ -15,6 +15,12 @@ Artifacts are committed under [`results/`](results/): the run report, the refres
 report, the held-out scores and seven complete sample envelopes. The full
 `out/*.jsonl` outputs regenerate from the commands here.
 
+## Clean-install proof
+
+See [CLEAN_INSTALL.md](CLEAN_INSTALL.md): this commit was cloned fresh from GitHub
+with no local state, installed with the declared step only, and produced verified
+job advertisements from the committed candidate index.
+
 ## The batch
 
 Drawn by `tools/select_batch.py` with seed 20261013, **population-weighted**
