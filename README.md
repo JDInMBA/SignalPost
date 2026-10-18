@@ -15,7 +15,7 @@ python -m signalpost run --organisations BATCH.jsonl --output out/envelopes.json
 Clean-machine setup, start to finish:
 
 ```bash
-git clone <REPO_URL> signalpost && cd signalpost && git checkout <COMMIT> && python3.12 -m venv .venv && ./.venv/bin/pip install -r requirements.txt && ./.venv/bin/pip install --no-deps -e . && ./.venv/bin/python -m signalpost run --organisations batch.jsonl --output out/envelopes.jsonl --report out/run-report.json
+git clone https://github.com/JDInMBA/SignalPost.git signalpost && cd signalpost && python3.12 -m venv .venv && ./.venv/bin/pip install -r requirements.txt && ./.venv/bin/pip install --no-deps -e . && ./.venv/bin/python -m signalpost run --organisations batch.jsonl --output out/envelopes.jsonl --report out/run-report.json
 ```
 
 `--organisations` accepts whatever shape the batch arrives in: JSONL objects

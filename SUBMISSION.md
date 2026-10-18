@@ -6,18 +6,14 @@ Email to `submit@builderr.ai`.
 |---|---|
 | Agent name | Signalpost agent |
 | Repository | https://github.com/JDInMBA/SignalPost |
-| Exact commit hash | `<FINAL_COMMIT>` — see *Commit* below |
+| Exact commit hash | `cdb41305bbe93ef13a190113ed0d1d503554bbc8` |
 | Contact | shubham.work.chauhan@gmail.com |
 | Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
 
 ## Commit
 
-Submit the **final** commit on `main` of https://github.com/JDInMBA/SignalPost.
-Obtain it with:
-
-```bash
-git -C . rev-parse HEAD
-```
+Submit `cdb41305bbe93ef13a190113ed0d1d503554bbc8` on `main` of
+https://github.com/JDInMBA/SignalPost.
 
 That commit contains the code, the pinned dependencies, the committed Nav
 candidate index, the 100-company smoke-test report and this file. Earlier commit
