@@ -109,7 +109,7 @@ class BatchConfig:
     enable_jobs: bool = True
     enable_website: bool = True
     nav_index_path: str | None = "cache/nav_jobs_index.json"
-    nav_snapshot_pages: int = 400
+    nav_snapshot_pages: int = 0
     time_budget_seconds: float | None = None
 
 
@@ -168,7 +168,11 @@ def run_batch(config: BatchConfig) -> BatchResult:
     # fixed regardless of batch size; per-company search would be many hours for a
     # 1,000-company run, and a run that times out is not scored at all.
     nav_snapshot_meta: dict[str, Any] = {"attempted": False}
-    if config.enable_jobs and not nav_index:
+    if (
+            config.enable_jobs
+            and not nav_index
+            and config.nav_snapshot_pages > 0
+        ):
         print("[nav] building the run snapshot of active advertisements ...")
         try:
             nav_snapshot_meta = {"attempted": True,

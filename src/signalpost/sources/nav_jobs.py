@@ -238,7 +238,7 @@ class NavJobsClient:
                 for uuid in self.snapshot.get(key, []):
                     if uuid not in uuids:
                         uuids.append(uuid)
-        if len(uuids) < self.max_ads:
+        if len(uuids) < self.max_ads and self.index:
             found, search_responses = self.candidate_uuids(
                 legal_name, aliases, [str(s.get("name") or "") for s in subunit_list])
             uuids.extend(u for u in found if u not in uuids)

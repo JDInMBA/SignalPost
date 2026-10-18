@@ -154,7 +154,7 @@ tests/             contract, gate and refresh regressions
 ## Tests
 
 ```bash
-./.venv/bin/python -m pytest tests -q     # 42 tests
+./.venv/bin/python -m pytest tests -q
 ```
 
 ## Smoke test

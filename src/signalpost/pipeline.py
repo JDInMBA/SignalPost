@@ -67,8 +67,7 @@ class Pipeline:
 
     def run(self, organisation_number: str) -> CompanyEnvelope:
         started_wall = time.monotonic()
-        started_requests = self.http.requests
-        started_bytes = self.http.bytes_downloaded
+        started_requests, started_bytes = self.http.thread_stats()
         env = CompanyEnvelope(
             organisation_number=organisation_number,
             run=RunMeta(run_id=self.config.run_id,
@@ -305,8 +304,8 @@ class Pipeline:
                   started_bytes: int, strategies: list[str]) -> CompanyEnvelope:
         env.run.completed_at = utcnow()
         env.operations = Operations(
-            requests=self.http.requests - started_requests,
-            bytes_downloaded=self.http.bytes_downloaded - started_bytes,
+            requests=self.http.thread_stats()[0] - started_requests,
+            bytes_downloaded=self.http.thread_stats()[1] - started_bytes,
             runtime_ms=int((time.monotonic() - started_wall) * 1000),
             third_party_cost_usd=0.0,
             strategies_used=sorted(set(strategies)),

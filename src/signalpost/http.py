@@ -106,6 +106,8 @@ class Fetcher:
         self._robots: dict[str, urllib.robotparser.RobotFileParser | None] = {}
         self.requests = 0
         self.bytes_downloaded = 0
+        self._stats_lock = threading.Lock()
+        self._stats_local = threading.local()
         # Many small Norwegian sites have expired or mismatched certificates.
         # Content is verified by organisation number rather than by TLS identity,
         # so a certificate failure must not silently erase a real company.
@@ -177,7 +179,7 @@ class Fetcher:
             )
             # Counted before the attempt: a robots.txt fetch that times out still
             # consumed a request, and the reported total must not understate it.
-            self.requests += 1
+            self._record_request()
             with urllib.request.urlopen(req, timeout=self.timeout, context=self._ctx) as r:
                 raw = r.read(200_000).decode("utf-8", "replace")
             parser.parse(raw.splitlines())
@@ -189,6 +191,25 @@ class Fetcher:
 
     # -- fetching ---------------------------------------------------------
     RETRYABLE: Final = frozenset({"timeout", "connection_refused", "dns_failure"})
+    def _record_request(self, byte_count: int = 0) -> None:
+        """Record global totals and request statistics for the current worker."""
+        with self._stats_lock:
+            self.requests += 1
+            self.bytes_downloaded += byte_count
+
+        local = self._stats_local
+        local.requests = getattr(local, "requests", 0) + 1
+        local.bytes_downloaded = (
+            getattr(local, "bytes_downloaded", 0) + byte_count
+        )
+
+    def thread_stats(self) -> tuple[int, int]:
+        """Return request and byte totals for the current worker thread."""
+        local = self._stats_local
+        return (
+            getattr(local, "requests", 0),
+            getattr(local, "bytes_downloaded", 0),
+        )
 
     def fetch(self, url: str, *, accept: str = "text/html,application/xhtml+xml,*/*",
               headers: dict[str, str] | None = None, method: str = "GET",
@@ -246,8 +267,7 @@ class Fetcher:
         try:
             with opener.open(req, timeout=self.timeout) as r:
                 raw = r.read(self.max_bytes + 1)
-                self.requests += 1
-                self.bytes_downloaded += len(raw)
+                self._record_request(len(raw))
                 body = _decode_body(raw[: self.max_bytes], r.headers.get("Content-Encoding", ""))
                 ctype = r.headers.get("Content-Type", "")
                 return Response(
@@ -257,7 +277,7 @@ class Fetcher:
                     elapsed_ms=int((time.monotonic() - started) * 1000),
                 )
         except urllib.error.HTTPError as e:
-            self.requests += 1
+            self._record_request()
             try:
                 raw = e.read(65_536)
             except Exception:
@@ -267,11 +287,11 @@ class Fetcher:
                             retry_after=e.headers.get("Retry-After") if e.headers else None,
                             elapsed_ms=int((time.monotonic() - started) * 1000))
         except (urllib.error.URLError, socket.timeout, ssl.SSLError, ConnectionError, OSError) as e:
-            self.requests += 1
+            self._record_request()
             return Response(url=url, status=None, error=_classify(e),
                             elapsed_ms=int((time.monotonic() - started) * 1000))
         except Exception as e:  # pragma: no cover - defensive
-            self.requests += 1
+            self._record_request()
             return Response(url=url, status=None, error=f"unexpected:{type(e).__name__}",
                             elapsed_ms=int((time.monotonic() - started) * 1000))
 

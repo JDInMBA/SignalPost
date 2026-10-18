@@ -37,7 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--no-jobs", action="store_true", help="disable the Nav hiring connector")
     run.add_argument("--no-website", action="store_true", help="disable website discovery")
     run.add_argument("--nav-index", default="cache/nav_jobs_index.json")
-    run.add_argument("--nav-snapshot-pages", type=int, default=400,
+    run.add_argument("--nav-snapshot-pages", type=int, default=0,
                      help="pages of the national active-advertisement list to fetch "
                           "once per run (25 advertisements per page)")
     run.add_argument("--time-budget-seconds", type=float, default=None,
