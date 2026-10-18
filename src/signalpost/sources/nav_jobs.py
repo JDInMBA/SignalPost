@@ -70,7 +70,7 @@ class NavJobsClient:
 
     def __init__(self, fetcher: Fetcher, *, index: dict[str, list[str]] | None = None,
                  max_ads: int = 12, max_candidates: int = 25,
-                 max_search_terms: int = 2) -> None:
+                 max_search_terms: int = 2, live_search_budget: int = 0) -> None:
         self.http = fetcher
         self.index = index or {}
         self.max_ads = max_ads
@@ -83,6 +83,9 @@ class NavJobsClient:
         self.snapshot_meta: dict[str, Any] = {}
         self.snapshot_blocked = False
         self.snapshot_attempted = False
+        # Run-wide ceiling on live per-company searches. Nav rate-limits hard, so
+        # an unbounded fallback is what turned a 100-company run into two hours.
+        self._live_budget = live_search_budget
 
     # -- run-level snapshot -------------------------------------------------
     def build_run_snapshot(self, *, max_pages: int = 400, page_size: int = 25,
@@ -238,10 +241,19 @@ class NavJobsClient:
                 for uuid in self.snapshot.get(key, []):
                     if uuid not in uuids:
                         uuids.append(uuid)
-        if len(uuids) < self.max_ads and self.index:
+        # Live per-company search is the last resort. It is the only unbounded
+        # path in the agent, so it runs only when neither the shipped index nor a
+        # run snapshot could offer a candidate, and only within a run-wide budget.
+        searched_live = False
+        if not uuids and not self.snapshot and self._live_budget > 0:
+            self._live_budget -= 1
+            searched_live = True
             found, search_responses = self.candidate_uuids(
                 legal_name, aliases, [str(s.get("name") or "") for s in subunit_list])
             uuids.extend(u for u in found if u not in uuids)
+
+        # Did this company actually get looked up anywhere?
+        consulted = bool(self.index) or bool(self.snapshot) or searched_live
 
         evidence: list[Evidence] = []
         jobs: list[dict[str, Any]] = []
@@ -295,9 +307,19 @@ class NavJobsClient:
                 f"this entity or its registered subunits "
                 f"({rejected} belonged to another entity)"
             )
+        elif not consulted:
+            # Nothing was consulted for this company. Saying "nothing found" here
+            # would assert a search that never happened, so the honest state is
+            # that the question could not be resolved this run.
+            availability = Availability.FAILED
+            note = ("the hiring source was not consulted for this company: no "
+                    "candidate index or run snapshot was available and the live "
+                    "search budget for this run was exhausted")
         else:
             availability = Availability.NOT_AVAILABLE
-            note = "no advertisement matched this company on the public job service"
+            note = ("checked the Nav candidate index and run snapshot; no active "
+                    "advertisement is registered to this organisation number or "
+                    "its registered subunits")
 
         claims = [Claim(
             field="job_postings", family="hiring", value=jobs or None,

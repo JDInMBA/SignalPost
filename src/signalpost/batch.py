@@ -109,7 +109,10 @@ class BatchConfig:
     enable_jobs: bool = True
     enable_website: bool = True
     nav_index_path: str | None = "cache/nav_jobs_index.json"
-    nav_snapshot_pages: int = 0
+    # One bounded national snapshot, used only when the shipped index is
+    # missing. 40 pages is ~1,000 active advertisements for a fixed ~60s,
+    # independent of batch size.
+    nav_snapshot_pages: int = 40
     time_budget_seconds: float | None = None
 
 

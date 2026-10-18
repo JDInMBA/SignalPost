@@ -214,3 +214,35 @@ def test_incomplete_nav_snapshot_does_not_claim_no_jobs():
     assert jobs_claim.availability is Availability.NOT_AVAILABLE
     assert jobs_claim.value is None
     assert "snapshot was incomplete" in jobs_claim.note
+
+def test_unconsulted_hiring_source_is_not_reported_as_nothing_found():
+    """Never claim a search that did not happen.
+
+    With no shipped index, no run snapshot and no live-search budget, the agent
+    did not look anywhere for this company. Reporting `not_available` with "no
+    advertisement matched" would assert a search that never ran, so the honest
+    state is `failed` with the reason.
+    """
+    from signalpost.envelope import Availability
+    from signalpost.http import Fetcher
+    from signalpost.sources.nav_jobs import NavJobsClient
+
+    client = NavJobsClient(Fetcher(), index={}, live_search_budget=0)
+    claims, evidence = client.collect("810034882", "SANDNES ELEKTRISKE AS")
+    jobs = next(c for c in claims if c.field == "job_postings")
+    assert jobs.availability is Availability.FAILED
+    assert "not consulted" in (jobs.note or "")
+    assert evidence == []
+
+
+def test_index_hit_that_matches_nothing_is_a_real_negative():
+    """A company absent from a populated index is a genuine 'none found'."""
+    from signalpost.envelope import Availability
+    from signalpost.http import Fetcher
+    from signalpost.sources.nav_jobs import NavJobsClient
+
+    client = NavJobsClient(Fetcher(), index={"999999999": ["some-uuid"]})
+    claims, _ = client.collect("810034882", "SANDNES ELEKTRISKE AS")
+    jobs = next(c for c in claims if c.field == "job_postings")
+    assert jobs.availability is Availability.NOT_AVAILABLE
+    assert "no active advertisement is registered" in (jobs.note or "")

@@ -24,6 +24,8 @@ dist/
 # Generated output and temporary files
 out/
 cache/*.checkpoint.json
+# cache/nav_jobs_index.json IS committed: it is the declared candidate index and a
+# clean clone must have job coverage without first running a multi-hour build.
 cache/*.log
 .Rhistory
 

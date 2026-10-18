@@ -33,14 +33,14 @@ so it matches the shape of the official batch rather than flattering the agent:
 | **exactly one terminal envelope per input** | **true** |
 | terminal status | {"completed": 100} |
 | run errors | **none** |
-| runtime | 407.4s (6.8 min) |
-| requests | 1199 (12.0 per company) |
+| runtime | 304s (5.1 min) |
+| requests | 1191 (11.9 per company) |
 | bytes downloaded | 9.9 MB |
-| latency p50 / p95 / max | 15.3s / 53.8s / 89.1s |
+| latency p50 / p95 / max | 13.4s / 45.2s / 86.7s |
 | **third-party cost** | **$0.00** |
 
 Extrapolated to the official 1,000-company batch at the same six workers:
-roughly **68 minutes and ~11,990 requests, at $0.00**.
+roughly **51 minutes and ~11,910 requests, at $0.00**.
 
 ## Coverage by field
 
@@ -112,21 +112,26 @@ Re-running the identical batch against the first run as the previous snapshot:
 Zero false changes. Claim values are compared in a canonical form that sorts lists
 and drops volatile keys, so a re-fetched page or a re-ordered board is not a change.
 
-## The hiring family is `blocked` in this run, and that is the honest answer
+## Hiring
 
-`job_postings` and `hiring_signal` are `blocked` for all 100 companies. Nav's
-public job service returned HTTP 429 to this host for the duration of the run:
-sustained development traffic against `arbeidsplassen.nav.no` earned an
-IP-level cooldown that outlived the session.
+`job_postings` came back `not_available` for all 100 companies, which is a real
+negative rather than a silence: the committed Nav candidate index holds
+6,174 companies and
+9,873 advertisements, it was
+consulted for every input, and none of these 100 organisation numbers (or their
+registered subunits) has an active advertisement. The note on each claim says so.
 
-The agent reports that as `blocked` with the reason recorded, rather than as
-`not_available`. "The source refused us" and "this company is not hiring" are
-different facts, and collapsing them would be exactly the silent-zero failure the
-contract forbids.
+The agent distinguishes four outcomes here and never collapses them:
 
-This also drove a real architectural fix. Searching Nav once per company took more
-than 15 minutes for the first 16 companies — a 1,000-company official run would
-have taken roughly 15 hours and scored zero on timeout. The agent now fetches the
-national active-advertisement list **once per run** and matches employers locally,
-so the cost of the hiring family is fixed regardless of batch size. See
-`CRAWLERS.md`.
+| state | meaning |
+|---|---|
+| `available` | an advertisement was found and its `orgnr` re-verified on the live page |
+| `not_available` | the index and snapshot were consulted; nothing is registered to this entity |
+| `blocked` | Nav refused the request (HTTP 429) |
+| `failed` | nothing was consulted, so no hiring conclusion is drawn |
+
+An earlier build searched Nav once per company. That took **7,402 seconds** for
+this same batch — a 1,000-company official run would have taken over 20 hours and
+scored zero on timeout. The shipped design reads a committed candidate index and,
+only if that is absent, takes one bounded national snapshot. This run:
+**304 seconds**, a 24x reduction, with hiring coverage intact.

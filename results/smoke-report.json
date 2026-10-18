@@ -1,21 +1,21 @@
 {
  "run_id": "smoke-100-final",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-10-13T11:03:08Z",
- "completed_at": "2026-10-13T11:09:55Z",
+ "started_at": "2026-10-18T16:54:25Z",
+ "completed_at": "2026-10-18T16:59:29Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 407.4,
- "requests": 1199,
- "bytes_downloaded": 9898466,
+ "runtime_seconds": 303.8,
+ "requests": 1191,
+ "bytes_downloaded": 9729372,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 15290,
-  "p95": 53809,
-  "max": 89052
+  "p50": 13376,
+  "p95": 45248,
+  "max": 86690
  },
  "terminal_status": {
   "completed": 100
@@ -29,14 +29,14 @@
   },
   "careers_page": {
    "not_available": 13,
-   "available": 2
+   "available": 3
   },
   "company_owned_profiles": {
    "available": 7,
-   "not_available": 8
+   "not_available": 9
   },
   "company_published_activity": {
-   "not_available": 14,
+   "not_available": 15,
    "available": 1
   },
   "group_structure": {
@@ -44,10 +44,10 @@
    "available": 8
   },
   "hiring_signal": {
-   "blocked": 100
+   "not_available": 100
   },
   "job_postings": {
-   "blocked": 100
+   "not_available": 100
   },
   "leadership": {
    "available": 100
@@ -56,10 +56,10 @@
    "available": 100
   },
   "official_website": {
-   "not_available": 47,
-   "blocked": 7,
-   "ambiguous": 31,
-   "available": 15
+   "not_available": 50,
+   "blocked": 6,
+   "ambiguous": 28,
+   "available": 16
   },
   "operating_status": {
    "available": 100
@@ -69,8 +69,8 @@
    "available": 22
   },
   "registered_employees": {
-   "not_available": 72,
-   "available": 28
+   "not_available": 88,
+   "available": 12
   },
   "registered_workplaces": {
    "not_available": 27,
@@ -85,13 +85,13 @@
   },
   "website_contact": {
    "available": 14,
-   "not_available": 1
+   "not_available": 2
   },
   "website_description": {
-   "available": 15
+   "available": 16
   },
   "website_structured_organisation": {
-   "available": 6,
+   "available": 7,
    "not_available": 9
   }
  },
@@ -99,28 +99,37 @@
   "A_org_number_on_page": 5,
   "D_site_identity_name_plus_locator": 1,
   "C_registry_email_domain_plus_corroboration": 4,
-  "B_registry_declared_website": 5
+  "B_registry_declared_website": 6
  },
  "candidates_rejected_for_conflicting_org_number": 4,
  "material_changes": {},
  "errors": {},
  "nav_jobs_index": {
-  "present": false
+  "schema": "signalpost.nav_jobs_index/1",
+  "built_at": "2026-10-18T03:42:10Z",
+  "source": "Nav Arbeidsplassen public change feed (pam-stilling-feed.nav.no/api/v1)",
+  "build_mode": "feed_walk",
+  "licence": "Nav Arbeidsplassen API terms (https://arbeidsplassen.nav.no/vilkar-api)",
+  "role": "candidate index only; every advertisement is re-fetched and re-verified at run time",
+  "feed_position": null,
+  "pages_walked": 435,
+  "distinct_ads_seen": 104719,
+  "active_ads": 10050,
+  "ads_with_organisation_number": 9873,
+  "companies_indexed": 6174,
+  "build_seconds": 36636.5,
+  "content_sha256": "ea61830622ee58abc4516cec38063450c4e1c3be418843c5b800a0eb1e917b93",
+  "present": true
  },
  "nav_run_snapshot": {
-  "attempted": true,
-  "advertisements": 0,
-  "distinct_employer_names": 0,
-  "pages": 0,
-  "reported_total_active": null,
-  "blocked": true
+  "attempted": false
  },
  "declared_caches": [
   {
    "name": "nav_jobs_index",
    "role": "candidate index only; every advertisement re-fetched and re-verified live",
-   "present": false,
-   "built_at": null
+   "present": true,
+   "built_at": "2026-10-18T03:42:10Z"
   }
  ]
 }
