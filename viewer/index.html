@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signalpost profiles</title>
+<style>
+:root{
+  --bg:#ffffff; --panel:#f6f7f9; --line:#e3e6ea; --ink:#15181d; --muted:#616a75;
+  --accent:#1b48c4; --ok:#1a7f45; --warn:#9a6400; --bad:#a32020; --amb:#6b4ea8;
+  --radius:10px; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151a; --panel:#1a1f26; --line:#2b323c; --ink:#e8ecf1; --muted:#9aa5b1;
+  --accent:#8fb0ff; --ok:#5fd394; --warn:#e5b15a; --bad:#ff8a8a; --amb:#c0a6ff;
+}}
+:root[data-theme="dark"]{
+  --bg:#12151a; --panel:#1a1f26; --line:#2b323c; --ink:#e8ecf1; --muted:#9aa5b1;
+  --accent:#8fb0ff; --ok:#5fd394; --warn:#e5b15a; --bad:#ff8a8a; --amb:#c0a6ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:12px 16px}
+h1{font-size:17px;margin:0 0 8px;letter-spacing:-.01em}
+h1 small{font-weight:400;color:var(--muted);font-size:13px;margin-left:8px}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+input[type=search],select,button,label.file{
+  font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel);color:var(--ink)}
+input[type=search]{flex:1 1 220px;min-width:0}
+button,label.file{cursor:pointer}
+main{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:0;
+  height:calc(100dvh - 86px)}
+#list{overflow:auto;border-right:1px solid var(--line)}
+#detail{overflow:auto;padding:16px}
+.row{padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:hover,.row[aria-selected=true]{background:var(--panel)}
+.row b{display:block;font-weight:600;font-size:14px}
+.row span{color:var(--muted);font-size:12px;font-family:var(--mono)}
+.badges{margin-top:5px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--muted)}
+.claim{border-top:1px solid var(--line);padding:9px 0}
+.claim:first-of-type{border-top:0}
+.claim-head{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.fname{font-weight:600;font-size:13px}
+.state{font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid currentColor;
+  text-transform:uppercase;letter-spacing:.04em}
+.available{color:var(--ok)} .not_available{color:var(--muted)}
+.blocked{color:var(--bad)} .ambiguous{color:var(--amb)}
+.failed{color:var(--bad)} .not_applicable{color:var(--muted)}
+.val{margin-top:5px;font-size:14px;overflow-wrap:anywhere}
+.note{margin-top:4px;color:var(--muted);font-size:12.5px;font-style:italic}
+.ev{margin-top:6px;font-size:12px;color:var(--muted);font-family:var(--mono);
+  overflow-wrap:anywhere}
+.ev a{color:var(--accent)}
+.hash{opacity:.75}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:12px}
+.sum{font-size:14.5px;line-height:1.6}
+.unknown{color:var(--muted);font-size:13px}
+.empty{color:var(--muted);padding:40px 16px;text-align:center}
+@media (max-width:760px){
+  main{grid-template-columns:1fr;height:auto}
+  #list{max-height:42dvh;border-right:0;border-bottom:1px solid var(--line)}
+  #detail{height:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Signalpost <small id="meta">load an envelopes JSONL file</small></h1>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search name, organisation number, website…" aria-label="Search">
+    <select id="filter" aria-label="Filter">
+      <option value="">All companies</option>
+      <option value="site">Has a verified website</option>
+      <option value="jobs">Is hiring</option>
+      <option value="abstained">Website abstained</option>
+      <option value="adverse">Adverse registry status</option>
+    </select>
+    <label class="file">Open JSONL<input id="file" type="file" accept=".jsonl,.json" hidden></label>
+    <button id="theme" type="button">Theme</button>
+  </div>
+</header>
+<main>
+  <div id="list"><p class="empty">No data loaded.</p></div>
+  <div id="detail"><p class="empty">Select a company.</p></div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+let rows=[], view=[], sel=null;
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const claim=(e,f)=>e.claims.find(c=>c.field===f);
+const val=(e,f)=>{const c=claim(e,f);return c&&c.availability==="available"?c.value:null;};
+const evOf=(e,c)=>(c.evidence_ids||[]).map(id=>e.evidence.find(x=>x.id===id)).filter(Boolean);
+
+function load(text){
+  rows=text.split("\n").filter(l=>l.trim()).map(l=>{try{return JSON.parse(l)}catch{return null}}).filter(Boolean);
+  const sites=rows.filter(e=>val(e,"official_website")).length;
+  $("#meta").textContent=`${rows.length} companies · ${sites} verified websites · `+
+    `${rows.reduce((n,e)=>n+e.evidence.length,0)} evidence records`;
+  render();
+}
+function matches(e){
+  const q=$("#q").value.trim().toLowerCase();
+  const f=$("#filter").value;
+  const site=val(e,"official_website");
+  const jobs=val(e,"job_postings");
+  const st=val(e,"operating_status")||{};
+  if(f==="site"&&!site)return false;
+  if(f==="jobs"&&!(jobs&&jobs.length))return false;
+  if(f==="abstained"&&(claim(e,"official_website")||{}).availability!=="ambiguous")return false;
+  if(f==="adverse"&&!(st.bankrupt||st.under_liquidation||st.compulsory_liquidation))return false;
+  if(!q)return true;
+  return [e.legal_name,e.organisation_number,site&&site.domain].join(" ").toLowerCase().includes(q);
+}
+function render(){
+  view=rows.filter(matches);
+  $("#list").innerHTML = view.length? view.map((e,i)=>{
+    const st=(claim(e,"official_website")||{}).availability||"not_available";
+    const jobs=val(e,"job_postings");
+    return `<div class="row" data-i="${i}" role="option" tabindex="0"
+      aria-selected="${sel===e}"><b>${esc(e.legal_name||"(no registry record)")}</b>
+      <span>${esc(e.organisation_number)}</span>
+      <div class="badges"><span class="state ${st}">site ${st.replace("_"," ")}</span>
+      ${jobs&&jobs.length?`<span class="state available">${jobs.length} job${jobs.length>1?"s":""}</span>`:""}
+      </div></div>`;}).join("") : `<p class="empty">No company matches.</p>`;
+  if(!view.includes(sel)) sel=null;
+  detail(sel);
+}
+function claimBlock(e,f,label){
+  const c=claim(e,f); if(!c) return "";
+  const ev=evOf(e,c);
+  let body="";
+  if(c.availability==="available"&&c.value!=null){
+    if(f==="annual_accounts"&&Array.isArray(c.value)){
+      body=`<table><tr><th>Period</th><th>Revenue</th><th>Result</th><th>Equity</th></tr>`+
+        c.value.map(r=>`<tr><td>${esc(r.period_to||"")}</td><td>${fmt(r.revenue)}</td>
+        <td>${fmt(r.annual_result)}</td><td>${fmt(r.equity)}</td></tr>`).join("")+`</table>`;
+    } else if(f==="leadership"&&Array.isArray(c.value)){
+      body=`<table><tr><th>Name</th><th>Role</th></tr>`+c.value.map(p=>
+        `<tr><td>${esc(p.name)}</td><td>${esc(p.role)}</td></tr>`).join("")+`</table>`;
+    } else if(f==="job_postings"&&Array.isArray(c.value)){
+      body=`<table><tr><th>Title</th><th>Published</th><th>Advertised by</th></tr>`+c.value.map(j=>
+        `<tr><td><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title||"(untitled)")}</a></td>
+        <td>${esc(j.published||"")}</td><td>${esc(j.advertised_by||"")}</td></tr>`).join("")+`</table>`;
+    } else if(f==="official_website"){
+      const v=c.value;
+      body=`<div class="val"><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.url)}</a>
+        <div class="note">domain ${esc(v.domain)} · proved by
+        ${esc((v.verification||{}).tier||"")} · confidence ${esc(c.confidence)}</div></div>`;
+    } else if(Array.isArray(c.value)){
+      body=`<div class="val">`+c.value.map(x=>typeof x==="object"
+        ? esc(x.url||x.name||JSON.stringify(x)) : esc(x)).join(" · ")+`</div>`;
+    } else if(typeof c.value==="object"){
+      body=`<div class="val">`+Object.entries(c.value).filter(([,v])=>v!=null&&v!=="")
+        .map(([k,v])=>`${esc(k.replace(/_/g," "))}: <b>${esc(typeof v==="object"?JSON.stringify(v):v)}</b>`)
+        .join(" · ")+`</div>`;
+    } else body=`<div class="val">${esc(c.value)}</div>`;
+  }
+  return `<div class="claim"><div class="claim-head"><span class="fname">${esc(label)}</span>
+    <span class="state ${c.availability}">${c.availability.replace("_"," ")}</span>
+    ${c.reporting_period?`<span class="ev">period ${esc(c.reporting_period)}</span>`:""}</div>
+    ${body}${c.note?`<div class="note">${esc(c.note)}</div>`:""}
+    ${ev.map(x=>`<div class="ev">source
+      <a href="${esc(x.source_url)}" target="_blank" rel="noopener">${esc(x.source_url)}</a>
+      · retrieved ${esc((x.retrieved_at||"").slice(0,19))}
+      ${x.content_sha256?`· <span class="hash">sha256 ${esc(x.content_sha256.slice(0,16))}…</span>`:""}
+      </div>`).join("")}</div>`;
+}
+const fmt=v=>v==null?'<span class="unknown">not reported</span>':
+  new Intl.NumberFormat("en",{maximumFractionDigits:0}).format(v);
+
+function detail(e){
+  if(!e){$("#detail").innerHTML=`<p class="empty">Select a company.</p>`;return;}
+  const s=e.summary||{};
+  const groups=[
+    ["Legal identity and public brand",[["legal_identity","Registry identity"],
+      ["operating_status","Operating status"],["public_brand_aliases","Former names"],
+      ["stated_purpose","Statutory purpose"],["registry_contact","Registry contact"]]],
+    ["Annual accounts",[["annual_accounts","Filed accounts"],["annual_account_filings","Filing copies"]]],
+    ["Leadership and workplaces",[["leadership","Registered roles"],
+      ["registered_workplaces","Registered workplaces"],["registered_employees","Employees"],
+      ["group_structure","Group structure"]]],
+    ["Website and company-owned profiles",[["official_website","Verified website"],
+      ["website_description","Site description"],["company_owned_profiles","Profiles"],
+      ["website_contact","Site contact"]]],
+    ["Hiring and dated activity",[["job_postings","Job advertisements"],
+      ["hiring_signal","Hiring signal"],["careers_page","Careers page"],
+      ["company_published_activity","Dated activity"]]],
+  ];
+  $("#detail").innerHTML=`
+    <div class="card"><h3>Summary</h3>
+      <div class="sum">${esc(s.headline||"—")}</div>
+      ${(s.unknowns||[]).length?`<div class="note" style="margin-top:8px">Not found:
+        ${s.unknowns.map(u=>esc(u.field)+" ("+esc(u.state)+")").join(" · ")}</div>`:""}
+      ${(e.changes||[]).length?`<div class="note">Changes since the previous run:
+        ${e.changes.map(c=>esc(c.change_type)).join(", ")}</div>`:""}
+    </div>
+    ${groups.map(([t,fs])=>{
+      const inner=fs.map(([f,l])=>claimBlock(e,f,l)).join("");
+      return inner?`<div class="card"><h3>${esc(t)}</h3>${inner}</div>`:"";}).join("")}
+    <div class="card"><h3>Run</h3><div class="ev">
+      run ${esc(e.run.run_id)} · ${esc(e.run.terminal_status)} ·
+      ${esc(e.operations.requests)} requests · ${esc(e.operations.runtime_ms)} ms ·
+      cost $${esc(e.operations.third_party_cost_usd)}
+      ${e.run.previous_snapshot_at?`· previous snapshot ${esc(e.run.previous_snapshot_at.slice(0,19))}`:""}
+    </div></div>`;
+}
+$("#list").addEventListener("click",ev=>{
+  const r=ev.target.closest(".row"); if(!r)return;
+  sel=view[+r.dataset.i]; render(); $("#detail").scrollTop=0;});
+$("#list").addEventListener("keydown",ev=>{
+  if(ev.key!=="Enter"&&ev.key!==" ")return; const r=ev.target.closest(".row");
+  if(r){ev.preventDefault();sel=view[+r.dataset.i];render();}});
+$("#q").addEventListener("input",render);
+$("#filter").addEventListener("change",render);
+$("#file").addEventListener("change",e=>{
+  const f=e.target.files[0]; if(!f)return;
+  f.text().then(load);});
+$("#theme").addEventListener("click",()=>{
+  const cur=document.documentElement.getAttribute("data-theme");
+  document.documentElement.setAttribute("data-theme",cur==="dark"?"light":"dark");});
+// Try the bundled sample so the page is useful on first open.
+fetch("profiles.jsonl").then(r=>r.ok?r.text():Promise.reject()).then(load).catch(()=>{});
+</script>
+</body>
+</html>

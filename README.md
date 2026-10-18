@@ -128,9 +128,21 @@ looser matching:
 | [EVAL.md](EVAL.md) | the gold set, metrics, the four measured iterations and the promotion gate |
 | [SMOKE_TEST.md](SMOKE_TEST.md) | the 100-company result and how to reproduce it |
 | [CLEAN_INSTALL.md](CLEAN_INSTALL.md) | fresh-clone verification at the pinned commit |
+| [viewer/README.md](viewer/README.md) | the profile viewer: find, compare and verify on desktop and mobile |
 | [SUBMISSION.md](SUBMISSION.md) | submission checklist, declared models, APIs and cost |
 | [SOURCES.md](SOURCES.md) | every source, its licence and its access policy |
 | [LIMITATIONS.md](LIMITATIONS.md) | what this does not do, and what we got wrong |
+
+## Viewing the output
+
+```bash
+cd viewer && python3 -m http.server 8777     # open http://localhost:8777
+```
+
+Every claim renders with its availability state, its value, and its evidence —
+source link, retrieval time and content hash — so any single fact can be checked
+back to where it came from. Filters for verified website, hiring, abstained and
+adverse status; works at phone width. See [viewer/README.md](viewer/README.md).
 
 ## Repository layout
 
@@ -146,6 +158,7 @@ src/signalpost/
   refresh.py       typed diffs, idempotence, carry-forward
   synthesis.py     supported-only summary
   sources/         brreg.py, website.py, nav_jobs.py
+viewer/            dependency-free profile viewer (desktop and mobile)
 eval/              gold-set builder, runner and scorer
 experiments/       the measurements that shaped the design
 tools/             declared-cache builders
