@@ -37,3 +37,6 @@ cache/*.log
 
 # Generated NAV index and build artifacts
 cache/nav_jobs_index.json
+
+# Nested verification clone created during submission checks - never commit it.
+SignalPost-clean-check/

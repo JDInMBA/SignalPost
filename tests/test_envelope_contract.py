@@ -246,3 +246,25 @@ def test_index_hit_that_matches_nothing_is_a_real_negative():
     jobs = next(c for c in claims if c.field == "job_postings")
     assert jobs.availability is Availability.NOT_AVAILABLE
     assert "no active advertisement is registered" in (jobs.note or "")
+
+
+def test_published_domain_follows_the_redirect():
+    """url and domain inside one claim must not contradict each other.
+
+    The crawl requested fusetools.com and landed on https://fuse.no/. Publishing
+    the candidate string as `domain` alongside a `url` of https://fuse.no/ put two
+    conflicting facts in the same claim, and the evaluator read the stale one.
+    """
+    from signalpost.http import Response
+    from signalpost.sources.website import extract_claims
+
+    landed = Response(url="https://fusetools.com/", status=200,
+                      body=b"<title>Fuse</title>", text="<title>Fuse</title>",
+                      final_url="https://fuse.no/",
+                      redirect_chain=["https://fuse.no/"])
+    claims, _ = extract_claims("997001877", "fusetools.com", [landed],
+                               {"tier": "B", "confidence": 0.95}, "ev-web")
+    site = next(c for c in claims if c.field == "official_website")
+    assert site.value["domain"] == "fuse.no"
+    assert site.value["url"] == "https://fuse.no/"
+    assert site.value["requested_domain"] == "fusetools.com"

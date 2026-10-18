@@ -160,12 +160,24 @@ class IdentityGate:
             signals["org_number_on_page"] = org
 
         # --- registry-attested domain links ------------------------------
+        #
+        # A candidate may redirect somewhere else, and what gets published is the
+        # domain the crawl landed on. Signals are therefore matched against the
+        # landed domain, never the requested one: the registry attesting
+        # stilbygg.no says nothing about norgeshus.no, the franchise portal that
+        # stilbygg.no redirects to.
         cand_domain = registered_domain(candidate.domain)
+        landed_domain = registered_domain(candidate.pages[0][0]) or cand_domain
+        published_domain = landed_domain or cand_domain
+        redirected = bool(landed_domain) and landed_domain != cand_domain
+        if redirected:
+            signals["redirected_to"] = landed_domain
+
         declared_site = registered_domain(entity.get("website") or entity.get("hjemmeside") or "")
-        if declared_site and declared_site == cand_domain:
+        if declared_site and declared_site == published_domain:
             signals["registry_declared_website"] = declared_site
         mail_domain = email_domain(entity.get("email") or entity.get("epostadresse"))
-        if mail_domain and mail_domain == cand_domain:
+        if mail_domain and mail_domain == published_domain:
             signals["registry_email_domain"] = mail_domain
 
         # --- corroborating locators --------------------------------------
@@ -216,16 +228,28 @@ class IdentityGate:
                            reasons + ["domain is the website the company filed with the registry"],
                            candidate.pages[0][0])
 
+        # A redirect that leaves the candidate's registrable domain has landed on
+        # something the entity does not attest. Chains, franchise portals and
+        # parent brands all absorb their members' domains this way, so without the
+        # organisation number on the page or the registry naming this exact
+        # domain, abstain rather than publish the destination.
+        if redirected:
+            reasons.append(
+                f"{cand_domain} redirects to {landed_domain}, which this entity does "
+                "not attest; a chain or parent portal cannot be published as the "
+                "company's own site")
+            return Verdict(False, Tier.REJECTED, 0.0, signals, conflicts, reasons)
+
         # The company has told the registry which domain is its website. A
         # different domain that cannot print this organisation number is not
         # publishable, whatever else corroborates it. Measured on the validation
         # split: this is what separates ENVION GROUP AS (registry site
         # smartbloc.no, registry e-mail mail@fjordkick.no) from its founder's
         # other venture.
-        if declared_site and declared_site != cand_domain:
+        if declared_site and declared_site != published_domain:
             reasons.append(
                 f"the registry declares {declared_site} as this company's website; "
-                f"{cand_domain} cannot be published without its organisation number")
+                f"{landed_domain} cannot be published without its organisation number")
             return Verdict(False, Tier.REJECTED, 0.0, signals, conflicts, reasons)
 
         # A single locator is too weak on its own. A founder's mobile number, a

@@ -215,10 +215,18 @@ def extract_claims(org: str, domain: str, pages: list[Response],
     ev_home = f"{eid_prefix}-home"
     evidence.append(_evidence(ev_home, home, span=_title_of(home.text)))
 
-    # 1. the verified website itself
+    # 1. the verified website itself.
+    #
+    # Publish the domain the crawl actually landed on, not the candidate we
+    # started from. fusetools.com redirects to fuse.no, and recording the
+    # candidate string next to a final_url of https://fuse.no/ put two
+    # contradictory facts inside one claim.
+    final_url = home.final_url or home.url
+    final_domain = registered_domain(final_url) or registered_domain(domain)
     claims.append(Claim(
         field="official_website", family="website",
-        value={"url": home.final_url or home.url, "domain": domain,
+        value={"url": final_url, "domain": final_domain,
+               "requested_domain": domain if final_domain != registered_domain(domain) else None,
                "verification": verdict_info},
         availability=Availability.AVAILABLE, confidence=verdict_info.get("confidence", 0.9),
         evidence_ids=[ev_home], as_of=home.retrieved_at))

@@ -30,10 +30,10 @@ asserted before each run.
 | metric | development (n=120) | validation (n=220, zero overlap) |
 |---|---:|---:|
 | one envelope per input | 120/120 | 220/220 |
-| **wrong-company publications** | **0** | **1** (see below) |
-| exact-entity precision | **100.0%** | **98.4%** |
-| recall, labelled slice | 48.3% | 54.5% |
-| abstention, labelled slice | 50.0% | 44.5% |
+| **wrong-company publications** | **0** | **0** |
+| exact-entity precision | **100.0%** | **100.0%** |
+| recall, labelled slice | 48.3% | 48.2% |
+| abstention, labelled slice | 50.0% | 50.9% |
 | **new websites on the no-site slice** | **15.0%** | **10.0%** |
 | evidence validity | 1.000 (1164 claims) | 1.000 (2115 claims) |
 | requests per company | 110.1 | 104.6 |
@@ -126,6 +126,37 @@ fixed in the same pass, including `carry_forward` leaving dangling evidence ids 
 every restored claim, a blocked re-crawl being published as an available website,
 and a phone pattern that matched any eight-digit run (so `bestillingsnummer
 20261013` was published as a contact number). All are regression-tested.
+
+## Redirects: chains and franchise portals
+
+The last wrong-company publication on the validation split came from redirects,
+and fixing it took two attempts.
+
+`FUSETOOLS AS` published `fusetools.com` while its `url` field already read
+`https://fuse.no/` — the candidate 301s to the registry-declared site. Two
+contradictory facts in one claim, and the evaluator read the stale one.
+Publishing the landed domain fixed that company and **introduced two new wrong
+publications**, because the e-mail-domain signal that justified the *requested*
+domain was being used to publish the *destination*:
+
+| company | requested | landed | what it is |
+|---|---|---|---|
+| `STILBYGG KONGSBERG AS` | `stilbygg.no` | `norgeshus.no` | the Norgeshus **building chain portal** — a franchise parent |
+| `VÅRTUN KRISTNE OPPVEKSTSENTER SA` | `vko.no` | `vartun.no` | a rebrand |
+
+The rule now is: signals are matched against the domain that will be **published**,
+never the one requested, and a redirect that leaves the candidate's registrable
+domain publishes only when the destination carries the organisation number or is
+itself the registry-declared website. Otherwise the agent abstains.
+
+| | wrong-company | recall |
+|---|---:|---:|
+| before any redirect handling | 1 (`FUSETOOLS`, benign) | 50.9% |
+| naive "publish the landed domain" | **2** (one a real franchise portal) | 49.1% |
+| signals matched to the published domain | **0** | 48.2% |
+
+2.7 points of recall for a franchise portal that would have blocked
+qualification. Both failures are regression-tested.
 
 ## Scoring order
 

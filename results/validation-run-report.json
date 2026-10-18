@@ -1,0 +1,131 @@
+{
+ "run_id": "gold-eval",
+ "agent": "signalpost-agent/1.0.0",
+ "started_at": "2026-10-18T19:26:50Z",
+ "completed_at": "2026-10-18T19:37:04Z",
+ "inputs": 220,
+ "envelopes_written": 220,
+ "one_envelope_per_input": true,
+ "resumed_from_previous_output": 0,
+ "runtime_seconds": 613.9,
+ "requests": 2943,
+ "bytes_downloaded": 20148317,
+ "third_party_cost_usd": 0.0,
+ "cost_model": "official open-data APIs only; no paid connector enabled",
+ "latency_ms": {
+  "p50": 15751,
+  "p95": 49398,
+  "max": 137082
+ },
+ "terminal_status": {
+  "completed": 220
+ },
+ "field_availability": {
+  "annual_account_filings": {
+   "available": 220
+  },
+  "annual_accounts": {
+   "available": 219,
+   "failed": 1
+  },
+  "careers_page": {
+   "not_available": 56,
+   "available": 8
+  },
+  "company_owned_profiles": {
+   "available": 41,
+   "not_available": 23
+  },
+  "company_published_activity": {
+   "not_available": 60,
+   "available": 4
+  },
+  "group_structure": {
+   "not_available": 199,
+   "available": 21
+  },
+  "leadership": {
+   "available": 219,
+   "not_available": 1
+  },
+  "legal_identity": {
+   "available": 220
+  },
+  "official_website": {
+   "available": 64,
+   "not_available": 78,
+   "ambiguous": 64,
+   "blocked": 14
+  },
+  "operating_status": {
+   "available": 220
+  },
+  "public_brand_aliases": {
+   "not_available": 150,
+   "available": 70
+  },
+  "registered_employees": {
+   "available": 50,
+   "not_available": 170
+  },
+  "registered_workplaces": {
+   "available": 176,
+   "not_available": 44
+  },
+  "registry_contact": {
+   "available": 147,
+   "not_available": 73
+  },
+  "stated_purpose": {
+   "available": 219,
+   "not_available": 1
+  },
+  "website_contact": {
+   "available": 60,
+   "not_available": 4
+  },
+  "website_description": {
+   "available": 64
+  },
+  "website_structured_organisation": {
+   "not_available": 50,
+   "available": 14
+  }
+ },
+ "website_publication_tiers": {
+  "A_org_number_on_page": 17,
+  "D_site_identity_name_plus_locator": 6,
+  "C_registry_email_domain_plus_corroboration": 41
+ },
+ "candidates_rejected_for_conflicting_org_number": 20,
+ "material_changes": {},
+ "errors": {},
+ "nav_jobs_index": {
+  "schema": "signalpost.nav_jobs_index/1",
+  "built_at": "2026-10-18T03:42:10Z",
+  "source": "Nav Arbeidsplassen public change feed (pam-stilling-feed.nav.no/api/v1)",
+  "build_mode": "feed_walk",
+  "licence": "Nav Arbeidsplassen API terms (https://arbeidsplassen.nav.no/vilkar-api)",
+  "role": "candidate index only; every advertisement is re-fetched and re-verified at run time",
+  "feed_position": null,
+  "pages_walked": 435,
+  "distinct_ads_seen": 104719,
+  "active_ads": 10050,
+  "ads_with_organisation_number": 9873,
+  "companies_indexed": 6174,
+  "build_seconds": 36636.5,
+  "content_sha256": "ea61830622ee58abc4516cec38063450c4e1c3be418843c5b800a0eb1e917b93",
+  "present": true
+ },
+ "nav_run_snapshot": {
+  "attempted": false
+ },
+ "declared_caches": [
+  {
+   "name": "nav_jobs_index",
+   "role": "candidate index only; every advertisement re-fetched and re-verified live",
+   "present": true,
+   "built_at": "2026-10-18T03:42:10Z"
+  }
+ ]
+}

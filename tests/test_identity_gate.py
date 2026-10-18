@@ -110,3 +110,60 @@ def test_a_declared_registry_website_blocks_other_domains():
     proof = verdict("<title>Fjordkick</title><footer>Org.nr 925 903 817</footer>",
                     domain="fjordkick.no", entity=entity)
     assert proof.accepted and proof.tier is Tier.ORG_NUMBER
+
+
+def test_redirect_to_the_registry_declared_website_is_tier_b():
+    """A candidate that redirects to the declared website is the same site.
+
+    fusetools.com 301s to https://fuse.no/, which is the website FUSETOOLS AS
+    filed with the registry. Matching only the requested domain missed that and
+    fell back to the weaker e-mail tier.
+    """
+    entity = {"organisation_number": "997001877", "legal_name": "FUSETOOLS AS",
+              "website": "www.fuse.no", "email": "mariia@fusetools.com",
+              "business_address": {}}
+    v = IdentityGate().evaluate(entity, Candidate(
+        domain="fusetools.com", channel="registry_email_domain",
+        pages=[("https://fuse.no/", "<title>Fuse</title>")]))
+    assert v.accepted and v.tier is Tier.REGISTRY_WEBSITE
+    assert v.signals.get("redirected_to") == "fuse.no"
+
+
+def test_declared_website_rule_uses_the_landed_domain():
+    """The declared-website veto must judge where the crawl ended up."""
+    entity = {"organisation_number": "925903817", "legal_name": "ENVION GROUP AS",
+              "website": "smartbloc.no", "email": "mail@fjordkick.no",
+              "mobile": "979 62 230", "business_address": {}}
+    # Lands somewhere that is not the declared site: still refused.
+    v = IdentityGate().evaluate(entity, Candidate(
+        domain="fjordkick.no", channel="registry_email_domain",
+        pages=[("https://fjordkick.no/", "<title>Fjordkick</title><p>979 62 230</p>")]))
+    assert not v.accepted
+    assert any("declares smartbloc.no" in r for r in v.reasons)
+
+
+def test_redirect_to_a_franchise_portal_is_refused():
+    """STILBYGG KONGSBERG AS redirects to norgeshus.no, its building chain.
+
+    The registry e-mail domain attests stilbygg.no and says nothing about the
+    chain portal, so the destination must not be published as this company's own
+    site. Matching the e-mail signal against either domain published it.
+    """
+    entity = {"organisation_number": "981634632", "legal_name": "STILBYGG KONGSBERG AS",
+              "email": "post@stilbygg.no", "business_address": {}}
+    v = IdentityGate().evaluate(entity, Candidate(
+        domain="stilbygg.no", channel="registry_email_domain",
+        pages=[("https://norgeshus.no/", "<title>Norgeshus</title><p>Stilbygg Kongsberg</p>")]))
+    assert not v.accepted
+    assert v.signals.get("redirected_to") == "norgeshus.no"
+    assert any("does not attest" in r for r in v.reasons)
+
+
+def test_redirect_is_allowed_when_the_destination_is_proven():
+    """The organisation number on the destination still publishes it."""
+    entity = {"organisation_number": "981634632", "legal_name": "STILBYGG KONGSBERG AS",
+              "email": "post@stilbygg.no", "business_address": {}}
+    v = IdentityGate().evaluate(entity, Candidate(
+        domain="stilbygg.no", channel="registry_email_domain",
+        pages=[("https://byggmester.no/", "<title>X</title><footer>Org.nr 981 634 632</footer>")]))
+    assert v.accepted and v.tier is Tier.ORG_NUMBER

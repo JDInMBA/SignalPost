@@ -7,7 +7,8 @@ Email to `submit@builderr.ai`.
 | Agent name | Signalpost agent |
 | Repository | https://github.com/JDInMBA/SignalPost |
 | Exact commit hash | the tip of `main` — see *Commit* below |
-| Contact | shubham.work.chauhan@gmail.com |
+| Contact | jay.deore2027@sims.edu |
+| Clean-clone verification | 100 inputs, 100 unique envelopes, zero errors, 320.5s — see `CLEAN_INSTALL.md` |
 | Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
 
 ## Commit
@@ -18,11 +19,10 @@ Submit **the tip of `main`** of https://github.com/JDInMBA/SignalPost:
 git ls-remote https://github.com/JDInMBA/SignalPost.git refs/heads/main
 ```
 
-The agent code has been unchanged since
-`ca4a3ff87ff342e5b9bfc1c11a0bf17a68b5671a` (the clean-install hiring fix); every
-commit after it touches only documentation and this file, so the tip and that
-commit run identically. Commit `c1b6de58fce6917b8f904aa292cac72a638d0e1c` and
-earlier predate the fix and must not be submitted.
+Submit the tip; it is the only version with both the clean-install hiring fix and
+the redirect/franchise identity fix. Commit
+`12216d5e632884c87df67c82a667037f3b15e01c` and earlier publish a chain portal as
+a member company's own website on the validation split and must not be submitted.
 
 The tip contains the code, the pinned dependencies, the committed Nav
 candidate index, the 100-company smoke-test report and this file. Earlier commit

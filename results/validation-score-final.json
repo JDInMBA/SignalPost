@@ -1,0 +1,109 @@
+{
+ "gold_rows": 220,
+ "envelopes": 220,
+ "one_envelope_per_input": true,
+ "missing_envelopes": [],
+ "labelled_slice": {
+  "companies": 110,
+  "published": 54,
+  "correct_exact_domain": 53,
+  "registry_disagreements_with_org_number_proof": 1,
+  "wrong_company_publications": 0,
+  "abstained": 56,
+  "exact_domain_precision": 0.9814814814814815,
+  "exact_entity_precision": 1.0,
+  "recall": 0.4818181818181818,
+  "abstention_rate": 0.509090909090909
+ },
+ "unlabelled_slice": {
+  "companies": 110,
+  "published_new_websites": 10,
+  "discovery_rate": 0.09090909090909091,
+  "candidates_vetoed_for_conflicting_org_number": 7
+ },
+ "publication_tiers": {
+  "A_org_number_on_page": 17,
+  "C_registry_email_domain_plus_corroboration": 41,
+  "D_site_identity_name_plus_locator": 6
+ },
+ "discovery_channels": {
+  "subunit_website": 7,
+  "registry_email_domain": 50,
+  "name_guess": 7
+ },
+ "wrong_company_detail": [],
+ "registry_disagreement_detail": [
+  {
+   "organisation_number": "871200092",
+   "name": "HANSEN PROTECTION AS",
+   "published": "hansenprotection.com",
+   "registry_field": "hansenprotection.no",
+   "tier": "A_org_number_on_page",
+   "channel": "registry_email_domain",
+   "basis": "organisation number printed on the published page"
+  }
+ ],
+ "evidence_validity": {
+  "available_claims": 2036,
+  "with_resolving_evidence": 2036,
+  "rate": 1.0
+ },
+ "family_availability": {
+  "contact": {
+   "available": 207,
+   "not_available": 77
+  },
+  "dated_activity": {
+   "not_available": 60,
+   "available": 4
+  },
+  "description": {
+   "available": 78,
+   "not_available": 50
+  },
+  "financials": {
+   "available": 439,
+   "failed": 1
+  },
+  "group": {
+   "not_available": 199,
+   "available": 21
+  },
+  "hiring": {
+   "not_available": 56,
+   "available": 8
+  },
+  "identity": {
+   "available": 729,
+   "not_available": 151
+  },
+  "leadership": {
+   "available": 219,
+   "not_available": 1
+  },
+  "locations": {
+   "available": 176,
+   "not_available": 44
+  },
+  "social_profiles": {
+   "available": 41,
+   "not_available": 23
+  },
+  "website": {
+   "available": 64,
+   "not_available": 78,
+   "ambiguous": 64,
+   "blocked": 14
+  },
+  "workforce": {
+   "available": 50,
+   "not_available": 170
+  }
+ },
+ "cost": {
+  "requests": 2943,
+  "requests_per_company": 13.4,
+  "latency_p50_ms": 15224,
+  "latency_p95_ms": 49398
+ }
+}
