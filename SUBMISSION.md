@@ -6,16 +6,25 @@ Email to `submit@builderr.ai`.
 |---|---|
 | Agent name | Signalpost agent |
 | Repository | https://github.com/JDInMBA/SignalPost |
-| Exact commit hash | `cdb41305bbe93ef13a190113ed0d1d503554bbc8` |
+| Exact commit hash | the tip of `main` — see *Commit* below |
 | Contact | shubham.work.chauhan@gmail.com |
 | Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
 
 ## Commit
 
-Submit `cdb41305bbe93ef13a190113ed0d1d503554bbc8` on `main` of
-https://github.com/JDInMBA/SignalPost.
+Submit **the tip of `main`** of https://github.com/JDInMBA/SignalPost:
 
-That commit contains the code, the pinned dependencies, the committed Nav
+```bash
+git ls-remote https://github.com/JDInMBA/SignalPost.git refs/heads/main
+```
+
+The agent code has been unchanged since
+`ca4a3ff87ff342e5b9bfc1c11a0bf17a68b5671a` (the clean-install hiring fix); every
+commit after it touches only documentation and this file, so the tip and that
+commit run identically. Commit `c1b6de58fce6917b8f904aa292cac72a638d0e1c` and
+earlier predate the fix and must not be submitted.
+
+The tip contains the code, the pinned dependencies, the committed Nav
 candidate index, the 100-company smoke-test report and this file. Earlier commit
 `c1b6de58fce6917b8f904aa292cac72a638d0e1c` predates the clean-install hiring fix
 and should not be submitted.
