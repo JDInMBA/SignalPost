@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T08:49:20Z",
+ "generated_at": "2026-11-04T17:46:35Z",
  "envelopes": "out/smoke-envelopes.jsonl",
  "seed": 20261104,
  "method": "every sampled item re-fetched from scratch; an item counts as confirmed when the page carries the company's organisation number or every distinctive token of its legal name",
@@ -10,9 +10,9 @@
  "websites": {
   "sampled": 16,
   "reachable": 16,
-  "confirmed": 10,
+  "confirmed": 11,
   "unreachable": 0,
-  "confirmed_rate": 0.625
+  "confirmed_rate": 0.6875
  },
  "job_advertisements": {
   "sampled": 0,
@@ -30,6 +30,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": true,
+   "domain_spells_the_name": false,
    "final_url": "https://sjodinmeling.no/"
   },
   {
@@ -40,6 +41,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://www.amotbil.no/"
   },
   {
@@ -50,6 +52,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": true,
    "legal_name_on_page": true,
+   "domain_spells_the_name": false,
    "final_url": "https://faer.no/"
   },
   {
@@ -60,6 +63,7 @@
    "verdict": "unconfirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": false,
    "final_url": "https://autokada.no/"
   },
   {
@@ -70,6 +74,7 @@
    "verdict": "unconfirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": false,
    "final_url": "https://thon.no/"
   },
   {
@@ -80,6 +85,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://www.sovikskaravik.no/"
   },
   {
@@ -90,6 +96,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": true,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://www.hageutemiljo.no/"
   },
   {
@@ -100,6 +107,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://bekkjordenskog.no/"
   },
   {
@@ -110,6 +118,7 @@
    "verdict": "unconfirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": false,
    "final_url": "http://ejobb.no/"
   },
   {
@@ -120,6 +129,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": true,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://buskerudventilasjon.no/"
   },
   {
@@ -130,6 +140,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": true,
    "legal_name_on_page": true,
+   "domain_spells_the_name": true,
    "final_url": "https://reprofil.no/"
   },
   {
@@ -140,6 +151,7 @@
    "verdict": "unconfirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": false,
    "final_url": "https://totenlok.no/"
   },
   {
@@ -150,6 +162,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": true,
+   "domain_spells_the_name": false,
    "final_url": "https://www.hageogskog.no/"
   },
   {
@@ -157,9 +170,10 @@
    "name": "VERA SIMONSSON AS",
    "url": "https://verasimonsson.com/",
    "tier": "B_registry_declared_website",
-   "verdict": "unconfirmed",
+   "verdict": "confirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": true,
    "final_url": "https://verasimonsson.com/"
   },
   {
@@ -170,6 +184,7 @@
    "verdict": "confirmed",
    "organisation_number_on_page": true,
    "legal_name_on_page": true,
+   "domain_spells_the_name": false,
    "final_url": "https://www.dekkpartner.no/fetsund/akershus-dekk-as"
   },
   {
@@ -180,6 +195,7 @@
    "verdict": "unconfirmed",
    "organisation_number_on_page": false,
    "legal_name_on_page": false,
+   "domain_spells_the_name": false,
    "final_url": "https://andvordgruppen.no/"
   }
  ],

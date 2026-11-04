@@ -247,6 +247,15 @@ def check_audit(rows: list[dict]) -> None:
     section("7. Reviewer audit points")
     from signalpost.normalize import registered_domain
 
+    # An output produced before a feature existed cannot demonstrate it. Say so,
+    # rather than reporting a failure the current code would not reproduce.
+    summaries = [e.get("summary") or {} for e in rows]
+    stale = [k for k in ("website_confidence", "financial_trend")
+             if not any(k in s for s in summaries)]
+    if stale:
+        print(f"  {YEL}NOTE{OFF} this output predates {', '.join(stale)}; "
+              f"re-run the batch before trusting the last checks")
+
     site_of = {}
     for e in rows:
         c = next((c for c in e["claims"] if c["field"] == "official_website"), None)

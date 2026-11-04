@@ -1,21 +1,21 @@
 {
- "run_id": "smoke-rev2",
+ "run_id": "smoke-rev3",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-11-04T08:37:55Z",
- "completed_at": "2026-11-04T08:48:39Z",
+ "started_at": "2026-11-04T17:34:40Z",
+ "completed_at": "2026-11-04T17:46:05Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 644.5,
- "requests": 1258,
- "bytes_downloaded": 9752237,
+ "runtime_seconds": 685.4,
+ "requests": 1243,
+ "bytes_downloaded": 10028564,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 21117,
-  "p95": 90518,
-  "max": 183465
+  "p50": 23481,
+  "p95": 93225,
+  "max": 186555
  },
  "terminal_status": {
   "completed": 100
@@ -28,15 +28,18 @@
    "available": 100
   },
   "careers_page": {
-   "not_available": 15,
+   "not_available": 94,
+   "blocked": 5,
    "available": 1
   },
   "company_owned_profiles": {
-   "available": 4,
-   "not_available": 12
+   "not_available": 91,
+   "blocked": 5,
+   "available": 4
   },
   "company_published_activity": {
-   "not_available": 16
+   "not_available": 95,
+   "blocked": 5
   },
   "group_structure": {
    "not_available": 90,
@@ -55,8 +58,8 @@
    "available": 100
   },
   "official_website": {
-   "not_available": 49,
-   "ambiguous": 30,
+   "not_available": 47,
+   "ambiguous": 32,
    "blocked": 5,
    "available": 16
   },
@@ -83,15 +86,19 @@
    "available": 100
   },
   "website_contact": {
-   "available": 14,
-   "not_available": 2
+   "not_available": 81,
+   "blocked": 5,
+   "available": 14
   },
   "website_description": {
+   "not_available": 79,
+   "blocked": 5,
    "available": 16
   },
   "website_structured_organisation": {
-   "available": 7,
-   "not_available": 9
+   "not_available": 88,
+   "blocked": 5,
+   "available": 7
   }
  },
  "website_publication_tiers": {
