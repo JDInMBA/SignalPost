@@ -174,6 +174,7 @@ class Pipeline:
                 field="official_website", family="website", value=None,
                 availability=Availability.NOT_AVAILABLE,
                 note="no website candidate could be generated from registry data or the company name"))
+            self._site_families_unavailable(env, Availability.NOT_AVAILABLE)
             return None
 
         # Two-phase resolution. Phase 1 gates every candidate on its homepage
@@ -251,7 +252,41 @@ class Pipeline:
             availability, note = Availability.NOT_AVAILABLE, "no candidate domain resolved to a live site"
         env.claims.append(Claim(field="official_website", family="website", value=None,
                                 availability=availability, note=note))
+        self._site_families_unavailable(env, availability)
         return None
+
+    # Families that can only be read from the company's own site. When no site is
+    # published they still need a terminal state: the evaluation contract treats a
+    # missing row as unscorable, and a silent gap is indistinguishable from
+    # "checked and found nothing".
+    SITE_DERIVED: tuple[tuple[str, str], ...] = (
+        ("website_description", "description"),
+        ("website_structured_organisation", "description"),
+        ("website_contact", "contact"),
+        ("company_owned_profiles", "social_profiles"),
+        ("company_published_activity", "dated_activity"),
+        ("careers_page", "hiring"),
+    )
+
+    def _site_families_unavailable(self, env: CompanyEnvelope,
+                                   website_state: Availability) -> None:
+        """Report the site-derived families explicitly when there is no site."""
+        reason = {
+            Availability.BLOCKED: "the company's website refused the request, so its own "
+                                  "pages could not be read",
+            Availability.AMBIGUOUS: "no candidate site could be tied to this exact company, "
+                                    "so none of its own pages were read",
+            Availability.FAILED: "the verified site could not be re-fetched on this run",
+        }.get(website_state,
+              "no verified website for this company, so its own pages could not be read")
+        state = (Availability.BLOCKED if website_state is Availability.BLOCKED
+                 else Availability.FAILED if website_state is Availability.FAILED
+                 else Availability.NOT_AVAILABLE)
+        present = {c.field for c in env.claims}
+        for field, family in self.SITE_DERIVED:
+            if field not in present:
+                env.claims.append(Claim(field=field, family=family, value=None,
+                                        availability=state, note=reason))
 
     def _publish_site(self, env: CompanyEnvelope, org: str, cand: Any, verdict: Any,
                       strategies: list[str], pages: list[Any] | None = None,
@@ -272,6 +307,7 @@ class Pipeline:
                 availability=Availability.FAILED,
                 note=(f"{cand.domain} passed the identity gate but could not be "
                       "re-fetched for extraction on this run")))
+            self._site_families_unavailable(env, Availability.FAILED)
             return None
         env.claims.extend(claims)
         env.evidence.extend(evidence)

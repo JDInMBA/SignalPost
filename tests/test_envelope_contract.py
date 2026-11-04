@@ -268,3 +268,26 @@ def test_published_domain_follows_the_redirect():
     assert site.value["domain"] == "fuse.no"
     assert site.value["url"] == "https://fuse.no/"
     assert site.value["requested_domain"] == "fusetools.com"
+
+
+def test_site_families_are_reported_even_without_a_website():
+    """No verified website still owes every site-derived family a state.
+
+    These claims were previously absent altogether, which is indistinguishable
+    from "not checked" and leaves the envelope incomplete.
+    """
+    from signalpost.envelope import Availability
+    from signalpost.http import Fetcher
+    from signalpost.pipeline import Pipeline, PipelineConfig
+
+    pipe = Pipeline(Fetcher(), PipelineConfig(run_id="t"))
+    env = make_envelope()
+    pipe._site_families_unavailable(env, Availability.AMBIGUOUS)
+    fields = {c.field: c for c in env.claims}
+    for f in ("website_description", "website_contact", "company_owned_profiles",
+              "company_published_activity", "careers_page",
+              "website_structured_organisation"):
+        assert f in fields, f
+        assert fields[f].availability is Availability.NOT_AVAILABLE
+        assert fields[f].value is None
+        assert "tied to this exact company" in (fields[f].note or "")
