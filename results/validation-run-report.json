@@ -1,21 +1,21 @@
 {
  "run_id": "gold-eval",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-10-18T19:45:42Z",
- "completed_at": "2026-10-18T19:57:40Z",
+ "started_at": "2026-11-04T08:48:40Z",
+ "completed_at": "2026-11-04T09:03:55Z",
  "inputs": 220,
  "envelopes_written": 220,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 718.3,
- "requests": 2952,
- "bytes_downloaded": 20023824,
+ "runtime_seconds": 915.5,
+ "requests": 3053,
+ "bytes_downloaded": 21399531,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 13865,
-  "p95": 52297,
-  "max": 242900
+  "p50": 22972,
+  "p95": 116656,
+  "max": 156584
  },
  "terminal_status": {
   "completed": 220
@@ -29,16 +29,16 @@
    "failed": 1
   },
   "careers_page": {
-   "not_available": 56,
-   "available": 8
+   "not_available": 61,
+   "available": 6
   },
   "company_owned_profiles": {
-   "available": 41,
-   "not_available": 23
+   "available": 31,
+   "not_available": 36
   },
   "company_published_activity": {
-   "not_available": 60,
-   "available": 4
+   "not_available": 65,
+   "available": 2
   },
   "group_structure": {
    "not_available": 199,
@@ -52,9 +52,9 @@
    "available": 220
   },
   "official_website": {
-   "available": 64,
-   "not_available": 78,
-   "ambiguous": 64,
+   "available": 67,
+   "ambiguous": 65,
+   "not_available": 74,
    "blocked": 14
   },
   "operating_status": {
@@ -81,23 +81,23 @@
    "not_available": 1
   },
   "website_contact": {
-   "available": 60,
+   "available": 63,
    "not_available": 4
   },
   "website_description": {
-   "available": 64
+   "available": 67
   },
   "website_structured_organisation": {
-   "not_available": 50,
-   "available": 14
+   "not_available": 49,
+   "available": 18
   }
  },
  "website_publication_tiers": {
-  "A_org_number_on_page": 17,
-  "D_site_identity_name_plus_locator": 6,
-  "C_registry_email_domain_plus_corroboration": 41
+  "A_org_number_on_page": 16,
+  "D_site_identity_name_plus_locator": 7,
+  "C_registry_email_domain_plus_corroboration": 44
  },
- "candidates_rejected_for_conflicting_org_number": 20,
+ "candidates_rejected_for_conflicting_org_number": 19,
  "material_changes": {},
  "errors": {},
  "nav_jobs_index": {

@@ -41,6 +41,45 @@ def _fmt_money(value: Any, currency: str | None = None) -> str | None:
     return f"{value:,.0f} {unit}"
 
 
+# How the website match was proved, in words a reader can judge.
+CONFIDENCE_BY_TIER: dict[str, dict[str, str]] = {
+    "A_org_number_on_page": {
+        "level": "high",
+        "basis": "the company's organisation number is printed on the page"},
+    "B_registry_declared_website": {
+        "level": "high",
+        "basis": "this is the website the company filed with the registry"},
+    "C_registry_email_domain_plus_corroboration": {
+        "level": "medium",
+        "basis": "the domain matches the company's registered e-mail domain and the "
+                 "page carries a registered phone, address or the legal name"},
+    "D_site_identity_name_plus_locator": {
+        "level": "low",
+        "basis": "the site names the company and carries a registered locator, but "
+                 "neither the organisation number nor a registry-declared domain"},
+}
+
+
+def website_confidence(envelope: CompanyEnvelope) -> dict[str, Any]:
+    """Plain-language confidence for the website match, and what proved it."""
+    claim = next((c for c in envelope.claims if c.field == "official_website"), None)
+    if claim is None:
+        return {"level": "none", "basis": "no website connector ran"}
+    if claim.availability != Availability.AVAILABLE:
+        return {"level": "none", "state": str(claim.availability),
+                "basis": claim.note or "no website published"}
+    tier = ((claim.value or {}).get("verification") or {}).get("tier", "")
+    info = CONFIDENCE_BY_TIER.get(tier, {"level": "low", "basis": "match basis not recorded"})
+    if (claim.value or {}).get("site_names_this_company") is False:
+        info = {"level": "low",
+                "basis": ("the site does not identify this company by name, so it may "
+                          "belong to a parent group or chain; its profiles, news and "
+                          "jobs are not published as this company's")}
+    return {**info, "tier": tier, "score": claim.confidence,
+            "discovery_channel": ((claim.value or {}).get("verification") or {})
+            .get("discovery_channel")}
+
+
 def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     """Compose the summary block for one company."""
     claims = _by_field(envelope.claims)
@@ -90,10 +129,18 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     elif purpose:
         headline.append(f"Its registered statutory purpose is: {purpose[:240]}")
 
-    # How the latest filed year looks
+    # How the latest filed year looks, and where it sits against earlier years.
     financial_line = None
+    trend_line = None
+    history: list[dict[str, Any]] = []
     if accounts:
-        latest = max(accounts, key=lambda a: str(a.get("period_to") or ""))
+        ordered = sorted(accounts, key=lambda a: str(a.get("period_to") or ""), reverse=True)
+        history = [{"period_to": a.get("period_to"), "revenue": a.get("revenue"),
+                    "operating_result": a.get("operating_result"),
+                    "annual_result": a.get("annual_result"), "equity": a.get("equity"),
+                    "total_assets": a.get("total_assets"),
+                    "currency": a.get("currency")} for a in ordered]
+        latest = ordered[0]
         revenue = _fmt_money(latest.get("revenue"), latest.get("currency"))
         result = _fmt_money(latest.get("annual_result"), latest.get("currency"))
         equity = _fmt_money(latest.get("equity"), latest.get("currency"))
@@ -106,6 +153,24 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
             financial_line = (f"For the period ending {period}, the filed accounts report "
                               + ", ".join(parts) + ".")
             headline.append(financial_line)
+
+        # A single year says little; the trend is what a reader is deciding on.
+        series = [(a.get("period_to"), a.get("revenue")) for a in ordered
+                  if isinstance(a.get("revenue"), (int, float))]
+        if len(series) >= 2:
+            (new_p, new_v), (old_p, old_v) = series[0], series[-1]
+            spans = " to ".join(str(p)[:4] for p in (old_p, new_p))
+            if old_v:
+                pct = (new_v - old_v) / abs(old_v) * 100
+                shape = "grew" if pct > 1 else "fell" if pct < -1 else "was flat"
+                trend_line = (f"Across the {len(series)} filed years {spans}, revenue "
+                              f"{shape}" + (f" by {abs(pct):.0f}%" if abs(pct) >= 1 else "")
+                              + f", from {_fmt_money(old_v, latest.get('currency'))} to "
+                              f"{_fmt_money(new_v, latest.get('currency'))}.")
+            else:
+                trend_line = (f"Filed accounts cover {len(series)} years ({spans}); the "
+                              f"earliest reports no revenue figure, so no trend is asserted.")
+            headline.append(trend_line)
 
     # Who leads it
     if leaders:
@@ -158,11 +223,14 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     return {
         "headline": " ".join(headline),
         "what_it_does": site_desc.get("description") or purpose,
-        "latest_filed_period": (accounts[0].get("period_to") if accounts else None),
+        "latest_filed_period": (history[0]["period_to"] if history else None),
         "financial_line": financial_line,
+        "financial_trend": trend_line,
+        "financial_history": history,
         "employees_registered": employees.get("count") if employees else None,
         "leaders": [{"name": p.get("name"), "role": p.get("role")} for p in leaders[:6]],
         "verified_website": website.get("url"),
+        "website_confidence": website_confidence(envelope),
         "profiles": [p.get("url") for p in profiles],
         "open_positions": open_positions,
         "recent_activity": (activity[:5] + announcements[:5])[:5],

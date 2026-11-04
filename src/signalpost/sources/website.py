@@ -9,6 +9,7 @@ extracted here is already bound to the exact legal entity.
 """
 from __future__ import annotations
 
+import html as _html
 import re
 from datetime import date
 from typing import Any, Iterable
@@ -16,7 +17,10 @@ from urllib.parse import urljoin, urlsplit
 
 from ..envelope import Availability, Claim, Evidence, SourceClass
 from ..http import Fetcher, Response
-from ..normalize import is_platform_host, normalise_text, registered_domain
+from ..identity import site_identity_strings as site_identity_of
+from ..normalize import (
+    is_platform_host, name_tokens, normalise_text, registered_domain, strip_accents,
+)
 
 # Paths worth trying on a Norwegian company site, Bokmål and Nynorsk included.
 PRIORITY_PATHS: tuple[str, ...] = (
@@ -39,6 +43,19 @@ SOCIAL_PATTERNS: dict[str, re.Pattern[str]] = {
     "x": re.compile(r"https?://(?:www\.)?(?:twitter|x)\.com/(?!intent|share|home)[\w%.\-]+", re.I),
     "tiktok": re.compile(r"https?://(?:www\.)?tiktok\.com/@[\w%.\-]+", re.I),
 }
+NEWS_SEGMENTS: tuple[str, ...] = ("nyheter", "nyhet", "aktuelt", "nytt", "news",
+                                  "blogg", "blog", "presse", "press", "artikler")
+CAREER_SEGMENTS: tuple[str, ...] = ("karriere", "jobb", "jobber", "stillinger",
+                                    "ledige", "career", "careers", "jobs", "vacancies")
+# Navigation chrome that is not a news item.
+MENU_WORDS = re.compile(r"^(les mer|read more|se alle|view all|neste|forrige|meny|"
+                        r"kontakt oss|om oss|tilbake|hjem|home|more|all news|alle nyheter)$", re.I)
+
+
+def _looks_like_menu(label: str) -> bool:
+    return bool(MENU_WORDS.match(label.strip()))
+
+
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]{2,}")
 # A bare eight-digit run is not a phone number: order references, amounts and
 # dates all match that shape and were being published as contact details. Accept
@@ -199,8 +216,82 @@ def _safe_iso(year: int, month: int, day: int) -> str | None:
         return None
 
 
+def _decode(text: str) -> str:
+    """Resolve HTML entities so a title reads 'halvårsrapport', not 'halv&#xe5;rsrapport'."""
+    return " ".join(_html.unescape(text or "").split())
+
+
+def _path_has(url: str, words: tuple[str, ...]) -> bool:
+    """Match whole path segments, never substrings.
+
+    'ejobb.no/om-oss' contains the letters 'jobb' and was being published as a
+    careers page. Segment matching stops that.
+    """
+    path = urlsplit(url).path.lower()
+    segments = [seg for part in path.split("/") for seg in re.split(r"[-_.]", part) if seg]
+    return any(w in segments for w in words)
+
+
+class _PageEvidence:
+    """One evidence record per crawled page, created only when something cites it.
+
+    A reader checking a published item needs the page it was actually read from,
+    not the homepage. Every item therefore points at its own retrieval, so a
+    careers link cites the careers page and a news item cites the index it was
+    listed on.
+    """
+
+    def __init__(self, prefix: str) -> None:
+        self.prefix = prefix
+        self._ids: dict[str, str] = {}
+        self.records: list[Evidence] = []
+
+    def cite(self, page: Response, *, method: str, span: str | None = None) -> str:
+        url = page.final_url or page.url
+        if url not in self._ids:
+            eid = f"{self.prefix}-p{len(self._ids)}"
+            self._ids[url] = eid
+            self.records.append(_evidence(eid, page, span=span, method=method))
+        return self._ids[url]
+
+
+def _handle_belongs_to(url: str, legal_name: str) -> bool:
+    """Does this social handle name the company, or the chain it belongs to?
+
+    AKERSHUS DEKK AS sat on a Dekkpartner dealer page whose footer offered
+    facebook.com/bdekk and linkedin.com/company/dekk-partner-as. Both name the
+    chain. The handle must carry the company's most distinctive name token.
+    """
+    handle = strip_accents(urlsplit(url).path.rstrip("/").rsplit("/", 1)[-1]).lower()
+    handle = re.sub(r"[^a-z0-9]", "", handle)
+    tokens = sorted((strip_accents(t) for t in name_tokens(legal_name)), key=len, reverse=True)
+    tokens = [re.sub(r"[^a-z0-9]", "", t) for t in tokens]
+    tokens = [t for t in tokens if len(t) >= 4]
+    return bool(handle) and bool(tokens) and tokens[0] in handle
+
+
+def _names_the_company(text: str, legal_name: str, org: str, site_domain: str) -> bool:
+    """Does this page identify the company, rather than merely mention a group?
+
+    Every distinctive token of the legal name must be present, or the page must
+    carry the organisation number, or the domain itself must spell the name.
+    A single shared token is not enough: 'thon.no' contains 'thon' but is the
+    group's site, not THON SENTER BERGEN AS.
+    """
+    blob = normalise_text(text)
+    if org and org in re.sub(r"[^\d]", "", blob):
+        return True
+    tokens = [t for t in name_tokens(legal_name) if len(t) >= 3]
+    if tokens and all(t in blob for t in tokens):
+        return True
+    joined = "".join(name_tokens(legal_name))
+    label = (site_domain or "").split(".")[0].replace("-", "")
+    return bool(joined) and bool(label) and (joined == label or joined.startswith(label) and len(label) >= 6)
+
+
 def extract_claims(org: str, domain: str, pages: list[Response],
-                   verdict_info: dict[str, Any], eid_prefix: str) -> tuple[list[Claim], list[Evidence]]:
+                   verdict_info: dict[str, Any], eid_prefix: str,
+                   legal_name: str = "") -> tuple[list[Claim], list[Evidence]]:
     """Turn a crawled, identity-verified site into claims across several families."""
     claims: list[Claim] = []
     evidence: list[Evidence] = []
@@ -212,8 +303,9 @@ def extract_claims(org: str, domain: str, pages: list[Response],
         # The full-budget re-crawl came back blocked or empty. Publishing it would
         # assert a website from a 403 page with no body behind it.
         return claims, evidence
-    ev_home = f"{eid_prefix}-home"
-    evidence.append(_evidence(ev_home, home, span=_title_of(home.text)))
+    cites = _PageEvidence(eid_prefix)
+    ev_home = cites.cite(home, method="static_html", span=_title_of(home.text))
+    evidence = cites.records
 
     # 1. the verified website itself.
     #
@@ -226,9 +318,25 @@ def extract_claims(org: str, domain: str, pages: list[Response],
     # landed on, but a registry-declared domain stands even when it forwards.
     final_domain = (verdict_info.get("publish_domain")
                     or registered_domain(final_url) or registered_domain(domain))
+    # Does this site belong to the company, or to a group/chain it sits under?
+    # When it is the group's, the site itself is still reported, but none of the
+    # group's social accounts, news or jobs are published as this company's.
+    site_domain = final_domain
+    own_pages = [pg for pg in pages
+                 if registered_domain(pg.final_url or pg.url) == site_domain]
+    identity_text = " ".join(
+        (_title_of(pg.text) or "") + " " + " ".join(site_identity_of(pg.text))
+        for pg in (own_pages or pages)[:4])
+    is_own_site = _names_the_company(identity_text, legal_name, org, site_domain)
+    shared_note = (
+        "the verified site does not identify this company by name, so it is treated "
+        "as a group or chain site; its profiles, news and jobs are not published as "
+        "this company's")
+
     claims.append(Claim(
         field="official_website", family="website",
         value={"url": final_url, "domain": final_domain,
+               "site_names_this_company": is_own_site,
                "requested_domain": domain if final_domain != registered_domain(domain) else None,
                "verification": verdict_info},
         availability=Availability.AVAILABLE, confidence=verdict_info.get("confidence", 0.9),
@@ -246,32 +354,42 @@ def extract_claims(org: str, domain: str, pages: list[Response],
         evidence_ids=[ev_home], as_of=home.retrieved_at,
         note=None if (title or desc) else "no title or meta description on the homepage"))
 
-    # 3. company-owned profiles declared by the verified site
-    profiles: dict[str, str] = {}
-    profile_src: dict[str, str] = {}
-    for page in pages:
-        for platform, pattern in SOCIAL_PATTERNS.items():
-            if platform in profiles:
-                continue
-            if m := pattern.search(page.text):
+    # 3. company-owned profiles declared by the verified site.
+    #
+    # Only links found on the company's own pages count. A footer on a chain
+    # portal carries the chain's accounts: AKERSHUS DEKK AS resolved through to
+    # dekkpartner.no, whose footer offered facebook.com/bdekk.
+    profiles: list[dict[str, Any]] = []
+    seen_platforms: set[str] = set()
+    if is_own_site:
+        for page in own_pages:
+            page_url = page.final_url or page.url
+            for platform, pattern in SOCIAL_PATTERNS.items():
+                if platform in seen_platforms:
+                    continue
+                m = pattern.search(page.text)
+                if not m:
+                    continue
                 url = m.group(0).rstrip("/\"'")
-                if not _is_generic_profile(url):
-                    profiles[platform] = url
-                    profile_src[platform] = page.final_url or page.url
-    ev_profiles: list[str] = []
-    if profiles:
-        src_pages = {profile_src[p] for p in profiles}
-        for i, page in enumerate(p for p in pages if (p.final_url or p.url) in src_pages):
-            eid = f"{eid_prefix}-social-{i}"
-            evidence.append(_evidence(eid, page, method="outbound_link_extraction"))
-            ev_profiles.append(eid)
+                if _is_generic_profile(url) or not _handle_belongs_to(url, legal_name):
+                    continue
+                seen_platforms.add(platform)
+                profiles.append({
+                    "platform": platform, "url": url,
+                    "declared_on": page_url,
+                    "evidence_id": cites.cite(page, method="outbound_link_extraction",
+                                              span=url),
+                })
     claims.append(Claim(
         field="company_owned_profiles", family="social_profiles",
-        value=[{"platform": k, "url": v, "declared_on": profile_src[k]}
-               for k, v in sorted(profiles.items())] or None,
+        value=profiles or None,
         availability=Availability.AVAILABLE if profiles else Availability.NOT_AVAILABLE,
-        evidence_ids=ev_profiles or [ev_home], as_of=home.retrieved_at,
-        note=None if profiles else "verified site links to no company profile"))
+        evidence_ids=[p["evidence_id"] for p in profiles] or [ev_home],
+        as_of=home.retrieved_at,
+        note=None if profiles else (shared_note if not is_own_site else
+                                    "no profile on the verified site carries this "
+                                    "company's name; chain and agency accounts are "
+                                    "not published as its own")))
 
     # 4. contact points published by the company
     emails: set[str] = set()
@@ -321,48 +439,69 @@ def extract_claims(org: str, domain: str, pages: list[Response],
         evidence_ids=[ev_struct], as_of=home.retrieved_at,
         note=None if org_data else "site embeds no Organization structured data"))
 
-    # 6. dated public activity published by the company
+    # 6. dated public activity published by the company.
+    #
+    # An item counts only when it is a dated post on the company's own site and
+    # its link target is a real article, not a menu label or a product page.
     activity: list[dict[str, Any]] = []
-    activity_src: Response | None = None
-    for page in pages:
-        url = page.final_url or page.url
-        if not re.search(r"(nyhet|aktuelt|nytt|news|blogg|blog|presse|press)", url, re.I):
-            continue
-        for match in ANCHOR_RE.finditer(page.text):
-            href, label = match.group(1).strip(), " ".join(normalise_text(match.group(2)).split())
-            if len(label) < 12:
+    if is_own_site:
+        for page in own_pages:
+            url = page.final_url or page.url
+            if not _path_has(url, NEWS_SEGMENTS):
                 continue
-            target = urljoin(url, href)
-            if urlsplit(target).netloc != urlsplit(url).netloc:
-                continue
-            window = page.text[max(0, match.start() - 300): match.end() + 300]
-            if dm := DATE_RE.search(normalise_text(window)):
-                published = _parse_date(dm.group(0))
-                if published:
-                    activity.append({"title": label[:160], "url": target, "published": published})
-        if activity:
-            activity_src = activity_src or page
-            break
+            for match in ANCHOR_RE.finditer(page.text):
+                href = match.group(1).strip()
+                label = _decode(normalise_text(match.group(2)))
+                if len(label) < 15 or _looks_like_menu(label):
+                    continue
+                target = urljoin(url, href)
+                if registered_domain(target) != site_domain:
+                    continue
+                if urlsplit(target).path.rstrip("/") in ("", urlsplit(url).path.rstrip("/")):
+                    continue            # the index page linking to itself
+                window = page.text[max(0, match.start() - 300): match.end() + 300]
+                dm = DATE_RE.search(normalise_text(window))
+                published = _parse_date(dm.group(0)) if dm else None
+                if not published:
+                    continue            # no publication date: not a dated post
+                activity.append({
+                    "title": label[:160], "url": target, "published": published,
+                    "found_on": url,
+                    "evidence_id": cites.cite(page, method="dated_anchor_extraction",
+                                              span=f"{published} {label[:80]}"),
+                })
+            if activity:
+                break
     activity = _dedupe_activity(activity)[:20]
-    ev_activity = ev_home
-    if activity_src is not None:
-        ev_activity = f"{eid_prefix}-activity"
-        evidence.append(_evidence(ev_activity, activity_src, method="dated_anchor_extraction"))
     claims.append(Claim(
         field="company_published_activity", family="dated_activity",
         value=activity or None,
         availability=Availability.AVAILABLE if activity else Availability.NOT_AVAILABLE,
-        evidence_ids=[ev_activity], as_of=home.retrieved_at,
-        note=None if activity else "no dated news or blog items found on the crawled pages"))
+        evidence_ids=sorted({a["evidence_id"] for a in activity}) or [ev_home],
+        as_of=home.retrieved_at,
+        note=None if activity else (shared_note if not is_own_site
+                                    else "no dated post found on the company's own news pages")))
 
-    # 7. careers surface, which is a hiring signal independent of a job board
-    careers = [p.final_url or p.url for p in pages
-               if re.search(r"(karriere|jobb|ledige-stillinger|career|jobs)", p.final_url or p.url, re.I)]
+    # 7. careers surface on the company's own site, matched on whole path
+    # segments so 'ejobb.no/om-oss' is not read as a careers page.
+    careers: list[dict[str, Any]] = []
+    if is_own_site:
+        for page in own_pages:
+            url = page.final_url or page.url
+            if not _path_has(url, CAREER_SEGMENTS):
+                continue
+            careers.append({
+                "url": url,
+                "evidence_id": cites.cite(page, method="career_path_match",
+                                          span=_title_of(page.text)),
+            })
     claims.append(Claim(
         field="careers_page", family="hiring", value=careers[:3] or None,
         availability=Availability.AVAILABLE if careers else Availability.NOT_AVAILABLE,
-        evidence_ids=[ev_home], as_of=home.retrieved_at,
-        note=None if careers else "no careers page found on the verified site"))
+        evidence_ids=[c["evidence_id"] for c in careers[:3]] or [ev_home],
+        as_of=home.retrieved_at,
+        note=None if careers else (shared_note if not is_own_site
+                                   else "no careers page on the company's own site")))
     return claims, evidence
 
 

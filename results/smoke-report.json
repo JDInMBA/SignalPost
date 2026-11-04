@@ -1,21 +1,21 @@
 {
- "run_id": "smoke-100-final",
+ "run_id": "smoke-rev2",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-10-18T19:40:19Z",
- "completed_at": "2026-10-18T19:45:41Z",
+ "started_at": "2026-11-04T08:37:55Z",
+ "completed_at": "2026-11-04T08:48:39Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 322.1,
- "requests": 1208,
- "bytes_downloaded": 9799466,
+ "runtime_seconds": 644.5,
+ "requests": 1258,
+ "bytes_downloaded": 9752237,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 13071,
-  "p95": 46509,
-  "max": 86402
+  "p50": 21117,
+  "p95": 90518,
+  "max": 183465
  },
  "terminal_status": {
   "completed": 100
@@ -28,20 +28,19 @@
    "available": 100
   },
   "careers_page": {
-   "not_available": 13,
-   "available": 3
-  },
-  "company_owned_profiles": {
-   "available": 7,
-   "not_available": 9
-  },
-  "company_published_activity": {
    "not_available": 15,
    "available": 1
   },
+  "company_owned_profiles": {
+   "available": 4,
+   "not_available": 12
+  },
+  "company_published_activity": {
+   "not_available": 16
+  },
   "group_structure": {
-   "not_available": 92,
-   "available": 8
+   "not_available": 90,
+   "available": 10
   },
   "hiring_signal": {
    "not_available": 100
@@ -57,8 +56,8 @@
   },
   "official_website": {
    "not_available": 49,
-   "blocked": 6,
-   "ambiguous": 29,
+   "ambiguous": 30,
+   "blocked": 5,
    "available": 16
   },
   "operating_status": {
@@ -101,7 +100,7 @@
   "C_registry_email_domain_plus_corroboration": 4,
   "B_registry_declared_website": 6
  },
- "candidates_rejected_for_conflicting_org_number": 5,
+ "candidates_rejected_for_conflicting_org_number": 4,
  "material_changes": {},
  "errors": {},
  "nav_jobs_index": {

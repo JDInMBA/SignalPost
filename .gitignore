@@ -40,3 +40,6 @@ cache/nav_jobs_index.json
 
 # Nested verification clone created during submission checks - never commit it.
 SignalPost-clean-check/
+
+# JBOX bonus material is kept outside this repository.
+jbox/

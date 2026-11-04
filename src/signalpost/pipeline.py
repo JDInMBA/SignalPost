@@ -261,7 +261,8 @@ class Pipeline:
         if pages is None or len(pages) <= 1:
             pages = self.crawler.crawl(cand.domain) or pages or []
         info = verdict.as_dict() | {"discovery_channel": cand.channel}
-        claims, evidence = extract_claims(org, cand.domain, pages, info, "ev-web")
+        claims, evidence = extract_claims(org, cand.domain, pages, info, "ev-web",
+                                          legal_name=env.legal_name or "")
         if not claims:
             # The site cleared the gate but the full crawl came back empty or
             # blocked. The company still needs a terminal website claim; dropping

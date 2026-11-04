@@ -1,0 +1,187 @@
+{
+ "generated_at": "2026-11-04T08:49:20Z",
+ "envelopes": "out/smoke-envelopes.jsonl",
+ "seed": 20261104,
+ "method": "every sampled item re-fetched from scratch; an item counts as confirmed when the page carries the company's organisation number or every distinctive token of its legal name",
+ "published_totals": {
+  "websites": 16,
+  "job_advertisements": 0
+ },
+ "websites": {
+  "sampled": 16,
+  "reachable": 16,
+  "confirmed": 10,
+  "unreachable": 0,
+  "confirmed_rate": 0.625
+ },
+ "job_advertisements": {
+  "sampled": 0,
+  "reachable": 0,
+  "confirmed": 0,
+  "unreachable": 0,
+  "confirmed_rate": null
+ },
+ "website_detail": [
+  {
+   "org": "932193043",
+   "name": "ADVOKATFIRMAET SJØDINMELING AS",
+   "url": "https://sjodinmeling.no/",
+   "tier": "B_registry_declared_website",
+   "verdict": "confirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": true,
+   "final_url": "https://sjodinmeling.no/"
+  },
+  {
+   "org": "958474490",
+   "name": "ÅMOT BIL AS",
+   "url": "https://www.amotbil.no/",
+   "tier": "D_site_identity_name_plus_locator",
+   "verdict": "confirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": true,
+   "final_url": "https://www.amotbil.no/"
+  },
+  {
+   "org": "933072819",
+   "name": "FÆR AS",
+   "url": "https://faer.no/",
+   "tier": "A_org_number_on_page",
+   "verdict": "confirmed",
+   "organisation_number_on_page": true,
+   "legal_name_on_page": true,
+   "final_url": "https://faer.no/"
+  },
+  {
+   "org": "813834022",
+   "name": "TRUCKPARTS TRADING AS",
+   "url": "https://autokada.no/",
+   "tier": "B_registry_declared_website",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "https://autokada.no/"
+  },
+  {
+   "org": "919220252",
+   "name": "THON SENTER BERGEN AS",
+   "url": "https://thon.no/",
+   "tier": "B_registry_declared_website",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "https://thon.no/"
+  },
+  {
+   "org": "966981911",
+   "name": "SØVIK & SKÅRAVIK AS",
+   "url": "https://www.sovikskaravik.no/",
+   "tier": "C_registry_email_domain_plus_corroboration",
+   "verdict": "confirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": true,
+   "final_url": "https://www.sovikskaravik.no/"
+  },
+  {
+   "org": "829456672",
+   "name": "HAGE & UTEMILJØ AS",
+   "url": "https://www.hageutemiljo.no/",
+   "tier": "A_org_number_on_page",
+   "verdict": "confirmed",
+   "organisation_number_on_page": true,
+   "legal_name_on_page": true,
+   "final_url": "https://www.hageutemiljo.no/"
+  },
+  {
+   "org": "811766542",
+   "name": "BEKKJORDEN SKOG AS",
+   "url": "https://bekkjordenskog.no/",
+   "tier": "C_registry_email_domain_plus_corroboration",
+   "verdict": "confirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": true,
+   "final_url": "https://bekkjordenskog.no/"
+  },
+  {
+   "org": "916725981",
+   "name": "AQUACULTURETALENT AS",
+   "url": "http://ejobb.no/",
+   "tier": "B_registry_declared_website",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "http://ejobb.no/"
+  },
+  {
+   "org": "815183002",
+   "name": "BUSKERUD VENTILASJON AS",
+   "url": "https://buskerudventilasjon.no/",
+   "tier": "A_org_number_on_page",
+   "verdict": "confirmed",
+   "organisation_number_on_page": true,
+   "legal_name_on_page": true,
+   "final_url": "https://buskerudventilasjon.no/"
+  },
+  {
+   "org": "998767164",
+   "name": "REPROFIL AS",
+   "url": "https://reprofil.no/",
+   "tier": "A_org_number_on_page",
+   "verdict": "confirmed",
+   "organisation_number_on_page": true,
+   "legal_name_on_page": true,
+   "final_url": "https://reprofil.no/"
+  },
+  {
+   "org": "983030203",
+   "name": "AGROTRADE AS",
+   "url": "https://totenlok.no/",
+   "tier": "C_registry_email_domain_plus_corroboration",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "https://totenlok.no/"
+  },
+  {
+   "org": "995127113",
+   "name": "HAUKERØD HAGE OG SKOG AS",
+   "url": "https://www.hageogskog.no/",
+   "tier": "C_registry_email_domain_plus_corroboration",
+   "verdict": "confirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": true,
+   "final_url": "https://www.hageogskog.no/"
+  },
+  {
+   "org": "998560489",
+   "name": "VERA SIMONSSON AS",
+   "url": "https://verasimonsson.com/",
+   "tier": "B_registry_declared_website",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "https://verasimonsson.com/"
+  },
+  {
+   "org": "989594400",
+   "name": "AKERSHUS DEKK AS",
+   "url": "https://www.dekkpartner.no/fetsund/akershus-dekk-as",
+   "tier": "A_org_number_on_page",
+   "verdict": "confirmed",
+   "organisation_number_on_page": true,
+   "legal_name_on_page": true,
+   "final_url": "https://www.dekkpartner.no/fetsund/akershus-dekk-as"
+  },
+  {
+   "org": "933095274",
+   "name": "AS FRIDTJOF NANSENS PLASS 6",
+   "url": "https://andvordgruppen.no/",
+   "tier": "B_registry_declared_website",
+   "verdict": "unconfirmed",
+   "organisation_number_on_page": false,
+   "legal_name_on_page": false,
+   "final_url": "https://andvordgruppen.no/"
+  }
+ ],
+ "job_detail": []
+}

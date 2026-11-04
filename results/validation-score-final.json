@@ -5,15 +5,15 @@
  "missing_envelopes": [],
  "labelled_slice": {
   "companies": 110,
-  "published": 54,
-  "correct_exact_domain": 53,
+  "published": 57,
+  "correct_exact_domain": 56,
   "registry_disagreements_with_org_number_proof": 1,
   "wrong_company_publications": 0,
-  "abstained": 56,
-  "exact_domain_precision": 0.9814814814814815,
+  "abstained": 53,
+  "exact_domain_precision": 0.9824561403508771,
   "exact_entity_precision": 1.0,
-  "recall": 0.4818181818181818,
-  "abstention_rate": 0.509090909090909
+  "recall": 0.509090909090909,
+  "abstention_rate": 0.4818181818181818
  },
  "unlabelled_slice": {
   "companies": 110,
@@ -22,13 +22,13 @@
   "candidates_vetoed_for_conflicting_org_number": 7
  },
  "publication_tiers": {
-  "A_org_number_on_page": 17,
-  "C_registry_email_domain_plus_corroboration": 41,
-  "D_site_identity_name_plus_locator": 6
+  "A_org_number_on_page": 16,
+  "C_registry_email_domain_plus_corroboration": 44,
+  "D_site_identity_name_plus_locator": 7
  },
  "discovery_channels": {
-  "subunit_website": 7,
-  "registry_email_domain": 50,
+  "subunit_website": 8,
+  "registry_email_domain": 52,
   "name_guess": 7
  },
  "wrong_company_detail": [],
@@ -44,22 +44,22 @@
   }
  ],
  "evidence_validity": {
-  "available_claims": 2036,
-  "with_resolving_evidence": 2036,
+  "available_claims": 2035,
+  "with_resolving_evidence": 2035,
   "rate": 1.0
  },
  "family_availability": {
   "contact": {
-   "available": 207,
+   "available": 210,
    "not_available": 77
   },
   "dated_activity": {
-   "not_available": 60,
-   "available": 4
+   "not_available": 65,
+   "available": 2
   },
   "description": {
-   "available": 78,
-   "not_available": 50
+   "available": 85,
+   "not_available": 49
   },
   "financials": {
    "available": 439,
@@ -70,8 +70,8 @@
    "available": 21
   },
   "hiring": {
-   "not_available": 56,
-   "available": 8
+   "not_available": 61,
+   "available": 6
   },
   "identity": {
    "available": 729,
@@ -86,13 +86,13 @@
    "not_available": 44
   },
   "social_profiles": {
-   "available": 41,
-   "not_available": 23
+   "available": 31,
+   "not_available": 36
   },
   "website": {
-   "available": 64,
-   "not_available": 78,
-   "ambiguous": 64,
+   "available": 67,
+   "ambiguous": 65,
+   "not_available": 74,
    "blocked": 14
   },
   "workforce": {
@@ -101,9 +101,9 @@
   }
  },
  "cost": {
-  "requests": 2952,
-  "requests_per_company": 13.4,
-  "latency_p50_ms": 13791,
-  "latency_p95_ms": 52297
+  "requests": 3053,
+  "requests_per_company": 13.9,
+  "latency_p50_ms": 22960,
+  "latency_p95_ms": 116656
  }
 }

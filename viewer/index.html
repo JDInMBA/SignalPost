@@ -52,6 +52,8 @@ main{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:0;
 .state{font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid currentColor;
   text-transform:uppercase;letter-spacing:.04em}
 .available{color:var(--ok)} .not_available{color:var(--muted)}
+.conf-high{color:var(--ok)} .conf-medium{color:var(--warn)} .conf-low{color:var(--amb)}
+.conf-none{color:var(--muted)}
 .blocked{color:var(--bad)} .ambiguous{color:var(--amb)}
 .failed{color:var(--bad)} .not_applicable{color:var(--muted)}
 .val{margin-top:5px;font-size:14px;overflow-wrap:anywhere}
@@ -82,6 +84,9 @@ th{color:var(--muted);font-weight:600;font-size:12px}
       <option value="">All companies</option>
       <option value="site">Has a verified website</option>
       <option value="jobs">Is hiring</option>
+      <option value="high">Confidence: high</option>
+      <option value="medium">Confidence: medium</option>
+      <option value="low">Confidence: low</option>
       <option value="abstained">Website abstained</option>
       <option value="adverse">Adverse registry status</option>
     </select>
@@ -118,6 +123,7 @@ function matches(e){
   if(f==="site"&&!site)return false;
   if(f==="jobs"&&!(jobs&&jobs.length))return false;
   if(f==="abstained"&&(claim(e,"official_website")||{}).availability!=="ambiguous")return false;
+  if(["high","medium","low"].includes(f)&&((e.summary||{}).website_confidence||{}).level!==f)return false;
   if(f==="adverse"&&!(st.bankrupt||st.under_liquidation||st.compulsory_liquidation))return false;
   if(!q)return true;
   return [e.legal_name,e.organisation_number,site&&site.domain].join(" ").toLowerCase().includes(q);
@@ -126,11 +132,13 @@ function render(){
   view=rows.filter(matches);
   $("#list").innerHTML = view.length? view.map((e,i)=>{
     const st=(claim(e,"official_website")||{}).availability||"not_available";
+    const cf=((e.summary||{}).website_confidence||{}).level||"none";
     const jobs=val(e,"job_postings");
     return `<div class="row" data-i="${i}" role="option" tabindex="0"
       aria-selected="${sel===e}"><b>${esc(e.legal_name||"(no registry record)")}</b>
       <span>${esc(e.organisation_number)}</span>
       <div class="badges"><span class="state ${st}">site ${st.replace("_"," ")}</span>
+      <span class="state conf-${cf}">confidence ${cf}</span>
       ${jobs&&jobs.length?`<span class="state available">${jobs.length} job${jobs.length>1?"s":""}</span>`:""}
       </div></div>`;}).join("") : `<p class="empty">No company matches.</p>`;
   if(!view.includes(sel)) sel=null;
@@ -200,6 +208,9 @@ function detail(e){
   $("#detail").innerHTML=`
     <div class="card"><h3>Summary</h3>
       <div class="sum">${esc(s.headline||"—")}</div>
+      ${s.website_confidence?`<div class="note" style="margin-top:8px">
+        <b class="conf-${esc(s.website_confidence.level)}">Match confidence:
+        ${esc(s.website_confidence.level)}</b> — ${esc(s.website_confidence.basis)}</div>`:""}
       ${(s.unknowns||[]).length?`<div class="note" style="margin-top:8px">Not found:
         ${s.unknowns.map(u=>esc(u.field)+" ("+esc(u.state)+")").join(" · ")}</div>`:""}
       ${(e.changes||[]).length?`<div class="note">Changes since the previous run:
