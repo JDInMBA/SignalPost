@@ -1,21 +1,21 @@
 {
- "run_id": "smoke-rev3",
+ "run_id": "smoke-rev4",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-11-04T17:34:40Z",
- "completed_at": "2026-11-04T17:46:05Z",
+ "started_at": "2026-11-04T18:58:45Z",
+ "completed_at": "2026-11-04T19:08:16Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 685.4,
+ "runtime_seconds": 571.2,
  "requests": 1243,
- "bytes_downloaded": 10028564,
+ "bytes_downloaded": 10387432,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 23481,
-  "p95": 93225,
-  "max": 186555
+  "p50": 16220,
+  "p95": 90865,
+  "max": 165588
  },
  "terminal_status": {
   "completed": 100
@@ -58,8 +58,8 @@
    "available": 100
   },
   "official_website": {
-   "not_available": 47,
-   "ambiguous": 32,
+   "not_available": 49,
+   "ambiguous": 30,
    "blocked": 5,
    "available": 16
   },

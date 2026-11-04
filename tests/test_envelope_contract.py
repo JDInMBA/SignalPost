@@ -318,3 +318,94 @@ def test_trend_falls_through_to_the_balance_sheet():
 
     # One filed year is not a trend.
     assert _trend_sentence([{"period_to": "2025-12-31", "revenue": 100}], "NOK") is None
+
+
+def test_a_nil_metric_falls_through_instead_of_reading_as_negative():
+    """Nil-in-every-year is not a negative year, and it is not a direction.
+
+    Dormant and pre-trading companies file zero revenue. Reporting that as
+    "both years are negative" stated something the filing does not say, and it
+    hid a balance sheet that was in fact moving.
+    """
+    from signalpost.synthesis import _trend_sentence
+
+    nil_revenue = [{"period_to": "2025-12-31", "revenue": 0, "equity": 65793},
+                   {"period_to": "2023-12-31", "revenue": 0, "equity": 52298}]
+    out = _trend_sentence(nil_revenue, "NOK")
+    assert "equity grew by 26%" in out
+    assert "negative" not in out
+
+    # When nothing moves, nil is itself the finding - and it is stated as nil.
+    all_nil = [{"period_to": "2025-12-31", "revenue": 0, "total_assets": 0, "equity": 0},
+               {"period_to": "2023-12-31", "revenue": 0, "total_assets": 0, "equity": 0}]
+    out = _trend_sentence(all_nil, "NOK")
+    assert out == ("Across the 2 filed years 2023 to 2025, revenue was filed as nil "
+                   "in every year.")
+
+    # A real negative year still says so.
+    losses = [{"period_to": "2025-12-31", "revenue": None, "equity": -4000},
+              {"period_to": "2023-12-31", "revenue": None, "equity": -1000}]
+    assert "neither year is positive" in _trend_sentence(losses, "NOK")
+
+
+def test_the_low_confidence_basis_is_a_complete_sentence():
+    """The basis is shown to a reader deciding whether to trust the match."""
+    from signalpost.synthesis import CONFIDENCE_BY_TIER
+
+    for tier, info in CONFIDENCE_BY_TIER.items():
+        basis = info["basis"]
+        assert basis == basis.strip(), tier
+        # A trailing conjunction or preposition means the clause was cut off.
+        assert basis.split()[-1] not in {
+            "but", "and", "or", "nor", "the", "a", "an", "of", "to", "domain",
+        }, f"{tier} basis ends mid-clause: {basis!r}"
+
+
+def test_an_advertisement_on_a_subunit_is_found_from_the_parent():
+    """Nav keys an advertisement on the subunit that hires, not the parent.
+
+    Every organisation number in the shipped candidate index is a registered
+    subunit, so looking the parent up alone found nothing while the claim note
+    still said the subunits had been checked. The note was false and two field
+    families reported no hiring for companies that were visibly hiring.
+    """
+    from signalpost.envelope import Availability
+    from signalpost.http import Response
+    from signalpost.sources.nav_jobs import NavJobsClient
+
+    parent, subunit = "810034882", "923609016"
+    page = ('{"props":{"pageProps":{"ad":{"orgnr":\\"' + subunit + '\\",'
+            '\\"jobtitle\\":\\"Serviceelektriker\\",\\"published\\":\\"2026-10-15\\",'
+            '\\"expires\\":\\"2026-12-01\\",\\"municipal\\":\\"BERGEN\\"}}}}')
+
+    class _Stub:
+        requests = 0
+        bytes_downloaded = 0
+
+        def fetch(self, url, **kw):  # noqa: ANN001
+            return Response(url=url, status=200, body=page.encode(), text=page,
+                            final_url=url)
+
+    # The index holds the advertisement under the subunit, which is how Nav
+    # publishes it - the parent number does not appear in the index at all.
+    client = NavJobsClient(_Stub(), index={subunit: ["ad-uuid-1"]})
+    claims, evidence = client.collect(
+        parent, "Example AS",
+        subunits=[{"organisation_number": subunit, "name": "EXAMPLE AS AVD BERGEN"}])
+
+    jobs = next(c for c in claims if c.field == "job_postings")
+    assert jobs.availability is Availability.AVAILABLE, jobs.note
+    assert len(jobs.value) == 1
+    ad = jobs.value[0]
+    assert ad["advertiser_organisation_number"] == subunit
+    # The parent does not absorb the subunit's advertisement; it is labelled.
+    assert subunit in ad["advertised_by"] and "subunit" in ad["advertised_by"]
+    assert evidence, "a published advertisement must carry its page as evidence"
+
+    # An advertisement belonging to neither the parent nor any of its subunits
+    # is still refused, so widening the lookup cannot widen what gets published.
+    other = NavJobsClient(_Stub(), index={parent: ["ad-uuid-1"]})
+    claims, _ = other.collect(parent, "Example AS", subunits=[])
+    refused = next(c for c in claims if c.field == "job_postings")
+    assert refused.availability is Availability.NOT_AVAILABLE
+    assert "another entity" in (refused.note or "")

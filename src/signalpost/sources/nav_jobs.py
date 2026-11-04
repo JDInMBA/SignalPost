@@ -214,7 +214,15 @@ class NavJobsClient:
                     for s in subunit_list if s.get("organisation_number")}
         accepted_orgs = {org} | set(sub_orgs)
 
-        uuids = list(dict.fromkeys(self.index.get(org, [])))
+        # Nav keys an advertisement on the entity that is hiring, which is
+        # normally the registered subunit, not the parent company. Looking the
+        # parent up alone therefore misses almost every indexed advertisement,
+        # so the parent and every registered subunit are all looked up. An
+        # advertisement found this way is still verified against the live page
+        # and accepted only if its advertiser is in `accepted_orgs`.
+        uuids: list[str] = []
+        for candidate in (org, *sub_orgs):
+            uuids.extend(u for u in self.index.get(candidate, []) if u not in uuids)
         search_responses: list[Response] = []
 
         if self.snapshot_blocked:

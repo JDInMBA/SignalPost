@@ -56,7 +56,8 @@ CONFIDENCE_BY_TIER: dict[str, dict[str, str]] = {
     "D_site_identity_name_plus_locator": {
         "level": "low",
         "basis": "the site names the company and carries a registered locator, but "
-                 "neither the organisation number nor a registry-declared domain"},
+                 "neither the organisation number nor a registry-declared domain "
+                 "confirms the match"},
 }
 
 
@@ -91,6 +92,7 @@ TREND_METRICS: tuple[tuple[str, str], ...] = (
 
 def _trend_sentence(ordered: list[dict[str, Any]], currency: str | None) -> str | None:
     """One sentence on the direction of travel across the filed years."""
+    nil_fallback: str | None = None
     for key, label in TREND_METRICS:
         series = [(a.get("period_to"), a.get(key)) for a in ordered
                   if isinstance(a.get(key), (int, float))]
@@ -99,6 +101,15 @@ def _trend_sentence(ordered: list[dict[str, Any]], currency: str | None) -> str 
         (new_p, new_v), (old_p, old_v) = series[0], series[-1]
         span = " to ".join(str(p)[:4] for p in (old_p, new_p))
         years = len(series)
+        # A metric filed as nil in every year states no direction, so the next
+        # metric is tried first. Holding and pre-trading companies file nil
+        # revenue while their balance sheet still moves. It is only reported
+        # when no later metric moves either, where nil is itself the finding.
+        if all(v == 0 for _, v in series):
+            if nil_fallback is None:
+                nil_fallback = (f"Across the {years} filed years {span}, {label} was "
+                                f"filed as nil in every year.")
+            continue
         new_s, old_s = _fmt_money(new_v, currency), _fmt_money(old_v, currency)
         # A percentage across a sign change is misleading, and so is one off a
         # zero base, so those are stated in plain amounts instead.
@@ -117,8 +128,8 @@ def _trend_sentence(ordered: list[dict[str, Any]], currency: str | None) -> str 
             return (f"Across the {years} filed years {span}, {label} recovered from "
                     f"{old_s} to {new_s}.")
         return (f"Across the {years} filed years {span}, {label} moved from {old_s} "
-                f"to {new_s}; both years are negative, so no percentage is given.")
-    return None
+                f"to {new_s}; neither year is positive, so no percentage is given.")
+    return nil_fallback
 
 
 def build(envelope: CompanyEnvelope) -> dict[str, Any]:

@@ -138,6 +138,16 @@ def check_repo() -> None:
     check("the Nav candidate index ships with the repository",
           (ROOT / "cache" / "nav_jobs_index.json").exists(),
           "a clean clone has hiring coverage without a multi-hour build")
+    # A document that states a different runtime or coverage than the artifact
+    # it describes is worse than no document: the reader cannot tell which is
+    # the measurement. The measured tables are generated from the run report.
+    doc = subprocess.run([sys.executable, "tools/render_smoke_doc.py", "--check"],
+                         cwd=ROOT, capture_output=True, text=True)
+    check("SMOKE_TEST.md's figures match the committed run report",
+          doc.returncode == 0,
+          (doc.stdout + doc.stderr).strip().splitlines()[-1] if (doc.stdout or doc.stderr)
+          else "")
+
     r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=ROOT,
                        capture_output=True, text=True)
     tail = (r.stdout.strip().splitlines() or ["no output"])[-1]
@@ -339,6 +349,71 @@ def check_audit(rows: list[dict]) -> None:
                 flat.append(e["organisation_number"])
     check("a company with several filed years shows a trend, not one year",
           not flat, f"{len(flat)}: {flat[:3]}")
+
+    # One domain published for two different companies is the failure that can
+    # cost qualification outright. Sharing is legitimate when the registry
+    # itself declared the site for both; it is not when we guessed the name.
+    from collections import defaultdict
+    by_domain: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    for e in rows:
+        c = next((c for c in e["claims"] if c["field"] == "official_website"), None)
+        if not c or c["availability"] != "available":
+            continue
+        dom = (c["value"] or {}).get("domain")
+        tier = ((e.get("summary") or {}).get("website_confidence") or {}).get("tier") or ""
+        if dom:
+            by_domain[dom].append((e["organisation_number"], tier))
+    shared = {d: v for d, v in by_domain.items() if len({o for o, _ in v}) > 1}
+    unattested = {d: v for d, v in shared.items()
+                  if any(not t.startswith(("A_", "B_")) for _, t in v)}
+    check("no domain is published for two companies on an unattested match",
+          not unattested, f"{len(unattested)}: {list(unattested.items())[:2]}")
+    if shared and not unattested:
+        print(f"  {DIM}{len(shared)} domain(s) shared, each registry-declared on "
+              f"both sides: {list(shared)[:3]}{OFF}")
+
+    # The trend sentence is prose we generate, so it can assert a sign the
+    # figures do not carry. A nil filing is not a negative year.
+    lying = []
+    for e in rows:
+        trend = (e.get("summary") or {}).get("financial_trend") or ""
+        if "negative" not in trend:
+            continue
+        acc = next((c for c in e["claims"] if c["field"] == "annual_accounts"), None)
+        vals = [v for a in ((acc or {}).get("value") or []) if isinstance(a, dict)
+                for v in (a.get("revenue"), a.get("total_assets"), a.get("equity"))
+                if isinstance(v, (int, float))]
+        if not any(v < 0 for v in vals):
+            lying.append(f"{e['organisation_number']}: {trend[:60]}")
+    check("no trend sentence calls a figure negative that is not below zero",
+          not lying, f"{len(lying)}: {lying[:2]}")
+
+    # Every external item must be re-checkable by the reviewer years later: the
+    # page, when it was read, what it said, and on what basis we could read it.
+    # A fetch that returned no body has nothing to hash - a recorded 404 is
+    # itself evidence - and a company's own page carries no open licence, so it
+    # states its access basis instead.
+    thin = []
+    for e in rows:
+        for ev in e["evidence"]:
+            missing = [f for f in ("source_url", "retrieved_at") if not ev.get(f)]
+            status = ev.get("http_status")
+            if isinstance(status, int) and 200 <= status < 300 and not ev.get("content_sha256"):
+                missing.append("content_sha256")
+            if not (ev.get("licence") or ev.get("access_policy")):
+                missing.append("licence or access_policy")
+            if missing:
+                thin.append(f"{e['organisation_number']}:{ev.get('id')} missing {missing}")
+    check("every evidence record carries page, timestamp, body hash and basis",
+          not thin, f"{len(thin)}: {thin[:2]}")
+
+    # Absence is a finding, not a blank. Anything we looked for and did not
+    # find has to say why, or the reader cannot tell it from an untried field.
+    silent = [f"{e['organisation_number']}:{c['field']}" for e in rows for c in e["claims"]
+              if c["availability"] in {"not_available", "blocked", "ambiguous", "failed"}
+              and not (c.get("reason") or c.get("note"))]
+    check("every absent field states why it is absent",
+          not silent, f"{len(silent)}: {silent[:3]}")
 
 
 def main() -> int:
