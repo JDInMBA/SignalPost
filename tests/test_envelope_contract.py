@@ -291,3 +291,30 @@ def test_site_families_are_reported_even_without_a_website():
         assert fields[f].availability is Availability.NOT_AVAILABLE
         assert fields[f].value is None
         assert "tied to this exact company" in (fields[f].note or "")
+
+
+def test_trend_falls_through_to_the_balance_sheet():
+    """Most of the register files no revenue; they still have a direction.
+
+    Holding and property companies make up a large share of the universe. With a
+    revenue-only trend they reported none at all, which reads as "one year" to a
+    reader comparing companies.
+    """
+    from signalpost.synthesis import _trend_sentence
+
+    rev = [{"period_to": "2025-12-31", "revenue": 7705286},
+           {"period_to": "2023-12-31", "revenue": 4755921}]
+    assert "revenue grew by 62%" in _trend_sentence(rev, "NOK")
+
+    no_rev = [{"period_to": "2025-12-31", "revenue": None, "total_assets": 156807},
+              {"period_to": "2023-12-31", "revenue": None, "total_assets": 442111}]
+    out = _trend_sentence(no_rev, "NOK")
+    assert "total assets fell by 65%" in out
+
+    # A percentage across a sign change would mislead, so it is not given.
+    flipped = [{"period_to": "2025-12-31", "revenue": None, "equity": -236573},
+               {"period_to": "2023-12-31", "revenue": None, "equity": 23245}]
+    assert "turning negative" in _trend_sentence(flipped, "NOK")
+
+    # One filed year is not a trend.
+    assert _trend_sentence([{"period_to": "2025-12-31", "revenue": 100}], "NOK") is None

@@ -80,6 +80,47 @@ def website_confidence(envelope: CompanyEnvelope) -> dict[str, Any]:
             .get("discovery_channel")}
 
 
+# Preferred order for the trend: what a reader looks at first, then what a
+# company with no trading activity still files.
+TREND_METRICS: tuple[tuple[str, str], ...] = (
+    ("revenue", "revenue"),
+    ("total_assets", "total assets"),
+    ("equity", "equity"),
+)
+
+
+def _trend_sentence(ordered: list[dict[str, Any]], currency: str | None) -> str | None:
+    """One sentence on the direction of travel across the filed years."""
+    for key, label in TREND_METRICS:
+        series = [(a.get("period_to"), a.get(key)) for a in ordered
+                  if isinstance(a.get(key), (int, float))]
+        if len(series) < 2:
+            continue
+        (new_p, new_v), (old_p, old_v) = series[0], series[-1]
+        span = " to ".join(str(p)[:4] for p in (old_p, new_p))
+        years = len(series)
+        new_s, old_s = _fmt_money(new_v, currency), _fmt_money(old_v, currency)
+        # A percentage across a sign change is misleading, and so is one off a
+        # zero base, so those are stated in plain amounts instead.
+        if old_v > 0 and new_v > 0:
+            pct = (new_v - old_v) / old_v * 100
+            if abs(pct) < 1:
+                return (f"Across the {years} filed years {span}, {label} was flat at "
+                        f"about {new_s}.")
+            shape = "grew" if pct > 0 else "fell"
+            return (f"Across the {years} filed years {span}, {label} {shape} by "
+                    f"{abs(pct):.0f}%, from {old_s} to {new_s}.")
+        if old_v > 0 >= new_v:
+            return (f"Across the {years} filed years {span}, {label} fell from {old_s} "
+                    f"to {new_s}, turning negative.")
+        if old_v <= 0 < new_v:
+            return (f"Across the {years} filed years {span}, {label} recovered from "
+                    f"{old_s} to {new_s}.")
+        return (f"Across the {years} filed years {span}, {label} moved from {old_s} "
+                f"to {new_s}; both years are negative, so no percentage is given.")
+    return None
+
+
 def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     """Compose the summary block for one company."""
     claims = _by_field(envelope.claims)
@@ -155,21 +196,11 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
             headline.append(financial_line)
 
         # A single year says little; the trend is what a reader is deciding on.
-        series = [(a.get("period_to"), a.get("revenue")) for a in ordered
-                  if isinstance(a.get("revenue"), (int, float))]
-        if len(series) >= 2:
-            (new_p, new_v), (old_p, old_v) = series[0], series[-1]
-            spans = " to ".join(str(p)[:4] for p in (old_p, new_p))
-            if old_v:
-                pct = (new_v - old_v) / abs(old_v) * 100
-                shape = "grew" if pct > 1 else "fell" if pct < -1 else "was flat"
-                trend_line = (f"Across the {len(series)} filed years {spans}, revenue "
-                              f"{shape}" + (f" by {abs(pct):.0f}%" if abs(pct) >= 1 else "")
-                              + f", from {_fmt_money(old_v, latest.get('currency'))} to "
-                              f"{_fmt_money(new_v, latest.get('currency'))}.")
-            else:
-                trend_line = (f"Filed accounts cover {len(series)} years ({spans}); the "
-                              f"earliest reports no revenue figure, so no trend is asserted.")
+        # Most of the register is holding and property companies that file no
+        # revenue at all, so fall through to the balance sheet rather than
+        # reporting no trend for them.
+        trend_line = _trend_sentence(ordered, latest.get("currency"))
+        if trend_line:
             headline.append(trend_line)
 
     # Who leads it

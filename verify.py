@@ -222,6 +222,8 @@ def check_live(count: int, refresh: bool) -> None:
                if rec.get("revenue") == 0 and rec.get("equity") == 0 and rec.get("total_assets") == 0]
         check("no financial record is fabricated as all-zero", not fab, f"{fab[:3]}")
 
+        check_audit(rows)
+
         if refresh:
             out2, rep2 = Path(d) / "out2.jsonl", Path(d) / "rep2.json"
             subprocess.run([sys.executable, "-m", "signalpost", "run",
@@ -237,6 +239,99 @@ def check_live(count: int, refresh: bool) -> None:
                   all(e["run"].get("previous_snapshot_at") for e in rows2))
 
 
+def check_audit(rows: list[dict]) -> None:
+    """The specific failures a reviewer called out on our published output.
+
+    Each one is phrased as the reviewer phrased it, so a regression is obvious.
+    """
+    section("7. Reviewer audit points")
+    from signalpost.normalize import registered_domain
+
+    site_of = {}
+    for e in rows:
+        c = next((c for c in e["claims"] if c["field"] == "official_website"), None)
+        if c and c["availability"] == "available":
+            site_of[e["organisation_number"]] = (c["value"] or {}).get("domain")
+
+    # "link the exact page each item came from"
+    unlinked = []
+    for e in rows:
+        for c in e["claims"]:
+            if c["field"] not in {"company_owned_profiles", "company_published_activity",
+                                  "careers_page"} or c["availability"] != "available":
+                continue
+            for item in (c["value"] or []):
+                if not isinstance(item, dict) or not item.get("evidence_id"):
+                    unlinked.append(f"{e['organisation_number']}:{c['field']}")
+    check("every published social, news and careers item links its own page",
+          not unlinked, f"{len(unlinked)} unlinked: {unlinked[:3]}")
+
+    # "the page an item came from must be on the company's own site"
+    offsite = []
+    for e in rows:
+        site = site_of.get(e["organisation_number"])
+        if not site:
+            continue
+        known = {x["id"]: x for x in e["evidence"]}
+        for c in e["claims"]:
+            if c["field"] not in {"company_owned_profiles", "company_published_activity",
+                                  "careers_page"} or c["availability"] != "available":
+                continue
+            for item in (c["value"] or []):
+                ev = known.get((item or {}).get("evidence_id"))
+                if ev and registered_domain(ev.get("final_url") or ev["source_url"]) != site:
+                    offsite.append(f"{e['organisation_number']}:{c['field']}")
+    check("no item is sourced from a page outside the company's own site",
+          not offsite, f"{len(offsite)}: {offsite[:3]}")
+
+    # "news must be a real dated post"
+    undated = [f"{e['organisation_number']}" for e in rows for c in e["claims"]
+               if c["field"] == "company_published_activity" and c["availability"] == "available"
+               for item in (c["value"] or []) if not item.get("published")]
+    check("every published news item carries a publication date",
+          not undated, f"{len(undated)}: {undated[:3]}")
+
+    # "the website may be a parent group's - don't lend it its socials/news/jobs"
+    leaked = []
+    for e in rows:
+        c = next((c for c in e["claims"] if c["field"] == "official_website"), None)
+        if not c or c["availability"] != "available":
+            continue
+        if (c["value"] or {}).get("site_names_this_company") is False:
+            for f in ("company_owned_profiles", "company_published_activity", "careers_page"):
+                d = next((x for x in e["claims"] if x["field"] == f), None)
+                if d and d["availability"] == "available":
+                    leaked.append(f"{e['organisation_number']}:{f}")
+    check("a group or chain site lends this company no profiles, news or jobs",
+          not leaked, f"{len(leaked)}: {leaked[:3]}")
+
+    # "check each social link belongs to the company"
+    from signalpost.sources.website import _handle_belongs_to
+    bad = [f"{e['organisation_number']}:{p['url']}" for e in rows for c in e["claims"]
+           if c["field"] == "company_owned_profiles" and c["availability"] == "available"
+           for p in (c["value"] or [])
+           if not _handle_belongs_to(p["url"], e.get("legal_name") or "")]
+    check("every published social handle carries the company's name",
+          not bad, f"{len(bad)}: {bad[:3]}")
+
+    # a published website always comes with a stated confidence and its basis
+    noconf = [e["organisation_number"] for e in rows
+              if e["organisation_number"] in site_of
+              and not ((e.get("summary") or {}).get("website_confidence") or {}).get("basis")]
+    check("every published website states a confidence level and why",
+          not noconf, f"{len(noconf)}: {noconf[:3]}")
+
+    # summaries show more than one year where more than one is filed
+    flat = []
+    for e in rows:
+        acc = next((c for c in e["claims"] if c["field"] == "annual_accounts"), None)
+        if acc and acc["availability"] == "available" and len(acc["value"] or []) > 1:
+            if not (e.get("summary") or {}).get("financial_trend"):
+                flat.append(e["organisation_number"])
+    check("a company with several filed years shows a trend, not one year",
+          not flat, f"{len(flat)}: {flat[:3]}")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -244,6 +339,8 @@ def main() -> int:
                     help="research N real companies over the network")
     ap.add_argument("--refresh", action="store_true",
                     help="run twice and prove the refresh is idempotent")
+    ap.add_argument("--audit", metavar="ENVELOPES.jsonl", default=None,
+                    help="run the reviewer audit points against an existing output file")
     args = ap.parse_args()
 
     print("Signalpost — requirement verification")
@@ -253,9 +350,13 @@ def main() -> int:
     check_provenance()
     check_batch_reader()
     check_repo()
+    if args.audit:
+        rows = [json.loads(l) for l in Path(args.audit).read_text().splitlines() if l.strip()]
+        print(f"\n{DIM}auditing {len(rows)} envelopes from {args.audit}{OFF}")
+        check_audit(rows)
     if args.live:
         check_live(args.live, args.refresh)
-    else:
+    elif not args.audit:
         print(f"\n{DIM}(skipping the live run; add --live 5 to research real companies){OFF}")
 
     failed = [n for n, ok, _ in results if not ok]
