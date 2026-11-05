@@ -90,11 +90,10 @@ def _site_subset_states(rows: list[dict]) -> dict[str, dict[str, int]]:
     return out
 
 
-def coverage(rep: dict, rows: list[dict]) -> str:
+def coverage(rep: dict, subset: dict[str, dict[str, int]]) -> str:
     avail = rep["field_availability"]
     published = avail.get("official_website", {}).get("available", 0)
     total = rep["envelopes_written"]
-    subset = _site_subset_states(rows)
     out = ["| field | available | other states |", "|---|---:|---|"]
     for field in FIELD_ORDER:
         states = subset.get(field) if field in SITE_DERIVED else avail.get(field)
@@ -186,12 +185,12 @@ BLOCKS = {"run-result": run_result, "coverage": coverage, "discovery": discovery
           "hiring-negative": hiring_negative, "hiring-runtime": hiring_runtime}
 
 
-def render(doc: str, rep: dict, meta: dict, rows: list[dict]) -> str:
+def render(doc: str, rep: dict, meta: dict, subset: dict) -> str:
     for name, fn in BLOCKS.items():
         if fn is discovery:
             body = fn(rep, meta)
         elif fn is coverage:
-            body = fn(rep, rows)
+            body = fn(rep, subset)
         else:
             body = fn(rep)
         pattern = re.compile(
@@ -209,15 +208,39 @@ def main() -> int:
     ap.add_argument("--report", default="results/smoke-report.json")
     ap.add_argument("--meta", default="smoke-companies.meta.json")
     ap.add_argument("--envelopes", default="out/smoke-envelopes.jsonl")
+    ap.add_argument("--coverage", default="results/smoke-site-coverage.json")
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
 
     doc = Path(a.doc).read_text(encoding="utf-8")
     rep = json.loads(Path(a.report).read_text(encoding="utf-8"))
     meta = json.loads(Path(a.meta).read_text(encoding="utf-8"))
-    rows = [json.loads(l) for l in
-            Path(a.envelopes).read_text(encoding="utf-8").splitlines() if l.strip()]
-    new = render(doc, rep, meta, rows)
+    # out/ is not committed, so a clean clone verifies the document against the
+    # committed breakdown instead. When the envelopes are present they are the
+    # source of truth and the breakdown is checked against them, so the sidecar
+    # cannot drift away from the run it describes.
+    envelopes, sidecar = Path(a.envelopes), Path(a.coverage)
+    if envelopes.exists():
+        rows = [json.loads(l) for l in
+                envelopes.read_text(encoding="utf-8").splitlines() if l.strip()]
+        subset = _site_subset_states(rows)
+        if a.check:
+            stored = json.loads(sidecar.read_text(encoding="utf-8")) if sidecar.exists() else None
+            if stored != subset:
+                print(f"{a.coverage} does not match {a.envelopes}; "
+                      f"run tools/render_smoke_doc.py", file=sys.stderr)
+                return 1
+        else:
+            sidecar.parent.mkdir(parents=True, exist_ok=True)
+            sidecar.write_text(json.dumps(subset, indent=1, sort_keys=True) + "\n",
+                               encoding="utf-8")
+    elif sidecar.exists():
+        subset = json.loads(sidecar.read_text(encoding="utf-8"))
+    else:
+        print(f"neither {a.envelopes} nor {a.coverage} is readable", file=sys.stderr)
+        return 1
+
+    new = render(doc, rep, meta, subset)
 
     if a.check:
         if new != doc:

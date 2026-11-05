@@ -7,6 +7,7 @@ reader does not have to re-run the agent to check the numbers.
 |---|---|
 | `smoke-report.json` | machine-readable run report for the 100-company smoke test |
 | `smoke-refresh-report.json` | the refresh pass over the same batch: zero changes |
+| `smoke-site-coverage.json` | the site-derived families counted over the companies that have a verified website, so `SMOKE_TEST.md` can be checked from a clean clone where `out/` is absent |
 | `smoke-envelopes-sample.jsonl` | seven complete envelopes — four where a website was published, three where the agent abstained |
 | `eval-development-score.json` | held-out scoring, development split (n=120) |
 | `eval-validation-score.json` | held-out scoring, validation split (n=220, zero overlap) |
