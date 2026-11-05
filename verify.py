@@ -148,10 +148,21 @@ def check_repo() -> None:
           (doc.stdout + doc.stderr).strip().splitlines()[-1] if (doc.stdout or doc.stderr)
           else "")
 
-    r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=ROOT,
-                       capture_output=True, text=True)
-    tail = (r.stdout.strip().splitlines() or ["no output"])[-1]
-    check("test suite passes", r.returncode == 0, tail)
+    # The agent itself does not need pytest, so the declared install does not
+    # bring it in. Failing here would tell a reviewer on a clean clone that the
+    # suite is broken when it has simply not been installed; say which it is.
+    have_pytest = subprocess.run([sys.executable, "-c", "import pytest"],
+                                 cwd=ROOT, capture_output=True).returncode == 0
+    if not have_pytest:
+        check("test suite passes", False,
+              'pytest is not installed in this environment; install the test '
+              'extra with  ./.venv/bin/pip install -e ".[dev]"  and run this again',
+              required=False)
+    else:
+        r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=ROOT,
+                           capture_output=True, text=True)
+        tail = (r.stdout.strip().splitlines() or ["no output"])[-1]
+        check("test suite passes", r.returncode == 0, tail)
 
 
 # ------------------------------------------------------------------- live ---
