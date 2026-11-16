@@ -121,7 +121,7 @@ def score(gold_rows: list[dict[str, Any]], envelopes: list[dict[str, Any]]) -> d
             published_unlabelled += 1
             tiers[tier or "unknown"] += 1
             channels[channel or "unknown"] += 1
-        for attempt in (env.get("summary", {}) or {}).get("identity_attempts", []) or []:
+        for attempt in (env.get("operations", {}) or {}).get("identity_attempts", []) or []:
             if attempt.get("conflicts"):
                 conflict_vetoes += 1
 

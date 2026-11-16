@@ -307,7 +307,7 @@ def _build_report(config: BatchConfig, organisations: list[str],
             changes[change.change_type] += 1
         for err in env.errors:
             errors[err.kind] += 1
-        for attempt in env.summary.get("identity_attempts", []) or []:
+        for attempt in env.operations.identity_attempts or []:
             if attempt.get("conflicts"):
                 conflicts += 1
     return {

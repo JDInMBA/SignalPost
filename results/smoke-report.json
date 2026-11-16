@@ -1,21 +1,21 @@
 {
- "run_id": "smoke-rev4",
+ "run_id": "smoke-100-final",
  "agent": "signalpost-agent/1.0.0",
- "started_at": "2026-11-04T18:58:45Z",
- "completed_at": "2026-11-04T19:08:16Z",
+ "started_at": "2026-11-13T18:09:35Z",
+ "completed_at": "2026-11-13T18:14:52Z",
  "inputs": 100,
  "envelopes_written": 100,
  "one_envelope_per_input": true,
  "resumed_from_previous_output": 0,
- "runtime_seconds": 571.2,
- "requests": 1243,
- "bytes_downloaded": 10387432,
+ "runtime_seconds": 316.8,
+ "requests": 1209,
+ "bytes_downloaded": 10219726,
  "third_party_cost_usd": 0.0,
  "cost_model": "official open-data APIs only; no paid connector enabled",
  "latency_ms": {
-  "p50": 16220,
-  "p95": 90865,
-  "max": 165588
+  "p50": 13170,
+  "p95": 51278,
+  "max": 86033
  },
  "terminal_status": {
   "completed": 100
@@ -28,22 +28,22 @@
    "available": 100
   },
   "careers_page": {
-   "not_available": 94,
-   "blocked": 5,
+   "not_available": 93,
+   "blocked": 6,
    "available": 1
   },
   "company_owned_profiles": {
-   "not_available": 91,
-   "blocked": 5,
+   "not_available": 90,
+   "blocked": 6,
    "available": 4
   },
   "company_published_activity": {
-   "not_available": 95,
-   "blocked": 5
+   "not_available": 94,
+   "blocked": 6
   },
   "group_structure": {
-   "not_available": 90,
-   "available": 10
+   "not_available": 89,
+   "available": 11
   },
   "hiring_signal": {
    "not_available": 100
@@ -58,10 +58,10 @@
    "available": 100
   },
   "official_website": {
-   "not_available": 49,
-   "ambiguous": 30,
-   "blocked": 5,
-   "available": 16
+   "not_available": 50,
+   "ambiguous": 27,
+   "blocked": 6,
+   "available": 17
   },
   "operating_status": {
    "available": 100
@@ -86,28 +86,29 @@
    "available": 100
   },
   "website_contact": {
-   "not_available": 81,
-   "blocked": 5,
+   "not_available": 80,
+   "blocked": 6,
    "available": 14
   },
   "website_description": {
-   "not_available": 79,
-   "blocked": 5,
+   "not_available": 78,
+   "blocked": 6,
    "available": 16
   },
   "website_structured_organisation": {
-   "not_available": 88,
-   "blocked": 5,
+   "not_available": 87,
+   "blocked": 6,
    "available": 7
   }
  },
  "website_publication_tiers": {
   "A_org_number_on_page": 5,
   "D_site_identity_name_plus_locator": 1,
+  "R_registry_declared_site_not_reached": 1,
   "C_registry_email_domain_plus_corroboration": 4,
   "B_registry_declared_website": 6
  },
- "candidates_rejected_for_conflicting_org_number": 4,
+ "candidates_rejected_for_conflicting_org_number": 5,
  "material_changes": {},
  "errors": {},
  "nav_jobs_index": {

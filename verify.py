@@ -148,6 +148,24 @@ def check_repo() -> None:
           (doc.stdout + doc.stderr).strip().splitlines()[-1] if (doc.stdout or doc.stderr)
           else "")
 
+    # The explorer is a scored artifact, and its one hard failure mode is
+    # silent: a browser will not fetch a sibling file from a file:// page, so a
+    # page whose only data path is that fetch opens as an empty shell for anyone
+    # who double-clicks it. The payload it loads instead must exist and must
+    # agree with the JSONL beside it, or the page is wrong rather than broken.
+    for f in ("index.html", "app.css", "app.js", "profiles.js", "profiles.jsonl"):
+        check(f"viewer/{f} present", (ROOT / "viewer" / f).exists())
+    payload = (ROOT / "viewer" / "index.html").read_text()
+    check("the explorer loads its data without a fetch",
+          'src="profiles.js"' in payload and 'type="module"' not in payload,
+          "a classic script loads from file://; fetch and modules do not")
+    view = subprocess.run([sys.executable, "tools/build_viewer.py", "--check"],
+                          cwd=ROOT, capture_output=True, text=True)
+    check("the explorer payload matches the committed envelopes",
+          view.returncode == 0,
+          (view.stdout + view.stderr).strip().splitlines()[-1]
+          if (view.stdout or view.stderr) else "")
+
     # The agent itself does not need pytest, so the declared install does not
     # bring it in. Failing here would tell a reviewer on a clean clone that the
     # suite is broken when it has simply not been installed; say which it is.
@@ -425,6 +443,33 @@ def check_audit(rows: list[dict]) -> None:
               and not (c.get("reason") or c.get("note"))]
     check("every absent field states why it is absent",
           not silent, f"{len(silent)}: {silent[:3]}")
+
+    # The summary is where a reader looks for what we found, so nothing in it
+    # may name a domain the gate refused. ISABELLA CAFE AS of Honefoss abstained
+    # correctly on its website and was still scored as having claimed an
+    # American cafe's site, because the candidate log sat in the summary and a
+    # reader took a refused domain for a finding. The log belongs in operations.
+    leaked = []
+    for e in rows:
+        summary = json.dumps(e.get("summary") or {}, ensure_ascii=False).lower()
+        if "identity_attempts" in summary:
+            leaked.append(f"{e['organisation_number']}: candidate log in summary")
+            continue
+        # A domain the gate read and refused must appear nowhere in the
+        # findings. One it merely could not reach may still be named, but only
+        # as the site the registry says the company filed, which is a registry
+        # fact and is published as such.
+        filed = ((e.get("summary") or {}).get("registry_declared_website") or "").lower()
+        for attempt in (e.get("operations") or {}).get("identity_attempts") or []:
+            domain = (attempt.get("domain") or "").lower()
+            outcome = attempt.get("outcome")
+            if outcome == "accepted" or not domain or domain not in summary:
+                continue
+            if outcome != "rejected" and domain in filed:
+                continue
+            leaked.append(f"{e['organisation_number']}: {outcome} {domain} named in summary")
+    check("no refused candidate domain is named among the findings",
+          not leaked, f"{len(leaked)}: {leaked[:2]}")
 
 
 def main() -> int:

@@ -93,6 +93,60 @@ a digest of the value's natural key — which is what the refresh diff keys on.
 does not exist. On the development gold set, evidence validity is **1.000**
 across 1,201 available claims.
 
+## Summary
+
+The summary is composed only from claims that already carry evidence. It
+introduces no fact, infers no number and softens no unknown: a field that was not
+found is named under `unknowns` with the reason it is unknown.
+
+```jsonc
+{
+  "lead": "The accounts FÆR AS filed with Regnskapsregisteret show equity of -101k NOK for the year to 2025-12-31, on revenue of 2.5m NOK, so its filed liabilities exceed its filed assets.",
+  "lead_source": "Regnskapsregisteret",
+  "lead_basis": "negative_equity",
+  "headline": "<the lead, then the registry description, then the rest>",
+  "financial_line": "For the period ending 2025-12-31, the filed accounts report ...",
+  "financial_trend": "Across the 2 filed years 2024 to 2025, revenue grew by 112% ...",
+  "financial_history": [ /* every filed year, newest first */ ],
+  "verified_website": "https://…",            // the site itself was checked
+  "registry_declared_website": null,          // filed with the register, host never answered
+  "website_confidence": { "level": "high", "basis": "…", "tier": "…", "score": 0.99 },
+  "unknowns": [ {"field": "…", "state": "…", "reason": "…"} ]
+}
+```
+
+### The lead
+
+`lead` is the one fact the summary opens on, and it names the register that holds
+it, so the opening claim can be checked without reading the rest of the envelope.
+`lead_basis` says which rule chose it. The order is what a reader deciding
+whether to deal with this company reads first, not the register's own field
+order:
+
+| `lead_basis` | chosen when |
+|---|---|
+| `registry_status` | the entity register has the company bankrupt or in liquidation |
+| `negative_equity` | the latest filed year reports equity below zero |
+| `trend_*` | a metric moved 20% or more across the filed years, changed sign, or was filed as nil throughout |
+| `loss_making` | the latest filed year reports a loss |
+| `latest_year` | nothing above applies; the year's filed figures are stated |
+| `open_positions` | no accounts are filed, but the company is advertising |
+| `no_accounts` | no accounts are filed, and the reason is given |
+
+A company the register has wound up outranks any figure it ever filed. A balance
+sheet that owes more than it owns outranks a growth rate. A growth rate outranks
+the size of one year, because one year is a level and the trend is a direction. A
+small loss does not displace a large multi-year move.
+
+The prose states each figure once. Whatever the lead already gave is subtracted
+from the sentence that follows it, so the summary does not read as a recital of
+the registry fields. `financial_line` itself stays whole, because it is a field
+of its own that other consumers read.
+
+`verified_website` and `registry_declared_website` are deliberately separate
+keys. A site published on the register's word alone has not been checked against
+the company, so it must not answer to a key named `verified_`.
+
 ## Source classes
 
 `official_registry`, `official_accounts`, `official_public_body`, `company_owned`,

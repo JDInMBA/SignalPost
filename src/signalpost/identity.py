@@ -61,6 +61,10 @@ class Tier(StrEnum):
     REGISTRY_WEBSITE = "B_registry_declared_website"
     REGISTRY_EMAIL = "C_registry_email_domain_plus_corroboration"
     NAME_AND_LOCATOR = "D_site_identity_name_plus_locator"
+    # Not a gate outcome: no candidate was accepted, but the registry itself
+    # carries a website the company filed. It is published on the register's
+    # authority alone, with no page of the site read.
+    REGISTRY_DECLARED_ONLY = "R_registry_declared_site_not_reached"
     REJECTED = "rejected"
 
 

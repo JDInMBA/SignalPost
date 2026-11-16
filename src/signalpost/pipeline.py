@@ -21,8 +21,8 @@ from .envelope import (
     Availability, Claim, CompanyEnvelope, Evidence, Operations, RunError, RunMeta, utcnow,
 )
 from .http import Fetcher
-from .identity import Candidate, IdentityGate
-from .normalize import mod11_valid
+from .identity import Candidate, IdentityGate, Tier
+from .normalize import mod11_valid, registered_domain
 from .sources import brreg
 from .sources.nav_jobs import NavJobsClient
 from .sources.website import WebsiteCrawler, extract_claims
@@ -98,13 +98,31 @@ class Pipeline:
             env.run.terminal_status = "completed_with_errors"
             env.summary.setdefault("trace", traceback.format_exc()[-800:])
 
-        # build_summary composes a fresh block, so the diagnostic keys the stages
-        # recorded must be carried across or the audit trail is silently lost.
-        carried = {k: v for k, v in env.summary.items()
-                   if k in {"trace", "identity_attempts"}}
-        env.summary = {**build_summary(env), **carried}
+        attempts = self._compose_summary(env)
         env.coverage = {c.field: str(c.availability) for c in env.claims}
-        return self._finalise(env, started_wall, started_requests, started_bytes, strategies)
+        return self._finalise(env, started_wall, started_requests, started_bytes,
+                              strategies, attempts)
+
+    @staticmethod
+    def _compose_summary(env: CompanyEnvelope) -> list[dict[str, Any]]:
+        """Publish the summary and hand back the candidate log for operations.
+
+        build_summary composes a fresh block, so a diagnostic key a stage
+        recorded is carried across or the audit trail is silently lost.
+
+        The candidate log is deliberately not carried. A domain the gate refused
+        is a record of work, but sitting in `summary` beside headline,
+        verified_website and profiles it reads as a finding about this company.
+        ISABELLA CAFE AS of Honefoss was scored as having claimed an American
+        cafe's site on exactly that reading, when the website claim itself was a
+        correct abstention. The log goes to operations; the summary keeps a
+        count, which names no domain.
+        """
+        attempts = env.summary.get("identity_attempts") or []
+        carried = {k: v for k, v in env.summary.items() if k in {"trace"}}
+        env.summary = {**build_summary(env), **carried}
+        env.summary["candidates_checked"] = len(attempts)
+        return attempts
 
     # -- stages -----------------------------------------------------------
     def _official(self, env: CompanyEnvelope, org: str, strategies: list[str]) -> None:
@@ -250,10 +268,68 @@ class Pipeline:
                     "entity; abstaining rather than risking a wrong-company match")
         else:
             availability, note = Availability.NOT_AVAILABLE, "no candidate domain resolved to a live site"
+
+        # Nothing on the open web proved the entity. The company may still have
+        # filed a website with the registry, and that filing is a registry fact
+        # which holds whether or not the host answers today. LOWEHJERTE DESIGN AS
+        # filed www.lowehjerte.no, whose server now resets the connection;
+        # abstaining discarded a fact the register was handing over. It is
+        # published on the register's authority and never as a verified site,
+        # because no page of it was read, so nothing is reported from the site.
+        if declared := self._registry_declared_site(env, attempts):
+            url, domain, evidence_ids = declared
+            env.claims.append(Claim(
+                field="official_website", family="website",
+                value={"url": url, "domain": domain,
+                       "site_names_this_company": None, "requested_domain": None,
+                       "verification": {
+                           "accepted": False,
+                           "tier": str(Tier.REGISTRY_DECLARED_ONLY),
+                           "confidence": 0.75,
+                           "signals": {"registry_declared_website": domain},
+                           "conflicting_organisation_numbers": [],
+                           "reasons": [note],
+                           "proof_url": None}},
+                availability=Availability.AVAILABLE, evidence_ids=evidence_ids,
+                note=("the website this company filed with the registry; no page of "
+                      "it could be read on this run, so the site has not been checked "
+                      "against the company and nothing on it is reported")))
+            self._site_families_unavailable(env, availability)
+            return None
+
         env.claims.append(Claim(field="official_website", family="website", value=None,
                                 availability=availability, note=note))
         self._site_families_unavailable(env, availability)
         return None
+
+    @staticmethod
+    def _registry_declared_site(
+            env: CompanyEnvelope,
+            attempts: list[dict[str, Any]] | None = None,
+    ) -> tuple[str, str, list[str]] | None:
+        """The website the registry says the company filed, with its evidence.
+
+        Read off the registry claim rather than the raw entity body, so the URL
+        published here is the one already evidenced by the registry record and
+        cannot drift from it.
+
+        A filing is withheld when the gate actually read that domain and found
+        another company's organisation number on it. The register says what the
+        company filed; the page says whose it is now. A domain that was vetoed
+        for a conflict must not re-enter on the register's word alone, or the
+        veto would be undone by the fallback meant to complement it.
+        """
+        reg = next((c for c in env.claims if c.field == "registry_contact"), None)
+        raw = ((reg.value or {}).get("website") or "").strip() if reg else ""
+        domain = registered_domain(raw)
+        if not (raw and domain and reg and reg.evidence_ids):
+            return None
+        for attempt in attempts or []:
+            if attempt.get("conflicts") and registered_domain(
+                    attempt.get("domain") or "") == domain:
+                return None
+        url = raw if raw.startswith(("http://", "https://")) else f"https://{raw}"
+        return url, domain, list(reg.evidence_ids)
 
     # Families that can only be read from the company's own site. When no site is
     # published they still need a terminal state: the evaluation contract treats a
@@ -338,7 +414,8 @@ class Pipeline:
 
     # -- bookkeeping ------------------------------------------------------
     def _finalise(self, env: CompanyEnvelope, started_wall: float, started_requests: int,
-                  started_bytes: int, strategies: list[str]) -> CompanyEnvelope:
+                  started_bytes: int, strategies: list[str],
+                  attempts: list[dict[str, Any]] | None = None) -> CompanyEnvelope:
         env.run.completed_at = utcnow()
         env.operations = Operations(
             requests=self.http.thread_stats()[0] - started_requests,
@@ -346,6 +423,7 @@ class Pipeline:
             runtime_ms=int((time.monotonic() - started_wall) * 1000),
             third_party_cost_usd=0.0,
             strategies_used=sorted(set(strategies)),
+            identity_attempts=attempts or [],
         )
         if env.errors and env.run.terminal_status == "completed":
             env.run.terminal_status = "completed_with_errors"

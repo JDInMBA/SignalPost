@@ -75,8 +75,29 @@ A candidate publishes only by clearing one named tier.
 | **C** `registry_email_domain` + corroboration | domain equals the filed e-mail domain **and** the page carries the name in its site identity or a registered locator | 0.88 |
 | **D** `name_and_locator` | the site identifies itself by the legal name **and** carries a registered phone, street or postcode+city | 0.80 |
 
-Nothing else publishes. Tier D can be switched off (`tier_d_enabled=False`) if a
-future evaluation shows it costing precision.
+Nothing a candidate can do publishes outside these four. Tier D can be switched
+off (`tier_d_enabled=False`) if a future evaluation shows it costing precision.
+
+### R — the register's own filing, where nothing was reachable
+
+| tier | condition | confidence |
+|---|---|---:|
+| **R** `registry_declared_site_not_reached` | no candidate cleared a tier, and the registry carries a website the company filed whose host did not answer | 0.75 |
+
+Tier R is not a gate outcome: no page was read, so nothing was proved. It exists
+because abstaining there discarded a registry fact. LØWEHJERTE DESIGN AS files
+`www.lowehjerte.no` with the registry; the host answers `connection reset`, so
+the crawl reached nothing and the agent published nothing — including the filing
+it already held, evidenced, from the register.
+
+What is published is the filing, on the register's authority alone, citing the
+registry evidence record with no new fetch. It is reported under
+`summary.registry_declared_website`, never under `verified_website`, and the
+synthesis says in words that no page of it was read.
+
+**The veto outranks the register.** A domain the gate actually read and refused
+for carrying another company's organisation number does not return through tier
+R. The register says what the company filed; the page says whose it is now.
 
 ## The veto
 

@@ -9,7 +9,7 @@ Email to `submit@builderr.ai`.
 | Exact commit hash | the tip of `main` — see *Commit* below |
 | Contact | jay.deore2027@sims.edu |
 | Clean-clone verification | 100 inputs, 100 unique envelopes, zero errors, 320.5s — see `CLEAN_INSTALL.md` |
-| Product UX | `viewer/` — open `python3 -m http.server 8777` in that folder; loads the committed run, or any envelope file via **Open JSONL** |
+| Product UX | `viewer/index.html` — open the file; no server and no build step. Loads the committed 100-company run, or any envelope file via **Open a run file** |
 | Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
 
 ## Commit

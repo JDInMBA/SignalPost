@@ -1,24 +1,25 @@
 {
  "careers_page": {
   "available": 1,
-  "not_available": 15
+  "not_available": 16
  },
  "company_owned_profiles": {
   "available": 4,
-  "not_available": 12
+  "not_available": 13
  },
  "company_published_activity": {
-  "not_available": 16
+  "not_available": 17
  },
  "website_contact": {
   "available": 14,
-  "not_available": 2
+  "not_available": 3
  },
  "website_description": {
-  "available": 16
+  "available": 16,
+  "not_available": 1
  },
  "website_structured_organisation": {
   "available": 7,
-  "not_available": 9
+  "not_available": 10
  }
 }

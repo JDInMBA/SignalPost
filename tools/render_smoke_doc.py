@@ -35,7 +35,15 @@ FIELD_ORDER = ("legal_identity", "operating_status", "stated_purpose",
 TIER_LABEL = {"A_org_number_on_page": "organisation number printed on the page",
               "B_registry_declared_website": "declared in the registry",
               "C_registry_email_domain_plus_corroboration": "registered e-mail domain, corroborated",
-              "D_site_identity_name_plus_locator": "name plus a registered locator"}
+              "D_site_identity_name_plus_locator": "name plus a registered locator",
+              "R_registry_declared_site_not_reached":
+                  "filed with the registry, host did not answer"}
+
+
+def _an(value: float) -> str:
+    """"an" before a figure that is read starting with a vowel: 8, 11, 18."""
+    lead = f"{value:.0f}"
+    return "an" if lead[0] == "8" or lead[:2] in {"11", "18"} else "a"
 
 
 def _mins(seconds: float) -> str:
@@ -105,8 +113,10 @@ def coverage(rep: dict, subset: dict[str, dict[str, int]]) -> str:
         out.append(f"| `{field}` | **{got}/{base}** | {others or '—'} |")
     out += ["",
             f"The six site-derived families are counted over the {published} companies "
-            f"with a verified website, because \"the page did not say\" and \"there is "
-            f"no page\" are different findings. The other {total - published} companies "
+            f"with a published website, because \"the page did not say\" and \"there is "
+            f"no page\" are different findings. A site the registry declares whose host "
+            f"never answered is published but never read, so it reports those families "
+            f"as absent too. The other {total - published} companies "
             f"still receive a terminal state on every one of those families — never a "
             f"blank — so no field is silently skipped."]
     return "\n".join(out)
@@ -117,8 +127,13 @@ def discovery(rep: dict, meta: dict) -> str:
     tiers = rep["website_publication_tiers"]
     published = states.get("available", 0)
     in_registry = meta["with_registry_website"]
-    declared = tiers.get("B_registry_declared_website", 0)
+    # A site taken from the registry's own website field is not a discovery,
+    # whether or not its host answered. Counting the unfetched ones as found
+    # would credit discovery with work the register did.
+    unfetched = tiers.get("R_registry_declared_site_not_reached", 0)
+    declared = tiers.get("B_registry_declared_website", 0) + unfetched
     found = published - declared
+    checked = published - unfetched
     out = ["| | |", "|---|---:|",
            f"| companies with a registry website in this batch | {in_registry} |",
            f"| **websites published** | **{published}** |"]
@@ -132,11 +147,17 @@ def discovery(rep: dict, meta: dict) -> str:
     for tier, count in sorted(tiers.items()):
         out.append(f"- `{tier}` — {TIER_LABEL.get(tier, tier)}: **{count}**")
     lift = (published / in_registry - 1) * 100 if in_registry else 0
+    unread = (f" {unfetched} of them is published on the register's word alone, because "
+              f"its host did not answer, and is reported as declared rather than "
+              f"verified." if unfetched else "")
     out += ["",
             f"Only {declared} of the {published} published websites came from the "
             f"registry's own website field. The other {found} were **discovered** and "
-            f"then proved, so this batch ends with {published} verified websites where "
-            f"the registry field alone offers {in_registry} — a {lift:.0f}% increase.",
+            f"then proved against the site itself, so this batch ends with {published} "
+            f"published websites — {checked} of them proved against the page — where "
+            f"the registry field alone offers {in_registry} — "
+            f"{_an(lift)} {lift:.0f}% increase."
+            + unread,
             "",
             f"The {rep['candidates_rejected_for_conflicting_org_number']} vetoed "
             f"candidates are the headline risk result: those are pages that matched the "

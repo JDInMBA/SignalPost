@@ -141,6 +141,12 @@ class Operations(BaseModel):
     runtime_ms: int = 0
     third_party_cost_usd: float = 0.0
     strategies_used: list[str] = Field(default_factory=list)
+    # Candidate domains the identity gate considered, and what it decided about
+    # each. This is a record of work, not a finding: unless an entry's outcome
+    # is "accepted" the domain was refused, and none of it describes the
+    # company. It lives here rather than in `summary` so that a reader walking
+    # the findings cannot attribute a refused domain to this entity.
+    identity_attempts: list[dict[str, Any]] = Field(default_factory=list)
 
 
 class RunMeta(BaseModel):

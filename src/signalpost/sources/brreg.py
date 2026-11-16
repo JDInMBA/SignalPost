@@ -93,6 +93,27 @@ def _empty_state(resp: Response) -> Availability:
     return _state(resp)
 
 
+def _empty_note(resp: Response, when_empty: str) -> str:
+    """The reason a claim carries no value, in words that match its state.
+
+    `_empty_state` returns `blocked` or `failed` when the request did not
+    succeed, so a note written for an empty register contradicts the state
+    beside it. HAUKERØD HAGE OG SKOG AS published a group-structure claim with
+    availability `failed` and the note "no official group relationship
+    returned", which tells a reader the register was asked and answered when in
+    fact nothing answered at all. A 404 is different: the register did answer,
+    and what it said was that it holds no such record.
+    """
+    if resp.ok or resp.status in {404, 410}:
+        return when_empty
+    if resp.blocked:
+        return (f"the register refused this request (HTTP {resp.status}); nothing was "
+                f"read, so this is not a finding that the record is absent")
+    return ("the request to the register did not complete"
+            + (f" (HTTP {resp.status})" if resp.status else "")
+            + "; this is not a finding that the record is absent")
+
+
 def _json(resp: Response) -> Any:
     try:
         return json.loads(resp.text or resp.body.decode("utf-8", "replace"))
@@ -252,7 +273,8 @@ class BrregClient:
             field="leadership", family="leadership", value=active or None,
             availability=Availability.AVAILABLE if active else _empty_state(resp),
             evidence_ids=[eid], as_of=resp.retrieved_at,
-            note=None if active else "no active registered roles returned")], ev
+            note=None if active else _empty_note(
+                resp, "no active registered roles returned"))], ev
 
     # -- registered workplaces -------------------------------------------
     def subunits(self, org: str, eid: str) -> tuple[list[Claim], list[Evidence]]:
@@ -274,7 +296,8 @@ class BrregClient:
             field="registered_workplaces", family="locations", value=locations or None,
             availability=Availability.AVAILABLE if locations else _empty_state(resp),
             evidence_ids=[eid], as_of=resp.retrieved_at,
-            note=None if locations else "registry lists no subunits for this entity")], ev
+            note=None if locations else _empty_note(
+                resp, "registry lists no subunits for this entity"))], ev
 
     # -- group structure --------------------------------------------------
     def group(self, org: str, eid: str) -> tuple[list[Claim], list[Evidence]]:
@@ -285,7 +308,8 @@ class BrregClient:
             field="group_structure", family="group", value=body or None,
             availability=Availability.AVAILABLE if body else _empty_state(resp),
             evidence_ids=[eid], as_of=resp.retrieved_at,
-            note=None if body else "no official group relationship returned")], ev
+            note=None if body else _empty_note(
+                resp, "no official group relationship returned"))], ev
 
     # -- annual accounts --------------------------------------------------
     def accounts(self, org: str, eid: str) -> tuple[list[Claim], list[Evidence]]:
@@ -328,7 +352,8 @@ class BrregClient:
             field="annual_accounts", family="financials", value=rows or None,
             availability=Availability.AVAILABLE if rows else _empty_state(resp),
             evidence_ids=[eid], as_of=resp.retrieved_at, reporting_period=period,
-            note=None if rows else "no normalised annual accounts returned for this entity")], ev
+            note=None if rows else _empty_note(
+                resp, "no normalised annual accounts returned for this entity"))], ev
 
     def account_history(self, org: str, eid: str) -> tuple[list[Claim], list[Evidence]]:
         resp = self._get(ACCOUNT_YEARS.format(org=org), history=True)
@@ -340,4 +365,4 @@ class BrregClient:
             field="annual_account_filings", family="financials", value=value or None,
             availability=Availability.AVAILABLE if value else _empty_state(resp),
             evidence_ids=[eid], as_of=resp.retrieved_at,
-            note=None if value else "no filing copies listed")], ev
+            note=None if value else _empty_note(resp, "no filing copies listed"))], ev

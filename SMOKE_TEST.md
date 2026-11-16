@@ -40,13 +40,13 @@ so it matches the shape of the official batch rather than flattering the agent:
 | **exactly one terminal envelope per input** | **true** |
 | terminal status | {"completed": 100} |
 | run errors | **none** |
-| runtime | 571s (9.5 min) |
-| requests | 1243 (12.4 per company) |
-| bytes downloaded | 10.4 MB |
-| latency p50 / p95 / max | 16.2s / 90.9s / 165.6s |
+| runtime | 317s (5.3 min) |
+| requests | 1209 (12.1 per company) |
+| bytes downloaded | 10.2 MB |
+| latency p50 / p95 / max | 13.2s / 51.3s / 86.0s |
 | **third-party cost** | **$0.00** |
 
-Extrapolated to the official 1,000-company batch at the same 6 workers: roughly **95 minutes and ~12,430 requests, at $0.00**.
+Extrapolated to the official 1,000-company batch at the same 6 workers: roughly **53 minutes and ~12,090 requests, at $0.00**.
 <!-- /generated -->
 
 ## Coverage by field
@@ -62,20 +62,20 @@ Extrapolated to the official 1,000-company batch at the same 6 workers: roughly 
 | `registered_employees` | **12/100** | not_available 88 |
 | `leadership` | **100/100** | — |
 | `registered_workplaces` | **73/100** | not_available 27 |
-| `group_structure` | **10/100** | not_available 90 |
+| `group_structure` | **11/100** | not_available 89 |
 | `annual_accounts` | **100/100** | — |
 | `annual_account_filings` | **100/100** | — |
-| `official_website` | **16/100** | ambiguous 30, blocked 5, not_available 49 |
-| `website_description` | **16/16** | — |
-| `website_contact` | **14/16** | not_available 2 |
-| `website_structured_organisation` | **7/16** | not_available 9 |
-| `company_owned_profiles` | **4/16** | not_available 12 |
-| `company_published_activity` | **0/16** | not_available 16 |
-| `careers_page` | **1/16** | not_available 15 |
+| `official_website` | **17/100** | ambiguous 27, blocked 6, not_available 50 |
+| `website_description` | **16/17** | not_available 1 |
+| `website_contact` | **14/17** | not_available 3 |
+| `website_structured_organisation` | **7/17** | not_available 10 |
+| `company_owned_profiles` | **4/17** | not_available 13 |
+| `company_published_activity` | **0/17** | not_available 17 |
+| `careers_page` | **1/17** | not_available 16 |
 | `job_postings` | **0/100** | not_available 100 |
 | `hiring_signal` | **0/100** | not_available 100 |
 
-The six site-derived families are counted over the 16 companies with a verified website, because "the page did not say" and "there is no page" are different findings. The other 84 companies still receive a terminal state on every one of those families — never a blank — so no field is silently skipped.
+The six site-derived families are counted over the 17 companies with a published website, because "the page did not say" and "there is no page" are different findings. A site the registry declares whose host never answered is published but never read, so it reports those families as absent too. The other 83 companies still receive a terminal state on every one of those families — never a blank — so no field is silently skipped.
 <!-- /generated -->
 
 ### Website discovery
@@ -84,11 +84,11 @@ The six site-derived families are counted over the 16 companies with a verified 
 | | |
 |---|---:|
 | companies with a registry website in this batch | 9 |
-| **websites published** | **16** |
-| abstained as `ambiguous` | 30 |
-| `blocked` | 5 |
-| `not_available` | 49 |
-| **candidates vetoed for carrying another company's organisation number** | **4** |
+| **websites published** | **17** |
+| abstained as `ambiguous` | 27 |
+| `blocked` | 6 |
+| `not_available` | 50 |
+| **candidates vetoed for carrying another company's organisation number** | **5** |
 
 Publication tiers:
 
@@ -96,10 +96,11 @@ Publication tiers:
 - `B_registry_declared_website` — declared in the registry: **6**
 - `C_registry_email_domain_plus_corroboration` — registered e-mail domain, corroborated: **4**
 - `D_site_identity_name_plus_locator` — name plus a registered locator: **1**
+- `R_registry_declared_site_not_reached` — filed with the registry, host did not answer: **1**
 
-Only 6 of the 16 published websites came from the registry's own website field. The other 10 were **discovered** and then proved, so this batch ends with 16 verified websites where the registry field alone offers 9 — a 78% increase.
+Only 7 of the 17 published websites came from the registry's own website field. The other 10 were **discovered** and then proved against the site itself, so this batch ends with 17 published websites — 16 of them proved against the page — where the registry field alone offers 9 — an 89% increase. 1 of them is published on the register's word alone, because its host did not answer, and is reported as declared rather than verified.
 
-The 4 vetoed candidates are the headline risk result: those are pages that matched the company by name or contact details but carried a **different** company's organisation number. A name-similarity agent publishes them. This one does not.
+The 5 vetoed candidates are the headline risk result: those are pages that matched the company by name or contact details but carried a **different** company's organisation number. A name-similarity agent publishes them. This one does not.
 <!-- /generated -->
 
 ## Idempotent refresh
@@ -151,5 +152,5 @@ The agent distinguishes four outcomes here and never collapses them:
 | `failed` | nothing was consulted, so no hiring conclusion is drawn |
 
 <!-- generated: hiring-runtime -->
-An earlier build searched Nav once per company. That took **7,402 seconds** for this same batch — a 1,000-company official run would have taken over 20 hours and scored zero on timeout. The shipped design reads a committed candidate index and, only if that is absent, takes one bounded national snapshot. This run: **571 seconds**, a 13x reduction, with hiring coverage intact.
+An earlier build searched Nav once per company. That took **7,402 seconds** for this same batch — a 1,000-company official run would have taken over 20 hours and scored zero on timeout. The shipped design reads a committed candidate index and, only if that is absent, takes one bounded national snapshot. This run: **317 seconds**, a 23x reduction, with hiring coverage intact.
 <!-- /generated -->
