@@ -704,3 +704,98 @@ def test_a_note_never_contradicts_the_state_beside_it():
     assert "did not complete" in _empty_note(resp(None), empty)
     assert "not a finding that the record is absent" in _empty_note(resp(None), empty)
     assert "refused" in _empty_note(resp(403), empty)
+
+
+def _identity_claims(body: dict) -> dict:
+    """The identity claims BrregClient derives from one entity response, by field."""
+    from signalpost.http import Response
+    from signalpost.sources.brreg import BrregClient
+
+    class _Stub:
+        requests = 0
+        bytes_downloaded = 0
+
+        def fetch(self, url, **kw):  # noqa: ANN001
+            return Response(url=url, status=200, body=b"{}", text="{}", final_url=url)
+
+    resp = Response(url="https://data.brreg.no/enhetsregisteret/api/enheter/810034882",
+                    status=200, body=b"{}", text="{}",
+                    final_url="https://data.brreg.no/enhetsregisteret/api/enheter/810034882")
+    claims, _ = BrregClient(_Stub()).identity_claims("810034882", body, resp, "ev-registry")
+    return {c.field: c for c in claims}
+
+
+def test_the_reported_activity_is_published_apart_from_the_statutory_purpose():
+    """Two different registry fields, two claims, neither standing in for the other.
+
+    `aktivitet` is what the company reports it does; `vedtektsfestetFormaal` is
+    the object drafted into its articles. Collapsing them loses the plain answer
+    behind the legal one, which is how the summary came to read as boilerplate.
+    """
+    from signalpost.envelope import Availability
+
+    claims = _identity_claims({
+        "organisasjonsnummer": "810034882",
+        "navn": "NJG41 AS",
+        "aktivitet": ["Eiendomsutvikling."],
+        "vedtektsfestetFormaal": ["Bidra til langsiktig verdiskapning for sine eiere."],
+    })
+    assert claims["registry_activity"].value == "Eiendomsutvikling."
+    assert claims["registry_activity"].availability is Availability.AVAILABLE
+    assert claims["registry_activity"].family == "description"
+    assert claims["stated_purpose"].value.startswith("Bidra til langsiktig")
+
+
+def test_an_activity_is_never_published_under_the_statutory_purpose_heading():
+    """A company that files an activity but no purpose must not be served the
+    activity labelled "statutory purpose" — the label would describe a field the
+    value did not come from, which is a wrong claim however true the text is."""
+    from signalpost.envelope import Availability
+
+    claims = _identity_claims({
+        "organisasjonsnummer": "810034882", "navn": "X AS",
+        "aktivitet": ["Eiendomsutvikling."],
+    })
+    assert claims["stated_purpose"].availability is Availability.NOT_AVAILABLE
+    assert claims["stated_purpose"].value is None
+    assert claims["registry_activity"].value == "Eiendomsutvikling."
+
+
+def test_a_missing_audit_opt_out_is_not_published_as_audited():
+    """No filed opt-out date is absence of a record, not a finding that the
+    accounts were audited. Absence is never a zero."""
+    from signalpost.envelope import Availability
+
+    claims = _identity_claims({"organisasjonsnummer": "810034882", "navn": "X AS"})
+    audit = claims["audit_exemption"]
+    assert audit.availability is Availability.NOT_AVAILABLE
+    assert audit.value is None
+    assert "no opt-out" in (audit.note or "")
+
+    filed = _identity_claims({"organisasjonsnummer": "810034882", "navn": "X AS",
+                              "fravalgRevisjonDato": "2017-07-12"})["audit_exemption"]
+    assert filed.availability is Availability.AVAILABLE
+    assert filed.value == {"audit_opted_out": True, "opted_out_at": "2017-07-12"}
+
+
+def test_the_summary_prefers_the_reported_activity_over_the_statutory_boilerplate():
+    """Given both, the prose and `what_it_does` carry the concrete activity."""
+    from signalpost.envelope import Availability, Claim, Evidence, SourceClass
+
+    env = make_envelope()
+    env.evidence.append(Evidence(
+        id="ev-registry", source_url="https://data.brreg.no/x",
+        source_class=SourceClass.OFFICIAL_REGISTRY, retrieved_at=utcnow(),
+        content_sha256="0" * 64, http_status=200))
+    for field, family, value in (
+        ("legal_identity", "identity", {"legal_name": "NJG41 AS", "municipality": "OSLO"}),
+        ("registry_activity", "description", "Eiendomsutvikling."),
+        ("stated_purpose", "identity", "Bidra til langsiktig verdiskapning for sine eiere."),
+    ):
+        env.claims.append(Claim(field=field, family=family, value=value,
+                                availability=Availability.AVAILABLE,
+                                evidence_ids=["ev-registry"], as_of=utcnow()))
+    summary = build_summary(env)
+    assert summary["what_it_does"] == "Eiendomsutvikling."
+    assert "reports its activity to the register as: Eiendomsutvikling." in summary["headline"]
+    assert "Bidra til langsiktig" not in summary["headline"]

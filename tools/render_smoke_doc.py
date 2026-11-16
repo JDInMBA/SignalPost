@@ -24,9 +24,10 @@ SITE_DERIVED = ("website_description", "website_structured_organisation",
                 "company_published_activity", "careers_page")
 
 FIELD_ORDER = ("legal_identity", "operating_status", "stated_purpose",
-               "public_brand_aliases", "registry_contact", "registered_employees",
-               "leadership", "registered_workplaces", "group_structure",
-               "annual_accounts", "annual_account_filings", "official_website",
+               "registry_activity", "public_brand_aliases", "registry_contact",
+               "registered_employees", "leadership", "registered_workplaces",
+               "group_structure", "annual_accounts", "annual_account_filings",
+               "audit_exemption", "official_website",
                "website_description", "website_contact",
                "website_structured_organisation", "company_owned_profiles",
                "company_published_activity", "careers_page",
@@ -103,6 +104,11 @@ def coverage(rep: dict, subset: dict[str, dict[str, int]]) -> str:
     published = avail.get("official_website", {}).get("available", 0)
     total = rep["envelopes_written"]
     out = ["| field | available | other states |", "|---|---:|---|"]
+    unlisted = sorted(set(avail) - set(FIELD_ORDER))
+    if unlisted:
+        raise SystemExit(
+            "these fields are in the run report but not in FIELD_ORDER, so the "
+            "coverage table would silently omit them: " + ", ".join(unlisted))
     for field in FIELD_ORDER:
         states = subset.get(field) if field in SITE_DERIVED else avail.get(field)
         if states is None or (field not in SITE_DERIVED and not states):

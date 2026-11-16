@@ -201,13 +201,44 @@ class BrregClient:
 
         # Statutory purpose: an official description of what the company does,
         # present for 96.8% of the universe where a website exists for only 10.9%.
-        purpose = body.get("vedtektsfestetFormaal") or body.get("aktivitet") or []
+        purpose = body.get("vedtektsfestetFormaal") or []
         text = " ".join(purpose).strip() if isinstance(purpose, list) else str(purpose)
         claims.append(Claim(
             field="stated_purpose", family="identity", value=text or None,
             availability=Availability.AVAILABLE if text else Availability.NOT_AVAILABLE,
             evidence_ids=[eid], as_of=resp.retrieved_at,
             note=None if text else "no statutory purpose recorded"))
+
+        # What the company says it actually does, which is not the same field as
+        # the one above. The statutory purpose is the object drafted into the
+        # articles of association and reads like one ("contribute to long-term
+        # value creation for its owners through various consultancy"); this is
+        # the activity the company itself reports to the register, and it is
+        # concrete ("property development"). Keeping them apart matters twice:
+        # a reader gets the plain answer instead of the legal one, and a company
+        # that files an activity but no statutory purpose is no longer served
+        # its activity under the heading "statutory purpose", which was not a
+        # description of the field it came from.
+        activity = body.get("aktivitet") or []
+        activity_text = (" ".join(activity).strip() if isinstance(activity, list)
+                         else str(activity).strip())
+        claims.append(Claim(
+            field="registry_activity", family="description", value=activity_text or None,
+            availability=Availability.AVAILABLE if activity_text else Availability.NOT_AVAILABLE,
+            evidence_ids=[eid], as_of=resp.retrieved_at,
+            note=None if activity_text else "registry records no reported activity"))
+
+        # Whether the company has opted out of statutory audit. A filed date is
+        # the register stating that these accounts are unaudited, which is a
+        # fact about how far the financial figures above can be trusted. No date
+        # is not published as "audited": absence here is absence of a record.
+        exemption = body.get("fravalgRevisjonDato")
+        claims.append(Claim(
+            field="audit_exemption", family="financials",
+            value={"audit_opted_out": True, "opted_out_at": exemption} if exemption else None,
+            availability=Availability.AVAILABLE if exemption else Availability.NOT_AVAILABLE,
+            evidence_ids=[eid], as_of=resp.retrieved_at,
+            note=None if exemption else "register records no opt-out from statutory audit"))
 
         # Registry-reported contact points. These double as website candidates.
         contact = {

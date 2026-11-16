@@ -157,6 +157,25 @@ the company, so it must not answer to a key named `verified_`.
 Families are the unit the evaluation scores coverage on, so each one is populated
 independently and reported separately.
 
+Two description fields come from the entity register rather than a website, and
+they are not interchangeable with each other or with `stated_purpose`:
+
+- **`stated_purpose`** is `vedtektsfestetFormaal`, the object drafted into the
+  articles of association. It is legal drafting and usually reads like it.
+- **`registry_activity`** is `aktivitet`, the activity the company itself reports
+  to the register. It is concrete, and it is filed for every company in the
+  100-company batch, against the 10.91% of the universe that has a website at
+  all. For most companies it is the only description that exists.
+
+The summary prefers the company's own website wording, then the reported
+activity, then the statutory purpose, and labels whichever it used. A company
+filing an activity but no statutory purpose is never served its activity under
+the heading "statutory purpose": the heading names the field the value came from.
+
+**`audit_exemption`** is `fravalgRevisjonDato`. A filed date is the register
+stating that the accounts above are unaudited. No date is published as
+`not_available`, never as "audited" — absence of a record is not a finding.
+
 | family | fields |
 |---|---|
 | `identity` | `legal_identity`, `operating_status`, `public_brand_aliases`, `stated_purpose` |
@@ -165,9 +184,9 @@ independently and reported separately.
 | `leadership` | `leadership` |
 | `locations` | `registered_workplaces` |
 | `group` | `group_structure` |
-| `financials` | `annual_accounts`, `annual_account_filings` |
+| `financials` | `annual_accounts`, `annual_account_filings`, `audit_exemption` |
 | `website` | `official_website` |
-| `description` | `website_description`, `website_structured_organisation` |
+| `description` | `registry_activity`, `website_description`, `website_structured_organisation` |
 | `social_profiles` | `company_owned_profiles` |
 | `dated_activity` | `company_published_activity` |
 | `hiring` | `job_postings`, `hiring_signal`, `careers_page` |

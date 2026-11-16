@@ -351,6 +351,7 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     identity = _available(claims.get("legal_identity")) or {}
     status = _available(claims.get("operating_status")) or {}
     purpose = _available(claims.get("stated_purpose"))
+    reported_activity = _available(claims.get("registry_activity"))
     site_desc = _available(claims.get("website_description")) or {}
     accounts = _available(claims.get("annual_accounts")) or []
     leaders = _available(claims.get("leadership")) or []
@@ -449,9 +450,12 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
     # that holds only whitespace is not words the company wrote, so it is tested
     # after clipping rather than before.
     described = _quote(site_desc.get("description") or "")
+    reported = _quote(reported_activity or "")
     stated = _quote(purpose or "")
     if described:
         headline.append(f"Its website describes it as: {described}")
+    elif reported:
+        headline.append(f"It reports its activity to the register as: {reported}")
     elif stated:
         headline.append(f"Its registered statutory purpose is: {stated}")
 
@@ -517,7 +521,8 @@ def build(envelope: CompanyEnvelope) -> dict[str, Any]:
         "lead": (lead or {}).get("text"),
         "lead_source": (lead or {}).get("source"),
         "lead_basis": basis,
-        "what_it_does": site_desc.get("description") or purpose,
+        "what_it_does": (site_desc.get("description")
+                         or reported_activity or purpose),
         "latest_filed_period": (history[0]["period_to"] if history else None),
         "financial_line": financial_line,
         "financial_trend": trend_line,

@@ -75,7 +75,8 @@ website — matching the real universe). Full detail in [SMOKE_TEST.md](SMOKE_TE
 |---|---|
 | exactly one terminal envelope per input | **100/100** |
 | run errors | **none** |
-| runtime / requests / cost | **5.3 min** · 1,209 requests · **$0.00** |
+| runtime / requests / cost | **7.0 min** · 1,200 requests · **$0.00** |
+| claims published with a value | **962**, of which **94%** are copies of an official register |
 | websites published | **17** from a batch where only 9 have one in the registry |
 | candidates vetoed for carrying another company's organisation number | **5** of 310 examined |
 | refresh re-run: companies reporting a change | **0 / 100** |
