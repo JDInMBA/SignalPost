@@ -8,7 +8,7 @@ Email to `submit@builderr.ai`.
 | Repository | https://github.com/JDInMBA/SignalPost |
 | Exact commit hash | the tip of `main` — see *Commit* below |
 | Contact | jay.deore2027@sims.edu |
-| Clean-clone verification | 100 inputs, 100 unique envelopes, zero errors, 320.5s — see `CLEAN_INSTALL.md` |
+| Clean-clone verification | fresh clone at the submitted commit: install, 77 tests, `verify.py` 31/31, 10/10 envelopes in 59.0s, hiring proved — see `CLEAN_INSTALL.md` |
 | Product UX | `viewer/index.html` — open the file; no server and no build step. Loads the committed 100-company run, or any envelope file via **Open a run file** |
 | Smoke test | `SMOKE_TEST.md` + `results/smoke-report.json` (committed) |
 

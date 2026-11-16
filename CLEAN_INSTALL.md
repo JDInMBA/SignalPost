@@ -3,9 +3,14 @@
 Run against the pinned commit, cloned fresh from GitHub. **No local cache, venv or
 generated state was copied in.**
 
+The pinned commit is the one these figures were measured on. A record of a clean
+clone cannot sit inside the commit it checked, so the commit submitted is this
+one, and the only thing it changes against the pinned commit is the figures on
+this page. Everything the agent runs on is identical between the two.
+
 ```bash
 git clone https://github.com/JDInMBA/SignalPost.git repo && cd repo
-git checkout ca4a3ff87ff342e5b9bfc1c11a0bf17a68b5671a
+git checkout 2667f4b60f0fed038472e553bcdfe3483adc1405
 python3.12 -m venv .venv
 ./.venv/bin/pip install -r requirements.txt
 ./.venv/bin/pip install --no-deps -e .
@@ -20,8 +25,10 @@ python3.12 -m venv .venv
 | clone + checkout at pinned commit | ok |
 | Nav candidate index present in the clone | **2,211,813 bytes — 6,174 companies, 9,873 advertisements** |
 | declared install step only | ok, no missing dependency |
-| `python -m signalpost run` (10 companies) | **10/10 envelopes, 51.8s, 90 requests, $0.00** |
-| test suite in the clone | **47 passed** |
+| `python -m signalpost run` (10 companies) | **10/10 envelopes, 59.0s, 93 requests, $0.00** |
+| test suite in the clone | **77 passed** |
+| `verify.py` in the clone | **31/31**, including the explorer payload against the committed envelopes |
+| `viewer/index.html` opens with no server | ok — the run ships as a classic script, not a fetch |
 
 ## Hiring proved from the fresh clone
 
